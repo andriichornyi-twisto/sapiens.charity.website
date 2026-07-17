@@ -128,8 +128,21 @@
     display:block;width:22px;height:2px;background:var(--wine);margin:5px auto;
     transition:transform .3s ease,opacity .3s ease;
   }
+  .nav-right{display:flex;align-items:center;gap:24px;}
+  .lang-toggle{
+    display:inline-flex;padding:2px;border:1.5px solid rgba(85,32,46,.35);border-radius:999px;
+    position:relative;z-index:5;
+  }
+  .lang-toggle button{
+    font-family:var(--font);font-size:10px;font-weight:800;letter-spacing:.1em;
+    color:var(--wine);background:none;border:0;border-radius:999px;
+    padding:6px 10px;cursor:pointer;opacity:.55;
+    transition:opacity .2s,background .2s,color .2s;
+  }
+  .lang-toggle button[aria-pressed="true"]{background:var(--wine);color:var(--cream);opacity:1;}
   @media (max-width:720px){
     .burger{display:block;}
+    .nav-right{gap:14px;}
     .wordmark{position:relative;z-index:5;}
     .nav-links{
       position:fixed;top:0;left:0;right:0;z-index:1;
@@ -362,18 +375,24 @@
 <header>
   <div class="wrap nav">
     <a class="wordmark" href="#top">Sapiens</a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="#who">Who we are</a>
-      <a href="#why">Why we do this</a>
-      <a href="#share">Why we share it</a>
-      <a class="nav-ig" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
-        @sapiens.cz
-      </a>
-    </nav>
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Main">
+        <a href="#who" data-i18n="navWho">Who we are</a>
+        <a href="#why" data-i18n="navWhy">Why we do this</a>
+        <a href="#share" data-i18n="navShare">Why we share it</a>
+        <a class="nav-ig" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
+          @sapiens.cz
+        </a>
+      </nav>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="cs" aria-pressed="false">CZ</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -381,12 +400,12 @@
 <section class="hero" id="top">
   <img class="mark" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCAIvAi8DASIAAhEBAxEB/8QAHQABAAICAwEBAAAAAAAAAAAAAAECBgcFCAkDBP/EAEUQAQABAwIDBQUFBgQDBwUAAAABAgMEBREGITEHEkFRYQgTIjJxFEKBkaEVI1KxwdEkM2LhU3LwFiY0Y3OCkzZDg5Lx/8QAGwEBAAIDAQEAAAAAAAAAAAAAAAUGAQIEAwf/xAAuEQEAAgEDAwIEBgMBAQAAAAAAAQIDBAUREiExE0EGMlFhFCIjM3GBFWKRJDT/2gAMAwEAAhEDEQA/AO+wDnewAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACOYJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABi3HvHvDnZzwdkcRcR5lGNjWo2pojbv3atuVFEeMhETaeIZPXXRRRNdcxTER18NmuOJ+3jss4Qu1Y+q8W4Pv6OtrHn31cekxT0dF+172nOOO0nNv6fp2Rd0Th/eYow8Wra5dp8Ju1x1n0jk0pF2uaprmveueszzazKc0uyzeOcs8PRa/7ZXZDZr7tN3U7lEffox+TIeHPai7G+I8inHtcUW8K9M7RbzKZt/rPJ5iXK5r8eiLXKY8jqdk7Hh9pl7LYOoYGpYNvK0/LtZFm5G9FdqYqiY842fr9PJ5Rdn/AGy8bdmepW8nh7WL0Y0VRN3BvTNdi5HlNE9J28Y6PQbsW7c+Gu1/QJnDqjE1nHpj7Xp1c/FR60+dLMTyh9dt19N38w2uAyjwAAAACeUAjd+DP1fTtNo3y8qi15R4/hDFOKeOKMKa8HTKom9HKq54W/SGt8rNyMu9Vdv3Jqqnn3p6q7uO/U08zjxd5S+i2i+aOvJ2htTJ7Q9Gtbxaou3tvKIh+S32labVXEThX6Y/Bq+ee3MiI39Fev8AEuqme3CYjY9PEe7dmn8XaNn8qMqLU9O7c5OcoqpqiJo5xPjHR15pu+7p2j8GQaDxnn6Tept3Jm9i8om3XPT6eX0Sui+JovMUzxwj9Vsc0jqxTy3QPwaXqmLquDRlYtyKqavzj0l+9bKXi9YvSeyAmJrPEgDYAAAAEbxFO81bPyanqeJpGn1ZmZX3bcdI8ZnwiIan4i4u1HWLtdq3cmxix0t2523j1nxdel0d889u0ObNqK4o7tj53FmgadNVGRn2prj7lv4vw5PwR2g6DXV8E3tvPutPTv355rxMxHVNRtGOI7yjZ3G/LdeNxlw7kzEfb4tz0/eRNDm7d21dtRctV03KZ6TRzh11mqZnbdzWi8R6no16mvGyJmn71urpXH/Xk5820cV5xy9sW4czxaG890uG4f4hw9dw+/ZmKL1P+Zb35x6/RzKFyUmk8THEwkqXi0cwANG4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAD82dnY+naffzsq5FFixRNyuuekREbz+jy/7e+2HUO1ftHvZNFyu3oeFVNjT8WOURG+03Jjxmdvwjk7l+1vxvc4S7AsjBxKu5lazdjBt7TttTMb1dPTeHm7XG1TWZWHZNJEx60o2g6ERKZ8WqwxHZSeiaUx1TGwzCtXRkPAfGGt8B8bYPEuhZdVnJxK4naJ2i5T40T5xMMdn5l43ikaZKRkjptHZ66dnXG+l9ofZzpnFel1U+6y7Ud+3ExPurkcqqJ9Ynkyx0l9hvjO7RqGucD5Fz9zXTGdj0T0pnlFURH6u7Tf2UfV4PQyzQAZc4ACu3Ldi/Guv/srSvs9i5tkX94jbrTHiynpQ0zxxmVZnFV7ar4bO1qn02jn+qH3vWTptNM18ykNr00Z88RPiGPXK96pmfF8uaYrmETz+V816ue671rx2T30TJshqyJj4kEdAZXwjr37G1Wmi7X/hbu0Vx5ercFFUVURXHOJ6fR14pr2mG7OEc+c3hfGrme9VRHu5/DluuvwzrpvE4L+yrb3pYpMZa+7ngFvQAAArVNNFEzXyiI3n6Qsx/jLPq0/hK9NuvuXLu1qmry3emKk3vFfq88lumOWt+LeIbms63VTRX/hbW8W48PLf6sdmfVM9URRuuWLFGKsViFcyZJyTMyp0qTPyLbeRPR7PJ8qfmX6Ijuwljkj7P26TquXpGrWszGn4qZ5x4THl9PRvTTc+1qOmWc2x8lymJ+k+MOv08qd2y+zbVJu2MrTKq9/d7XaPp0mI/JD7rpotT1Y8wktvy8T0T7tggK4mgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHSr27sy59q4Q0/vz7ra7f28N+jprM8+bu17dmjXrmi8K67RRvbtX7mNcnwjeN4/k6STE/g0v5XLZ+Pw0J5KzEpI+VhJIjqmfEjwJ8QVTv4Kz0RtvsNW9PZM1SvD9pzSLFvpkWrtqrby23el9PyvNr2PdCu6j7SeFn00b28DGu3q58uXch6TRG1L0j5VS3j98AEUAArX8s+kNCatXNzWMqufG9cn9Zb7qp33aL4hxZw+JMu1PL97VMR6TO8Kp8VRPpVn2T2wTHqz/DiakRE9V45cpFGWpVGyZ/JHID7qE/RAJp6tsdnV2q5oF6mrwrj+UNTxPNuDs/x5t8M9+qnb3lX9IhYfhqszqu3iENvcxGn/tloD6GqAAAwjtIuxTpGLbj5Zrmf0jZm33mG9o2PNzhyzeoo3i3Xt9ImNnXopiM9eXNqv25anmfJMTKs0fwn1XCVd5TPRMc0T1REsMLbfCqndDYGYdnlc0cV0W6PvUVb/TZiLMezWxNziS5e7nKzann9eX9HHruIwWdWl/dhtkBT1iAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaz7deAo7QuxHV9Dt24qy6bf2jG8/eU84iPLps8sM2zcxM27iX6Jt3bVU0V0TG00TvtMbeHR7Nfd7ro57V/s7ZmNrGT2mcFYE3cS9Hf1PBsxztVeN2iIjp5tZhNbTrowz6VvEuoK0c1KaZnw/2XjwarRX6k8kdUo6egzwjorPXaF927fZ67AdX7VeJ7GqapYu43C2Jciq/kTG32jb/wC3b848JmOjMQ5tRqK4a9VpdjPYr7PMjQezjN441LHm1k6zVEY1FcbTRYp6T9Jnn9HajxflwcLF0zTrGBhWabONYtxatWqI2iimIiIiPpEP1N1Kz5pzZJvPuADyAAGtu0HSZjMo1K3Hw1xtX9fBsjpV3X5NS0/H1PT7uJfo3ouU7fT6ODcNJGqwTj/46dHqZ0+WMjQVXRRzGvaFmaHn12r9E1UT/l3PCY/lH0cPEb1fR8vz4L4bzjvHEwvmLJXLWL1nmJR3ZNn0jbZDybq1fdVTV8y9FFVyYt0RvM9NmaxNu0QeFsTGu5mZbxrFHequTEUxHn0b50fAjTdGsYcfcpimfrtzYlwLwnODRGqZ9va9MbW6J+5Hmzx9B+H9unTY/VyR3lTt310Z8np08QALEiAABx+t6fRqmg5WF/xLfw+k+DkDZtS81mJ+jS1YmOJdd79FzHy67F2juXKZmiY8p35vlMzs2bxvwd9qrq1nTLW93b99bjx9Y9WtLlv3dXcnltyW/S6muekTHlXs+Gcc8eytPRExtSmmY7yaunwutzop+XmTKY5xEQTQBHJt/gPSvsHD32uuju3Mmd+fhHSIYXwfwrf1jNpycm33MK3O8z07/pHo29bpot2qaLcRTTERERHSIQG6aqJ/SrKV0GCY/PMLgIJLgAAAAAAAAAAAAAAAAAAAAAAAAAAAAACldu3dtTbuUxVTMbTTMcpj6LgOsnaz7IPC3Ft+/rXBldGg6ndma67FMf4a7PntHyz9HVHiv2be2DhXJrnI4Tv51iOl/Tv39M+u1HOOXm9SeivdpnwY4SGn3TNhjjzDx/r4K4vsXPdXeFNZoudO5VhXN/5Ml0DsK7WOJr1NOncEanRbqnb3mVZmxRH41+H0erE41iZ3m1RM+fdheKaYiIiNtvLkxEOu++ZZjiIdMuy/2JrePk2dS7S9RoyKadp/ZmJO1E+ldfjHhtDt/pGj6ZoOjY+laRhWMPDx6YotWLNEU00R05RDkPTwNmyK1GpyZ55vIAPEAAAAAB+PO07D1PDnGzLMXLc+fh/ZgOr9nl61XNzTbkXKP4K+Ux6Q2T9Db1cGr27Bqo/Ujv8AV0abWZdPP6c9vo0blcO6ti79/T7/AP7aZn+T8lGj6pcnajT8r/4Z/s373Ymn5SKI8KYhCW+FcMzzFpiEtG/5Yj5YaZwOCNazK47+N7mj+O5y/Tqz3QeCsDSe5fvxF/IjpXMcqfpDKtohWY9UnpNk02mmJiOZhw6ndM2eOJniFo+EBLo8AAAAABG/+liPEXA2Bq9VeRh7YuRPXxor+seH1Zfub8nriy2xTzWeHnekXjiYaWyuCNdwa5onEm7RH37e0x+Uc3F3NE1OKpj7Blf/AAz/AGb9/RXb/TCTpvF4jvHLitt1J8NG4XCuu5dcRa06/EdN7lMxEfmzfQ+zyzYppu6vci5Mc/c2+n4+f0Z5tV+B9145tyyZY48N8WipT7qWrVqxZotWrdNFNMbRTHSH0BGu2I4ABkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABj3FnG3DXA+g16vxLqtjAxqY5VXJ51+kR1mfQIiZniGQvjcv2LFvvXblNMR41zEQ6R9pXtr6tfybundnGkW8THjeI1DOjvV1x/pojlH4zLrfxN2t9pHFt+u5rvFuqZEVTv7ui7Nun6bUctjmEph2jNeObdoeq9/i7hfGnbI4i0q1MdYuZNun+qtvjPhK7Vtb4n0ir0jLt/3eP05eTcma7t+7cmfGuqZ/mmMm7R8lc0/Tk16nZ/go4+Z7J42fg5dHfw8qzfj/AMuuJfp3ePeicacW6Bl05GkcR6lhVx093kVxH5b7N58D+1/2lcN12rOu14/EGJG0VUZEe7u7elcdOXocw58uy5axzSeXojzS072Z+0j2ddpE2sLF1D9l6tVG04ObtTXM/wCmekx+TcMTFUb09GyJyYr454tHCQBqAAT1B+fLy8fDxq7+TdptW461VNbWikdVvBEc+H3+qs10Ux8VUQwDWu0Wbe9rSbMVeHvLnT8IYXm8S6xqEz9ozLm0+ETtEfhHgg9X8RabBPTTvKV02z58sdU9obruajgWf8zKsU/WqIU/a+mdPt2P/wDvDQ1eTcr+ae8+M171bxyRk/FX0o742D/Z2Ft5mNdj91for/5JiX3373R14sZeXj1xXYyKqNuncmYZNpfHOs4G0Xbv2m3H3K/L6unTfE+LJPGSOHPn2LLWP055bhmZT1hjWh8Z6ZrFUWveRZv7f5dcxz+jJViw6imasWxzEobJivinpvHEgD2aAAEkI3cVq3EGm6JY7+bf2rn5bdPOZ+keH4t6UteYikNLXisd3K8kVV0UU71TERHnyar1XtJ1DIuTRp9q3jW45RX81c/0hi+TreqZtW+RmXq9v9W36JTFtOS8fm7OLJuFI8d29KtR0+ieebjR/wC+CNQwZ6ZuPP8A74aBi5X4zv8AVPv64jlye/8Ahf8AZ4/5H7OwlF2i5H7uumfovtDr9japqOJXvj5d2mfSqdvyZXpHaDqmNXTbz6KMm3HKZnlVt9f6PDLtF6RzXu9ce4UntPZtYcVpPEOl6zRH2S/+8iOduvlMOVRV8c0ni8cO6l4tHMADVuAAAAAAAAAAAAAAAAAAAAAAAAAAAARyhEdT7rV3bh2w6P2Qdn9erZPcv6nk72sDC353bm3X/ljlIzjpOS3RXzL8Pbh288OdkHD3cudzO13Ipn7LgUT6fPc8qXnRxr2k8WdoXEV3WOKdUu5l2qZ93b32tWo8Ioo6RGzj+J+KNY4w4ly9f1/Nrys7Lrmuuuv+UeUeG3Rwcxz2aTPK36HbqaeObd5fWqvf8VNoRSs1jslPKPu91XZfu+irLWVo5E1qpjqcCbV2/av03bFybdymd6a6JmJifCYmOjtd2Ce1dqWgXMfhbtJzK87Sqpi3Y1WvncxvCO/PjR69YdUop259F5uTHRnlz6jSY89eLw9ksHOxNTwbOZhZFvIx71EV0XLc96K423iYmOT9ToD7Kvb/AHuF+I8fs+4qzpq0XNri3hXrs/8AhbvSKN/4Z6beEu/tMxNMTHOJbqZqtNOnv0yTVsnqOO1jVLOkabcy73SmOUfxT4RDXJeMdZvM8RDwrSbzFY8vnret4mjYnvb9fxT8tEdZlqLWdf1DVsqbmTc2pifgt0dKY9H5tY1jL1XVLuTkV9Z+GiOlMeUPwbzX1fPN13q2qtOPH2rC4bdtdcFYveOZJr36qTt4JnkjZAJhCY+IiN0/JUBFO1IT8iPIIfW1VNFyK4naY6T5fRsThbjTuTRg6rc3pnlTdnw9Ja4irZam5VRVvE+rv0G4ZNJbrrP9OTV6Ompr02/67DU1010RVRziekx5LerW/A/FNfft6RnXN4nlarnw9GyPu919J0Ospq8MZK/8UnU6a2nydFko+LySxLjfiadE0v7PiTH229G1M/8ADjzSGLFOW0Vj3ceTJGOJmXz4s4xt6VbnC0+qLmXPKa+sWuXl4y1Rl5mTmZFV3IuzcrmeddfV8pv3blU13K+/XPOZnqbRWtul0VdPH3QWfUzkn7KJjqmYRtU7Jcq2++0JViJ6rx1YE0/LzTv4K9IRPqD6WMzIxMmi7j3K7dUTG00TtMfi2jwhxrRqcU6dqUxRlRG1FzpFz09JaqmiNuS9q5VariuiZiY26fzcmq0lM9eJju6MGotin7OxEpYbwTxTOq437PzZj7Vaj4a/+JH92ZKnmwzht0Sn8WSMkcwAPJ6gAAAAAAAAAAAAAAAAAAAAAAAAAPxanqOFo+jZOqahfosYmNbm7duV8oopiN5l5Y9uPabm9qvarl67cuVRp9rexgWd+VuzE8p28Jnr+jtp7afaLXoHZpicFafkTbytZuf4judfcU9Y+k77fg6DVbVw1tPssmy6OOJzX8+ylM9yNl3zmPJ9KWkrBUjYWRPQgQJjohkTERJt5IjwO96gmZiIVn4+SO94JiPwgOOSmLlFym7bmaa4mK4mjrE9Y29d3r12d3dRv9lXD93VYmM2dPszd7/XfuR19XT32ZvZpo16nD4/46wpjTqaou6fp9yNve7TyuVx/DvG8Q7y27VFuim3RREURG0REbREeWzaIVLd9TTLaK09l5nu096Wo+Ndfr1LVJx7VX+HscqdvGfGWfcXat+yuG7tdE7Xbv7uj8WmblffrmZ5+v8AJVPiTX9ERgp7+XRsWki0zmvHjw+NUK09Vt0VU7KTwtEomdzadiPhTPxbbMMp730QIifRmYDbmtsjbed4N+TAiUJlDP2H1sVzbyKLtE7TExMTHhs3XwtrFOraJRXX/n0R3a4/lLSVPKllHB2s1adxBapqufub37uf6T/14JzYdf8Ahs/Ree0ojd9J6+HrjzDcbSnH9eRPG+V7zfuRtFH02/u3VTPwwxfjHhWjX8L3+PtTmW4mKZ/jjyl9V27PGLLFp8KHq8U3pxDS8dFonZ97uJdxrtVrItzTctz3Jonwl8Jp+LZbeqLx1Qr8xx2laedJT8qIjmndkiD7y0dFaeqYliG0wmr5VZSttHdYaKxMRSiY+LeETyq5JiYZgffT9Qu6dqdrLx57lVuqK4/s3vpGo2NW0axn49W9NyI39J8Ydf5/k2B2Y6x3b97R7k8qo79HpPjEIrddNF6epHmEhoc3Tbp9pbPAVlOAAAAAAAAAAAAAAAAAAAAAAAACPupcdrefb0vhzUNQuV92nHxrl2Z8tomf6BEc9nm17U/Fc8Ve0RqtNu5NeLpsRhWee8R3fm2/FpSOXJyOt6pc1vX87V7tffuZmRcyKp9apmXHR1ea/afHGLFWsfRPd9E9II6IavYCPBZsKpjoT0QBtsiedKSPAFO7U357L/YtPabx5Os63jTXw7pdUV3d42jIueFv6eezTOiaPm8Qa/iaLpdj32bl3YsWbceMzO0f9eT1X7K+ANP7M+y3S+FdPi3M49qJyLm3O7dn5q5/FtHdD7vqvQp0UnvLL7GNYxsa3Zx7VFq1bpii3RRG0UxEbREbeG3g+4iqdqJmfCG0qm1R2jajN/XreFbn93Yt/rP+0QwuJ2crr+ROVr+Vkb9a5/t/KHE/efKtzzTn1NrT9V80OL0sFawk35LRt0VcTsREJj+FM9UDMQdDbdM9SOgcEdFZ51bx0XRNPw7NWFFoiNj0TuCJ5UlNyu3ciuJ22neEVdERzmCO3gtx4b64fzqdR4cxsrrNVERP1cpHyMK7OcmatBu41dUTNqvePSJj/Zmng+sbdm9XTUt9nz7V4vSzWr92E8dcOxmYdWq4Vv8AfW4+OiPGPNqiuNq5jfd2MrooqomiY3pmNtmkuMNEnR+IbluiNse58dvl4T4LZtOq5/Ssgtfp4/chj8bx0SqmOqcRUTwtSnfwR3vh3I8xmZSA1ao281F6p2pUA73g5ThvKnT+JcXLjl3bkb/TxcV3ub62p+OJ6NclItWY+zak8WiXYuJiuImOiZcfoeT9s4bwsnxuWomf5OQUu8dMzCz0nmIkAebcAAAAAAAAAAAAAAAAAAAAAAa67d9RnSPZ04uz6Ku7Vb0+uIn67R/VsWejTftSXJt+yvxTt97Hij9YHpp45y1/l5jTG1FNEdIjb8FJ9FlXm+gVTHQ6IDgT6wlVP3QOqJ8T7uyk9GIgWnq+c7+C3WF6I3q2Zau0PsV9n06/2kZfGubZ72Jo1Pu7M1Ry99VH9Id/dtvwag9mjgijgr2edFx7lruZedb+3ZHnvc5xE/SJ2bg33nZvwpGvz+tnmfaD7z8mp3YsaTkXP4bcz+j9fjLh+Jqpt8L5dUf8L/Z5aienFM/SHPijm8Q0rfr95dmufGN3w2+Jerbp5KPkuSebcvoVI4rEKzyN4lYebdWZFtvJHi2hmCOp0hKNmvLBMeSUTO3UjpyBKs8lp6KSCExTHe3QmKJBsDs1v7alkWv4qIn8uX9WzPvNRdnV2Y4q7m/KbU/0/s28+j/DuTnRx9uylbxXjUyeDE+PNKoz+G5y6KN7uN8fLxjxhlj5XrNF7FuWK43pqomJWPBknHkiyHy1i9Zh14r2jf8ARSOr9mqYleFq9/G2293cmP7fo/FEQuVLReImFavHE8EzKYieiI5Lx8u70aq81ulKkz8S3WGOBM7d3ZWep0lNVW5Ip3ea0fKhaPmjyZG6+CKpngnCifuRNH4QyL7zGOApmeELe/hdqiGT/eUvVRxlmFlwfJH8JAc73AAAAAAAAAAAAAAAAAAAAAARPRqL2nMScn2WOLKaI393iRX+Uw274MI7YdN/a/YTxTp23e97p9zaPpG/9B6YJ4y1/l5NTGys9Ca+/ET5xv8AorE/E81/qk7vodCPAZTPRAMQHRWeaZ6o6toYlG+3JkXZ/oF3intO0LQLdHe+2Zlq1V6RvEz+kMdiJlvv2RNAt6r7SGnX7kb04Vm7kz9dto/WWHLqrdGG1npBh41vD0/HxLVuKLdm3FuiI6REREQ/QiPhS9FGPFwnFfPg3N/5I/nDm/Fw/E0b8JZlP/lObVx+jf8Ahvp/3a/zDSN3lXL5r3ZjvzPg+U/wvktvmfQ6+FuiI6KwvHRhsiOiSegB0RPRKsz4Ab7Qtv8ACpO3gcgTPdinkTtCJq+HobcoAiFp6ojkmeozDK+z+iP+1tuf9E/k2/HVqHs858XfS3MtvU9H0P4aj/y/2pu9/wD0f0k6AsKIaf7QcCMbiq5dijaL1uK/Tfp/RiM9Gx+1CxPewb9MfNE0T+G0tbx5Ldt9urDCu6uOMkoiFtt+SYjZLslyq90mPhWRV0ZgUTyOSGQjmty7yq0c69iRungWnucF2J86plkkOH4VsTj8Hafb22n3MTMOZUnUzzlmVmwRxSAB4vYAAAAAAAAAAAAAAAAAAAAAAfi1XFpz9CzMGqN4vWLlrb6xMP2gR2eOHEOnTo3Fmo6Pco7teFlXMfb/AJZmP6OO7vo3J7UHC08Ne0jrkUUd2znVRm2uW2/ejer9d2m2kr7prdeKtvrAI6StHRh0cIiSfEj5ifEY4Rsnf4hWeoJ3jo7Yewtgxe7TuJNQnn7jT7dFPpM3ObqdEO5fsG2Y/aHF9+OsU2aP6sx5Ru6TxprO64DdTUfecfrdv3ug5dvzsz/JyH3nzyKPe4ty3PjTMfo881eccx9maTxeJdfK6JjaJV5d1+vULFdjPuWZjpcmP1fkfI8teLzE+z6HinqrEnKIVifImYRE7PN6JifCVlY50rAInqkmAUnnyQvsiYBUE09QIJ+bYiJX28hmGZdmtrv6/eu7cqLO35z/ALNr/da87MsP3dOXk7cqu7TH5Nhx0l9L2DH0aOv3Ufdr9WplICZRzCO0uj/u5j3fGm7t+cNUcu8252kxvwb9L9vZqFadpnnCgdwj9R9JnkiCI+GCI2SbhSifUmUfExwKzMSE+idmRXd9sLHnKzrdiOtVUUQ+TJOCMOc3i/G+Dei3PvJ/Do8c9+nHM/Zvhp1ZIhufGtUWMW3Yo5RbpiI+j6kRyFKt9Vnr27ADDYAAAAAAAAAAAAAAAAAAAAAAAB059uLgybmk6Jxzj29/c1zhZNcRyiJ50fru6STvv0etvatwXj8f9kWtcLX6I7+TjT7mr/h3IjemY/GHk/qen5GmalfwMy3NrIx65t3Lc9aJidpifyaz2WrZNR145xz7PxR8vNaOj5zPMjo14TXK4He9QBE9T5aQN9qncv2DLm9/jCj/AFWZ/SHTCr5ncL2Dr8W+J+LMPxqxrN39dmYRm7d9PLvGA3U4RV8qQkaX4uxvs3E2THh3u/EeksbmeTPu0jCm3qdjLoo5XKJir6x0/SWAz8uz5du+H0dVaq9bdk9TT1lVadtvhRsmNop3hGO46co6LKdU77coBbxEdYOkHAkA4ETG6sx8Wy09COgJiPhTRHx7THJSZ2qfXGoru5NFuPnmdoZpHVbiGtrduW3uA8b3HCtu5NO3vapr5+XKIZPHyvy6VjU4mkWMamNu7REbP1R8j6zo8XpYK1+z59nyepltb7rAOp5MQ7Rv/oz/APNbagn5tm2+0qv/ALp0UeM3qWpZWfaf2kDuH7hHyxBO3krE7LU9Eq4VZ6p2+HvInqmJ7oKp5rTtNKuwJ7nj0bL7MtM7mPk6jXHP/Kp/nLXGPRN3LotURvMzEREN86Fp9Ol6BjYcdabcd71nxlEbtm6cfR9Xft+Lm3V9HIgK0nQAAAAAAAAAAAAAAAAAAAAAAAAAEVc4ecHtg9ndzg3to/7QYljuaZrsTdpmiNoovR80eXq9II6tYduvZhidqnZFnaDVbiM+zTOTg3tudu9EbxHpE9GOHXoNR6GaJ9nlVRzp2leIfqz9PyNM1K/gZlmbV+xcm1ctzG00VRO0xs/LzaLvHeIknqmOQd30G3HCdvh3RPynPwVmZ6AmI3qdnfYo1OnF7dM3A7+323T5ju/8k7/ydYo3bc9mTWZ0f2muHLtdfdovXKsafD5qdiHHr686e0fZ6iiKeiXoo4ADFuO9P+28L3LlFG9VifeR+Hg0/X82zsHk2qL+JVZq+WqmYlozVsGdP1XIxpjb3dW34eH6bKV8T6X89c0e6y7DqOazilx0clJjanbwWnor6qgsaATT0ApXUj6Ld76M8CRSroRMeLAuIjon/SBMw5zhDT5z+LMWjubxRPvKvSI6fq4PbfZs3s60yqxiXtTuRzr/AHdHLpEdf1S2zaX8Rqqxx2hH7lqPR08/WfDPKae7SkH05RwAGBdp+R7vTcOx/Fcmf0aunmz/ALTsiJ1LGx/4bW/6/wBmv46rZttONPCu66ecv8ITuckJByr/AA7KTykWifhBVbffkbfwlFuuvIot0RvVMxERH6DMfRl3AWh/tDX4zLkb2cfauZ8N/CG4HB8K6PRonDtnHmP31URXdn18nOQqGuz+tkmfaFh0uH06cADidQAAAAAAAAAAAAAAAAAAAAAAAAAAjuwkB0a9sDsar0zWY7TdBw98HLqinUaLcf5V3wubeU/zdR69o39HsXrmi6fxHw5maJquPRew8u3Nq7bmOsbPLnt07ItV7I+0m7pd+iq7pOVvd0/L25XLe/yT4bx028msws+07h1U9HJ5jw1tuR1RTHmt3fRqm0R1TFCY6JGyvd9HNcF6pOhcf6LrcV7Th5lq7+ETG/6OEmZXt1TRVFUdRpkrF6zD2U0/Jt5mmWMy1V3qLtqLkTHlMRL9TVns78WUcYezvw5qU3e/ds48Yd7/ANS18E/ybS+89FAy0mt5hIA1R95rPtG033OZb1KiNqbkdyfKJjp/Zsz7rieItLo1bQL2JNO9U070/WOiO3TS/idNavv7OrQ5/QzxdomfVD6X6JtZFdqaedNU0d3y9FIjd8utXp/LZfa9/wA0ERyJ5VHRaOrEQygJiEU9WQlCyInwayIWR3YPl6jPD9WBaryNQs49uN67lURTHq3tpeHTg6VZxKeUUUxH47NcdnmjfadSq1G7R+7sfDT9f/42ov3w1o5xYvWvHefCo73qfUyelHiABZkIArXV3LdU+UbhLTnHuRGTxhkRHOLURbj+bFfu7OS1nJnL1vJyJ+9cmY28t+X6ONnquumr046x9lZ1Fuq8ygB6vEBETt1bC2+3KWf8AcPfa8qNXy7f7mzP7qJ+/V5/Ri/D2h39d1e1iWo2t/PXc/ghu/Cw7GDgWsPHoim3bpiiIhDbnq+iPSie8pDQ6fqnrmOz9ICuJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAABG7CO1Dsz0LtQ4AyeHNZs0RVNO+Nk9yJrx7kRyrj+zN+qQreazE1eRvaF2e8Q9m3GuTw3xBiTau2qp91e2+G9b8KqJ8Y2YlVHc6vVzta7JeHu1jgu5pGq26bOXbia8TOopjv2bnh9Y84eZ3aP2dcUdmfGN7h/iXCm1VEzNm/RG9rIp8KqJ+n5NeFu2/c6569F+1mJ7/CjfyVp6c+SY6tUstG5MxEbkeCKvl2Dw7s+wvxbRXovEHBt6vabV2M3Ho3+7VyqiI+ruQ8tfZr4xngz2hdEyrt73eJmV/YL2/TarlH6vUeJibcT6bt/ZTd1w+nn5+q4DKNDwAGp+POH4w9Y/aFmj91f5z6VbbbMMmOXo3xrWm29W0e7iXI5zHwz5T4S0jm4l3EzLtq7b7ty3VMVR5f7Pn/xBt/oZfVrHay3bPrPVx+nbzD8iJme8mqfBVW00nc6oTDaREdFkVdUNRZ98bEuZN+izbo79VVUREevTZ8NvybB7PNBm7kTquTb5W/gtxMePjLv23Rzqs8Ucmt1MafFN5/pm2gaVb0nRLOHRHOKd6p858XJx86ZnZL6ljxxirFIjtEcKHe83tN59wBuwj7riuJMz7BwtmZEVbVxbmKfrPRyzAu0rU4tabj6dE7VXKu/P0jo6tLj9TLFXPqLdNJlq+qv4lZ6onmLjH0VsExG6J6EQD9WDpmXqedbxMS1Ny5cnaKY8Pr6LadpmXqmZTj4dqblyZ6R0/GfCG5OGOGcfh/ToidrmVciPe3P6R6OHWa6unr0x3l1aXSzlnmfD7cN6BZ4f0mjGtxFV6ed255z6ejmZ6HQ3VW2SckzefKepSKRxCQGj0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARuwvtH7MeFu0/hK7oXE2BTdomJmzkREe9x6vCuif6dGadUhWZrPMPLXtj7A+L+yXVqrmVanO0O5VtZ1K3T8O3hFe3yTt+DVEcp58nsrqGmafqunXcDU8OxlYl6nuXLN6mKqao8piXUHtf9jCxl38jXezC7Tj1T8U6Pfn4J/wDTr8PpLWYWTQ7zE8Uy/wDXSjfyR1cpxJwxxDwlrdzSOI9IytOyrdUx3L9uY3+k9Jj6ONiJ7vRqnqXpeOaT2foxLl3Hv0X7Vc27luqK7dcctp33jZ6tdjfG1vj7sW0HiKLkTevY8U5ER927TERXH5vJ2qa+kcnd72F+Isq/w9xDwzf3nHxb1OTZ/wBPf332/JmiH3zDFscXj2dwgG6qgADXvaFoPvLH7XxqOdMbXojy8J/BsJ87tm3es1WrkRVTMbTE9NvJya7SV1WGcV/6e2m1E4MkZIddd58RknFnDs6Hqc+6on7LXzon08mORG/0fLtTp76fLOK8eF9wZq5scZK+5shfko53qmCrqh9bdublURRG8z0iG1azaemGOYj5n7dF067q2r2sKzHOrrPhTHjLeWn4VrT9NtYtmO7TRTERyY7wVw7To+m/aL9H+KuxE1f6Y8I/qyvrV3X0bY9u/DYeu0fmlTN11v4jJ0x4hICcRYACJaT46z/t/F16aK97dna1T5erceoXvs+m379Mc7dqZj8nX65fqyJm7Xymv45/Hmmdnxc3m/0Rm434rFfq+cRyQmeXV9MfEv5N+ixYtTXXPSKI3n8ljm0UjmfCHrX2hSI+Fyuh8Oahr+Z7vGt7URPxXJ6Uf9eTKtB7O792aMjV59zb5T7mj5p+s+DY2JhYuBi0Y2HYotWqelFKG1e5xXti7ykcGgm3e7j9A4cwtAwItY9EV3Zj47sxzqn+kejmOifu7CvXyTeeb+UtSkUjiABq9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABG3mkBjvFfA/C/G2lV6dxRomFqFmY2j31uO9T9K+sfhs60cb+xDombVcyeBtdu6bcneYxMuO/b+kTHOI/CXbkHth1WXB8kvNTM9kLtpxdWnEs6Rg5Nrvd2Mi3kxFO3nzjeHb/2dexK52Q8IX41XJs39Zz5ivI91/l24iOVuPPbzbrmNukH0Yh759xzZ69FvCQGXEAAAA47WNIxtZ0q5iX45THwz40z4TDTeraPkaPnVY1+jbbpMdKo8JhvSZiHC8RcO4+u6fNu58N2nnRXHhP8AZCbztVdVj66x+aEltm4Tpr9Nvllo+eqsfC5PU9GzNIya7GZammfCaekx6ONiJ36cnzvJgyUt0WjvC548uPJWLRPZHcmejYPAfDE3Jo1fNtbUxP7m3X0mfN+XhHhKvUblOXnW5oxKZjaJ5e89Po2lat0WaIt26YimmNoiOkQtexbN3jPlj+le3bc44nDi/tf5aUguitgAAAPnetUXseqxXG9NVO0/RqrUOzfV7ed/gPc3bP3ZmraYjy22bZHTg1V8Hy+7wzYK5Pma407szme7VqeTFPL/AC7e/wDOWaaXoWl6PaijCxqKJ/j23n83Jbd02M2qy5Pmnsxj01KeDZIOZ0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPyZmBiZ9n3WVZt3Y8q4/62fgs8K6JZuRXRgWd46b83M7epO7xtp8Vp5msTP8Noy3rHESrTRFFMRRG1MdIjpsuD2agAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI2BIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/2Q==" alt="Sapiens logo — three people standing together" width="559" height="559">
 
-  <span class="eyebrow">People need people</span>
-  <h1>Making <span class="hl">humanity</span> feel real again</h1>
-  <p>Sapiens is a social impact project. We create real moments of charity
+  <span class="eyebrow" data-i18n="heroEyebrow">People need people</span>
+  <h1 data-i18n="heroH1">Making <span class="hl">humanity</span> feel real again</h1>
+  <p data-i18n="heroP">Sapiens is a social impact project. We create real moments of charity
   and human connection &mdash; and help where it&rsquo;s needed.</p>
 
-  <div class="scroll-hint" aria-hidden="true">Scroll</div>
+  <div class="scroll-hint" aria-hidden="true" data-i18n="heroScroll">Scroll</div>
 </section>
 
 <!-- photo divider -->
@@ -399,18 +418,18 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Sapiens</span>
-      <h2 data-split>Who we are</h2>
+      <h2 data-split data-i18n="whoTitle">Who we are</h2>
     </div>
     <div class="who-grid">
-      <p class="lead rv">
+      <p class="lead rv" data-i18n="whoLead">
         Sapiens is a social impact project that brings people together through
         charity and human connection. We create projects, support meaningful
         initiatives and help <span class="accent">where it&rsquo;s needed.</span>
       </p>
       <div class="who-aside rv d1">
-        <p class="stanza">There&rsquo;s no shortage of good people in the world.<br>
+        <p class="stanza" data-i18n="whoStanza1">There&rsquo;s no shortage of good people in the world.<br>
         There&rsquo;s a shortage of moments that bring them together.</p>
-        <p class="stanza">Sapiens exists to create space for that.</p>
+        <p class="stanza" data-i18n="whoStanza2">Sapiens exists to create space for that.</p>
         <svg class="hearts" viewBox="0 0 110 110" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" aria-hidden="true">
           <path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z" transform="rotate(-8 43 35)"/>
           <path d="M62 88 C54 79 61 68 69 74 C77 66 87 76 79 86 C75 91 70 95 70 95 C70 95 66 92 62 88 Z" transform="rotate(10 70 82)"/>
@@ -425,11 +444,11 @@
 <!-- ================= QUOTE 1 ================= -->
 <section class="band band-wine quote">
   <div class="wrap">
-    <blockquote class="rv" data-split>
+    <blockquote class="rv" data-split data-i18n="quote1">
       &ldquo;We don&rsquo;t teach people how to be kind. We just create the moment
       where kindness can happen.&rdquo;
     </blockquote>
-    <p class="eyebrow rv">People need people</p>
+    <p class="eyebrow rv" data-i18n="quote1Tag">People need people</p>
   </div>
 </section>
 
@@ -441,14 +460,14 @@
         <svg viewBox="0 0 200 200" aria-hidden="true">
           <path id="sunPath" class="sun-spin" fill="#FFFFFF" d=""/>
         </svg>
-        <h2 class="sun-title">Why we<br>do this</h2>
+        <h2 class="sun-title" data-i18n="whyTitle">Why we<br>do this</h2>
       </div>
-      <p class="eyebrow why-belief rv">We believe love exists in every person</p>
+      <p class="eyebrow why-belief rv" data-i18n="whyBelief">We believe love exists in every person</p>
     </div>
 
     <div class="why-grid">
-      <h3 class="rv" data-split>Making <span class="hl">humanity</span> feel real again</h3>
-      <div class="rv d1">
+      <h3 class="rv" data-split data-i18n="whyH3">Making <span class="hl">humanity</span> feel real again</h3>
+      <div class="rv d1" data-i18n="whyStanzas">
         <p class="stanza">We believe love, kindness and humanity already exist inside people.
         Sometimes they simply need space to be expressed.</p>
         <p class="stanza">That&rsquo;s why we create real moments and genuine human
@@ -464,7 +483,7 @@
 <!-- ================= QUOTE 2 ================= -->
 <section class="band band-cream quote">
   <div class="wrap">
-    <blockquote class="rv" data-split>
+    <blockquote class="rv" data-split data-i18n="quote2">
       &ldquo;We don&rsquo;t change people. We remind them who they are.&rdquo;
     </blockquote>
     <p class="eyebrow rv">Sapiens</p>
@@ -474,16 +493,16 @@
 <!-- ================= WHY WE SHARE IT ================= -->
 <section class="band band-peri-light band-flush" id="share">
   <div class="wrap">
-    <h2 class="share-head rv" data-split>Why we <span style="color:var(--royal)">share it</span></h2>
+    <h2 class="share-head rv" data-split data-i18n="shareTitle">Why we <span style="color:var(--royal)">share it</span></h2>
     <div class="share-grid">
-      <div class="rv">
+      <div class="rv" data-i18n="shareStanzas">
         <p class="stanza">We simply want to remind people that there is still another
         side of humanity.</p>
         <p class="stanza">A side where people come together to create something meaningful.
         Where people help without expecting anything in return.</p>
       </div>
       <div class="rv d1">
-        <p class="maybe">
+        <p class="maybe" data-i18n="maybeLines">
           <span>Maybe someone will feel inspired <span class="soft">to join.</span></span>
           <span>Maybe someone will create <span class="soft">their own project.</span></span>
           <span>Maybe someone will simply become <span class="soft">a little kinder.</span></span>
@@ -503,15 +522,15 @@
 <!-- ================= JOIN ================= -->
 <section class="band band-cream join" id="join">
   <div class="wrap">
-    <h2 class="rv" data-split>Become part <span class="hl">of it</span></h2>
-    <p class="rv d1">Follow what we do, come to a moment we create &mdash; or start one
+    <h2 class="rv" data-split data-i18n="joinTitle">Become part <span class="hl">of it</span></h2>
+    <p class="rv d1" data-i18n="joinP">Follow what we do, come to a moment we create &mdash; or start one
     of your own. Becoming part of it is much easier than it seems.</p>
     <div class="cta-row rv d2">
       <a class="btn btn-primary" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
-        Follow @sapiens.cz
+        <span data-i18n="btnFollow">Follow @sapiens.cz</span>
       </a>
-      <a class="btn btn-ghost" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">Write to us</a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener" data-i18n="btnWrite">Write to us</a>
     </div>
   </div>
 </section>
@@ -531,10 +550,10 @@
         </svg>
         <span class="wordmark">Sapiens</span>
       </div>
-      <span class="foot-tag">People need people</span>
+      <span class="foot-tag" data-i18n="footTag">People need people</span>
     </div>
     <div class="foot-bottom">
-      <span>&copy; <span id="year"></span> Sapiens &mdash; a social impact project</span>
+      <span>&copy; <span id="year"></span> <span data-i18n="footCredit">Sapiens &mdash; a social impact project</span></span>
       <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">instagram.com/sapiens.cz</a>
     </div>
   </div>
@@ -544,6 +563,109 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
 <script>
+  // Language toggle (EN / CZ) — runs first so animations split the right text
+  (function(){
+    const I18N={
+      en:{
+        title:'Sapiens — People need people',
+        desc:'Sapiens is a social impact project that brings people together through charity and human connection. We create projects, support meaningful initiatives and help where it’s needed.',
+        marquee:'People need people',
+        menuOpen:'Open menu',menuClose:'Close menu',
+        navWho:'Who we are',navWhy:'Why we do this',navShare:'Why we share it',
+        heroEyebrow:'People need people',
+        heroH1:'Making <span class="hl">humanity</span> feel real again',
+        heroP:'Sapiens is a social impact project. We create real moments of charity and human connection &mdash; and help where it&rsquo;s needed.',
+        heroScroll:'Scroll',
+        whoTitle:'Who we are',
+        whoLead:'Sapiens is a social impact project that brings people together through charity and human connection. We create projects, support meaningful initiatives and help <span class="accent">where it&rsquo;s needed.</span>',
+        whoStanza1:'There&rsquo;s no shortage of good people in the world.<br>There&rsquo;s a shortage of moments that bring them together.',
+        whoStanza2:'Sapiens exists to create space for that.',
+        quote1:'&ldquo;We don&rsquo;t teach people how to be kind. We just create the moment where kindness can happen.&rdquo;',
+        quote1Tag:'People need people',
+        whyTitle:'Why we<br>do this',
+        whyBelief:'We believe love exists in every person',
+        whyH3:'Making <span class="hl">humanity</span> feel real again',
+        whyStanzas:'<p class="stanza">We believe love, kindness and humanity already exist inside people. Sometimes they simply need space to be expressed.</p><p class="stanza">That&rsquo;s why we create real moments and genuine human interaction that bring people together.</p><p class="stanza">Not to change the world overnight &mdash; but to remind people that goodness still exists.</p><p class="stanza">And that becoming part of it is much easier than it seems.</p>',
+        quote2:'&ldquo;We don&rsquo;t change people. We remind them who they are.&rdquo;',
+        shareTitle:'Why we <span style="color:var(--royal)">share it</span>',
+        shareStanzas:'<p class="stanza">We simply want to remind people that there is still another side of humanity.</p><p class="stanza">A side where people come together to create something meaningful. Where people help without expecting anything in return.</p>',
+        maybeLines:'<span>Maybe someone will feel inspired <span class="soft">to join.</span></span><span>Maybe someone will create <span class="soft">their own project.</span></span><span>Maybe someone will simply become <span class="soft">a little kinder.</span></span>',
+        joinTitle:'Become part <span class="hl">of it</span>',
+        joinP:'Follow what we do, come to a moment we create &mdash; or start one of your own. Becoming part of it is much easier than it seems.',
+        btnFollow:'Follow @sapiens.cz',
+        btnWrite:'Write to us',
+        footTag:'People need people',
+        footCredit:'Sapiens &mdash; a social impact project'
+      },
+      cs:{
+        title:'Sapiens — Lidé potřebují lidi',
+        desc:'Sapiens je projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení. Vytváříme projekty, podporujeme smysluplné iniciativy a pomáháme tam, kde je to potřeba.',
+        marquee:'Lidé potřebují lidi',
+        menuOpen:'Otevřít menu',menuClose:'Zavřít menu',
+        navWho:'Kdo jsme',navWhy:'Proč to děláme',navShare:'Proč to sdílíme',
+        heroEyebrow:'Lidé potřebují lidi',
+        heroH1:'Aby <span class="hl">lidskost</span> byla zase skutečná',
+        heroP:'Sapiens je projekt se sociálním přesahem. Vytváříme skutečné okamžiky dobročinnosti a lidského propojení &mdash; a pomáháme tam, kde je to potřeba.',
+        heroScroll:'Scrollujte',
+        whoTitle:'Kdo jsme',
+        whoLead:'Sapiens je projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení. Vytváříme projekty, podporujeme smysluplné iniciativy a pomáháme <span class="accent">tam, kde je to potřeba.</span>',
+        whoStanza1:'Na světě není nedostatek dobrých lidí.<br>Chybí jen okamžiky, které je spojují.',
+        whoStanza2:'Sapiens existuje, aby pro ně vytvářel prostor.',
+        quote1:'&bdquo;Neučíme lidi, jak být laskaví. Jen vytváříme okamžik, ve kterém se laskavost může stát.&ldquo;',
+        quote1Tag:'Lidé potřebují lidi',
+        whyTitle:'Proč to<br>děláme',
+        whyBelief:'Věříme, že v každém člověku je láska',
+        whyH3:'Aby <span class="hl">lidskost</span> byla zase skutečná',
+        whyStanzas:'<p class="stanza">Věříme, že láska, laskavost a lidskost už v lidech jsou. Někdy jen potřebují prostor, aby se mohly projevit.</p><p class="stanza">Proto vytváříme skutečné okamžiky a opravdová lidská setkání, která lidi spojují.</p><p class="stanza">Ne proto, abychom přes noc změnili svět &mdash; ale abychom lidem připomněli, že dobro pořád existuje.</p><p class="stanza">A že stát se jeho součástí je mnohem snazší, než se zdá.</p>',
+        quote2:'&bdquo;Neměníme lidi. Připomínáme jim, kdo jsou.&ldquo;',
+        shareTitle:'Proč to <span style="color:var(--royal)">sdílíme</span>',
+        shareStanzas:'<p class="stanza">Chceme lidem jednoduše připomenout, že pořád existuje i jiná stránka lidství.</p><p class="stanza">Stránka, kde se lidé spojují, aby vytvořili něco smysluplného. Kde lidé pomáhají, aniž by za to něco čekali.</p>',
+        maybeLines:'<span>Možná se někdo inspiruje <span class="soft">a přidá se.</span></span><span>Možná někdo vytvoří <span class="soft">vlastní projekt.</span></span><span>Možná bude někdo prostě <span class="soft">o trochu laskavější.</span></span>',
+        joinTitle:'Staňte se <span class="hl">součástí</span>',
+        joinP:'Sledujte, co děláme, přijďte na okamžik, který vytváříme &mdash; nebo vytvořte svůj vlastní. Stát se součástí je mnohem snazší, než se zdá.',
+        btnFollow:'Sledovat @sapiens.cz',
+        btnWrite:'Napište nám',
+        footTag:'Lidé potřebují lidi',
+        footCredit:'Sapiens &mdash; projekt se sociálním přesahem'
+      }
+    };
+    const marqueeTrack=document.getElementById('marqueeTrack');
+    const burger=document.getElementById('burger');
+    const metaDesc=document.querySelector('meta[name="description"]');
+    function setLang(lang){
+      if(!I18N[lang]) lang='en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k=el.getAttribute('data-i18n');
+        if(t[k]!=null) el.innerHTML=t[k];
+      });
+      document.documentElement.lang=lang;
+      document.title=t.title;
+      if(metaDesc) metaDesc.setAttribute('content',t.desc);
+      // marquee: two identical halves for a seamless loop
+      const item='<span>'+t.marquee+' &nbsp;&#9825;</span>';
+      marqueeTrack.innerHTML=item.repeat(8)+item.repeat(8);
+      if(burger){
+        burger.dataset.labelOpen=t.menuOpen;
+        burger.dataset.labelClose=t.menuClose;
+        burger.setAttribute('aria-label',
+          burger.getAttribute('aria-expanded')==='true'?t.menuClose:t.menuOpen);
+      }
+      document.querySelectorAll('.lang-toggle button').forEach(b=>{
+        b.setAttribute('aria-pressed',String(b.dataset.lang===lang));
+      });
+      try{localStorage.setItem('sapiens-lang',lang);}catch(e){}
+      if(window.ScrollTrigger) ScrollTrigger.refresh();
+    }
+    document.querySelectorAll('.lang-toggle button').forEach(b=>{
+      b.addEventListener('click',()=>setLang(b.dataset.lang));
+    });
+    let saved=null;
+    try{saved=localStorage.getItem('sapiens-lang');}catch(e){}
+    const browserCs=(navigator.language||'').toLowerCase().startsWith('cs');
+    setLang(saved||(browserCs?'cs':'en'));
+  })();
+
   // Wavy sun — 16 rays, matches the hand-drawn sun in the brand posters
   (function(){
     const cx=100, cy=100, rays=16, R=96, r=58, pts=[];
@@ -619,13 +741,6 @@
       scrollTrigger:{trigger:'.sun-wrap',start:'top 85%',once:true}});
   })();
 
-  // Marquee — two identical halves for a seamless loop
-  (function(){
-    const track=document.getElementById('marqueeTrack');
-    const item='<span>People need people &nbsp;&#9825;</span>';
-    track.innerHTML=item.repeat(8)+item.repeat(8);
-  })();
-
   // Mobile menu
   (function(){
     const burger=document.getElementById('burger');
@@ -634,7 +749,8 @@
     burger.addEventListener('click',()=>{
       const open=headerEl.classList.toggle('menu-open');
       burger.setAttribute('aria-expanded',String(open));
-      burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+      burger.setAttribute('aria-label',
+        open?(burger.dataset.labelClose||'Close menu'):(burger.dataset.labelOpen||'Open menu'));
     });
     document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
       headerEl.classList.remove('menu-open');
