@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFAF4">
 <title>Sapiens — People need people</title>
 <meta name="description" content="Sapiens is a social impact project that brings people together through charity and human connection. We create projects, support meaningful initiatives and help where it's needed.">
 <meta property="og:title" content="Sapiens — People need people">
@@ -27,7 +28,7 @@
     --font:'Archivo', 'Helvetica Neue', Arial, sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
   ::selection{background:var(--ochre);color:var(--white);}
   section[id]{scroll-margin-top:76px;}
   .sr-only{
@@ -63,6 +64,7 @@
     .sun-spin{animation:none !important;}
     .marquee-track{animation:none !important;}
     .scroll-hint::after{animation:none !important;}
+    .nav-links{transition:none !important;}
   }
 
   /* ---------- photos ---------- */
@@ -118,8 +120,36 @@
     padding:9px 16px;border-radius:999px;
   }
   .nav-ig:hover{background:var(--wine-deep);}
+  .burger{
+    display:none;background:none;border:0;width:42px;height:42px;cursor:pointer;
+    position:relative;z-index:5;padding:0;
+  }
+  .burger span{
+    display:block;width:22px;height:2px;background:var(--wine);margin:5px auto;
+    transition:transform .3s ease,opacity .3s ease;
+  }
   @media (max-width:720px){
-    .nav-links a:not(.nav-ig){display:none;}
+    .burger{display:block;}
+    .wordmark{position:relative;z-index:5;}
+    .nav-links{
+      position:fixed;top:0;left:0;right:0;z-index:1;
+      background:var(--cream);
+      flex-direction:column;align-items:stretch;gap:0;
+      padding:84px 24px 28px;
+      transform:translateY(-102%);
+      transition:transform .4s cubic-bezier(.22,.8,.3,1);
+      box-shadow:0 24px 48px rgba(85,32,46,.12);
+    }
+    header.menu-open .nav-links{transform:none;}
+    .nav-links a:not(.nav-ig){
+      display:block;font-size:17px;letter-spacing:.1em;
+      padding:16px 0;border-bottom:1px solid rgba(85,32,46,.08);
+    }
+    .nav-links a:not(.nav-ig)::after{display:none;}
+    .nav-ig{margin-top:18px;justify-content:center;}
+    header.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    header.menu-open .burger span:nth-child(2){opacity:0;}
+    header.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   }
   a:focus-visible,button:focus-visible{outline:3px solid var(--royal);outline-offset:3px;border-radius:4px;}
 
@@ -139,6 +169,7 @@
     font-size:clamp(2.6rem,7.5vw,6.2rem);
     color:var(--wine);
     max-width:16ch;
+    text-wrap:balance;
   }
   .hero h1 .hl{color:var(--ochre);}
   .hero p{
@@ -180,6 +211,7 @@
   .sec-head h2{
     font-size:clamp(2.6rem,6.5vw,5.4rem);
     font-weight:800;letter-spacing:-.03em;line-height:.95;text-transform:uppercase;
+    text-wrap:balance;
   }
 
   /* who we are */
@@ -208,6 +240,7 @@
     text-align:center;
   }
   .quote blockquote{
+    text-wrap:balance;
     font-size:clamp(1.7rem,4vw,3.4rem);
     font-weight:800;letter-spacing:-.02em;line-height:1.15;
     max-width:22ch;margin:0 auto;
@@ -311,6 +344,17 @@
     font-size:12px;font-weight:600;letter-spacing:.06em;opacity:.65;
   }
   footer a{color:var(--cream);}
+
+  /* ---------- small screens ---------- */
+  @media (max-width:640px){
+    .band{padding:64px 0;}
+    .full-img{margin-top:44px;}
+    .cta-row{flex-direction:column;align-items:stretch;}
+    .btn{justify-content:center;}
+    .who-grid,.why-grid,.share-grid{gap:36px;}
+    .foot-top{flex-direction:column;align-items:flex-start;}
+    .quote .eyebrow{margin-top:26px;}
+  }
 </style>
 </head>
 <body>
@@ -327,6 +371,9 @@
         @sapiens.cz
       </a>
     </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -577,6 +624,22 @@
     const track=document.getElementById('marqueeTrack');
     const item='<span>People need people &nbsp;&#9825;</span>';
     track.innerHTML=item.repeat(8)+item.repeat(8);
+  })();
+
+  // Mobile menu
+  (function(){
+    const burger=document.getElementById('burger');
+    const headerEl=document.querySelector('header');
+    if(!burger) return;
+    burger.addEventListener('click',()=>{
+      const open=headerEl.classList.toggle('menu-open');
+      burger.setAttribute('aria-expanded',String(open));
+      burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+      headerEl.classList.remove('menu-open');
+      burger.setAttribute('aria-expanded','false');
+    }));
   })();
 
   document.getElementById('year').textContent=new Date().getFullYear();
