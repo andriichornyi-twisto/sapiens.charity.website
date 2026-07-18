@@ -353,6 +353,24 @@
     .share-grid{grid-template-columns:1fr;}
   }
 
+  /* how to help */
+  .help .sec-head{text-align:center;}
+  .help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);}
+  .help-card{
+    background:var(--white);border-radius:22px;padding:30px 26px;
+    display:flex;flex-direction:column;gap:12px;text-decoration:none;
+    transition:transform .15s ease,box-shadow .2s ease;
+  }
+  .help-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(43,87,198,.18);}
+  .help-card h3{font-size:clamp(1.2rem,1.7vw,1.45rem);font-weight:800;letter-spacing:-.015em;color:var(--royal);}
+  .help-card p{font-size:.95rem;font-weight:600;line-height:1.5;color:var(--wine);opacity:.85;}
+  .help-card .go{
+    margin-top:auto;padding-top:10px;
+    font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--royal);
+  }
+  @media (max-width:860px){.help-grid{grid-template-columns:1fr;}}
+
   /* join */
   .join{text-align:center;}
   .join h2{
@@ -573,6 +591,33 @@
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
+<!-- ================= HOW TO HELP ================= -->
+<section class="band band-peri help" id="help">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="helpEyebrow">Get involved</span>
+      <h2 data-split data-i18n="helpTitle">How you can help</h2>
+    </div>
+    <div class="help-grid">
+      <a class="help-card rv" href="events/">
+        <h3 data-i18n="help1Title">Come to an event</h3>
+        <p data-i18n="help1Text">Meet us in person &mdash; every moment we create is open to anyone.</p>
+        <span class="go" data-i18n="help1Link">See events &rarr;</span>
+      </a>
+      <a class="help-card rv d1" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
+        <h3 data-i18n="help2Title">Join the team</h3>
+        <p data-i18n="help2Text">Help us plan and create the next moments. A message is enough.</p>
+        <span class="go" data-i18n="help2Link">Write to us on Instagram &rarr;</span>
+      </a>
+      <a class="help-card rv d2" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
+        <h3 data-i18n="help3Title">Support the project</h3>
+        <p data-i18n="help3Text">From an idea to a bouquet of flowers &mdash; every contribution helps. Get in touch and we&rsquo;ll find the way together.</p>
+        <span class="go" data-i18n="help3Link">Get in touch &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ================= JOIN ================= -->
 <section class="band band-cream join" id="join">
   <div class="wrap">
@@ -644,6 +689,17 @@
         shareTitle:'Why we <span style="color:var(--royal)">share it</span>',
         shareStanzas:'<p class="stanza">We simply want to remind people that there is still another side of humanity.</p><p class="stanza">A side where people come together to create something meaningful. Where people help without expecting anything in return.</p>',
         maybeLines:'<span>Maybe someone will feel inspired <span class="soft">to join.</span></span><span>Maybe someone will create <span class="soft">their own project.</span></span><span>Maybe someone will simply become <span class="soft">a little kinder.</span></span>',
+        helpEyebrow:'Get involved',
+        helpTitle:'How you can help',
+        help1Title:'Come to an event',
+        help1Text:'Meet us in person &mdash; every moment we create is open to anyone.',
+        help1Link:'See events &rarr;',
+        help2Title:'Join the team',
+        help2Text:'Help us plan and create the next moments. A message is enough.',
+        help2Link:'Write to us on Instagram &rarr;',
+        help3Title:'Support the project',
+        help3Text:'From an idea to a bouquet of flowers &mdash; every contribution helps. Get in touch and we&rsquo;ll find the way together.',
+        help3Link:'Get in touch &rarr;',
         joinTitle:'Become part <span class="hl">of it</span>',
         joinP:'Follow what we do, come to a moment we create &mdash; or start one of your own. Becoming part of it is much easier than it seems.',
         btnFollow:'Follow @sapiens.cz',
@@ -675,6 +731,17 @@
         shareTitle:'Proč to <span style="color:var(--royal)">sdílíme</span>',
         shareStanzas:'<p class="stanza">Chceme lidem jednoduše připomenout, že pořád existuje i jiná stránka lidství.</p><p class="stanza">Stránka, kde se lidé spojují, aby vytvořili něco smysluplného. Kde lidé pomáhají, aniž by za to něco čekali.</p>',
         maybeLines:'<span>Možná se někdo inspiruje <span class="soft">a přidá se.</span></span><span>Možná někdo vytvoří <span class="soft">vlastní projekt.</span></span><span>Možná bude někdo prostě <span class="soft">o trochu laskavější.</span></span>',
+        helpEyebrow:'Zapojte se',
+        helpTitle:'Jak můžete pomoct',
+        help1Title:'Přijďte na akci',
+        help1Text:'Potkejte se s námi osobně &mdash; každý okamžik, který vytváříme, je otevřený všem.',
+        help1Link:'Podívejte se na akce &rarr;',
+        help2Title:'Přidejte se k týmu',
+        help2Text:'Pomozte nám plánovat a vytvářet další okamžiky. Stačí napsat.',
+        help2Link:'Napište nám na Instagramu &rarr;',
+        help3Title:'Podpořte projekt',
+        help3Text:'Od nápadu po kytici květin &mdash; každá pomoc se počítá. Ozvěte se a společně najdeme způsob.',
+        help3Link:'Ozvěte se &rarr;',
         joinTitle:'Staňte se <span class="hl">součástí</span>',
         joinP:'Sledujte, co děláme, přijďte na okamžik, který vytváříme &mdash; nebo vytvořte svůj vlastní. Stát se součástí je mnohem snazší, než se zdá.',
         btnFollow:'Sledovat @sapiens.cz',
