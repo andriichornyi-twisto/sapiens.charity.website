@@ -60,7 +60,7 @@
     --font:'Archivo', 'Helvetica Neue', Arial, sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-snap-type:y proximity;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
   ::selection{background:var(--ochre);color:var(--white);}
   .sr-only{
     position:absolute;width:1px;height:1px;padding:0;margin:-1px;
@@ -315,9 +315,7 @@
     padding:clamp(64px,8vw,110px) 0;
     min-height:100svh;
     display:flex;flex-direction:column;justify-content:center;
-    scroll-snap-align:start;
   }
-  .hero{scroll-snap-align:start;}
   .band-flush{justify-content:flex-end;}
   .band-flush .wrap{margin-top:auto;margin-bottom:auto;}
   .band-ochre{background:var(--ochre);color:var(--white);}
