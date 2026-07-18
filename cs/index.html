@@ -858,18 +858,18 @@
 
     // nav + hero entrance
     const tl=gsap.timeline({defaults:{ease:'power3.out'}});
-    tl.from('header',{y:-70,opacity:0,duration:.6,ease:'power2.out'})
-      .from('.hero .mark',{y:26,opacity:0,scale:.92,duration:.8},'-=.2')
-      .from('.hero .eyebrow',{y:16,opacity:0,duration:.5},'-=.35');
+    tl.from('header',{y:-70,opacity:0,duration:.35,ease:'power2.out'})
+      .from('.hero .mark',{y:20,opacity:0,scale:.94,duration:.45},'-=.15')
+      .from('.hero .eyebrow',{y:12,opacity:0,duration:.3},'-=.25');
     const h1=document.querySelector('.hero h1');
     if(hasSplit){
       const s=new SplitText(h1,{type:'words'});
-      tl.from(s.words,{yPercent:70,opacity:0,rotate:3,duration:.7,stagger:.06},'-=.15');
+      tl.from(s.words,{yPercent:70,opacity:0,rotate:3,duration:.45,stagger:.035},'-=.1');
     }else{
-      tl.from(h1,{y:26,opacity:0,duration:.7},'-=.15');
+      tl.from(h1,{y:22,opacity:0,duration:.45},'-=.1');
     }
-    tl.from('.hero p',{y:22,opacity:0,duration:.6},'-=.3')
-      .from('.scroll-hint',{opacity:0,y:10,duration:.6},'-=.2');
+    tl.from('.hero p',{y:16,opacity:0,duration:.4},'-=.25')
+      .from('.scroll-hint',{opacity:0,y:8,duration:.4},'-=.2');
 
     // headline word reveals on scroll
     document.querySelectorAll('[data-split]').forEach(el=>{
@@ -877,14 +877,14 @@
       if(hasSplit){ targets=new SplitText(el,{type:'words'}).words; }
       gsap.from(targets,{
         yPercent:60,opacity:0,rotate:hasSplit?2:0,
-        duration:.8,ease:'power3.out',stagger:.05,
+        duration:.55,ease:'power3.out',stagger:.04,
         scrollTrigger:{trigger:el,start:'top 86%',once:true}
       });
     });
 
     // content blocks
     gsap.utils.toArray('.rv:not([data-split])').forEach(el=>{
-      gsap.from(el,{y:34,opacity:0,duration:.8,ease:'power2.out',
+      gsap.from(el,{y:28,opacity:0,duration:.55,ease:'power2.out',
         scrollTrigger:{trigger:el,start:'top 88%',once:true}});
     });
 
@@ -892,12 +892,12 @@
     gsap.utils.toArray('.full-img, .photo-strip img').forEach(img=>{
       gsap.fromTo(img,
         {clipPath:'inset(10% 8% 10% 8%)',scale:1.08},
-        {clipPath:'inset(0% 0% 0% 0%)',scale:1,duration:1.1,ease:'power2.out',
+        {clipPath:'inset(0% 0% 0% 0%)',scale:1,duration:.8,ease:'power2.out',
          scrollTrigger:{trigger:img,start:'top 86%',once:true}});
     });
 
     // sun pop-in
-    gsap.from('.sun-wrap',{scale:.75,opacity:0,duration:.9,ease:'back.out(1.5)',
+    gsap.from('.sun-wrap',{scale:.8,opacity:0,duration:.65,ease:'back.out(1.4)',
       scrollTrigger:{trigger:'.sun-wrap',start:'top 85%',once:true}});
   })();
 

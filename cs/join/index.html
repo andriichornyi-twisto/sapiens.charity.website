@@ -536,18 +536,18 @@
     gsap.registerPlugin(ScrollTrigger);
     const hasSplit=!!window.SplitText;
     if(hasSplit) gsap.registerPlugin(SplitText);
-    gsap.from('header',{y:-70,opacity:0,duration:.6,ease:'power2.out'});
+    gsap.from('header',{y:-70,opacity:0,duration:.35,ease:'power2.out'});
     document.querySelectorAll('[data-split]').forEach(el=>{
       let targets=[el];
       if(hasSplit){ targets=new SplitText(el,{type:'words'}).words; }
       gsap.from(targets,{
         yPercent:60,opacity:0,rotate:hasSplit?2:0,
-        duration:.8,ease:'power3.out',stagger:.05,
+        duration:.55,ease:'power3.out',stagger:.04,
         scrollTrigger:{trigger:el,start:'top 86%',once:true}
       });
     });
     gsap.utils.toArray('.rv').forEach(el=>{
-      gsap.from(el,{y:34,opacity:0,duration:.8,ease:'power2.out',
+      gsap.from(el,{y:28,opacity:0,duration:.55,ease:'power2.out',
         scrollTrigger:{trigger:el,start:'top 88%',once:true}});
     });
   })();
