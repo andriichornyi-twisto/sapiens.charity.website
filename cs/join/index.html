@@ -229,6 +229,10 @@
   }
   .btn:hover{transform:translateY(-2px);background:var(--wine-deep);}
   .privacy{font-size:.85rem;font-weight:600;opacity:.6;line-height:1.5;max-width:52ch;}
+  .form-error{
+    font-size:.95rem;font-weight:700;color:#B3261E;line-height:1.5;max-width:52ch;
+  }
+  .btn[disabled]{opacity:.6;cursor:default;transform:none !important;}
 
   /* success panel */
   .join-ok{text-align:center;padding:24px 0 12px;}
@@ -308,11 +312,7 @@
     <div class="join-wrap">
 
       <div class="join-main rv">
-        <form class="join-form" id="joinForm" data-type="help" action="https://formsubmit.co/nanammldzz@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="Sapiens website — join form">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://sapienscz.com/cs/join/?sent=1">
+        <form class="join-form" id="joinForm" data-type="help" novalidate="false">
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="type-cards" role="radiogroup" aria-label="How would you like to join?">
@@ -360,6 +360,7 @@
 
           <div class="join-actions">
             <button class="btn" type="submit" data-i18n="send">Odeslat</button>
+            <p class="form-error" id="formError" hidden="" data-i18n="sendError">Něco se pokazilo — zkuste to prosím znovu, nebo nám napište na Instagramu.</p>
             <p class="privacy" data-i18n="privacy">Vaše údaje použijeme jen k tomu, abychom se vám ozvali. Nic víc, nikdy.</p>
           </div>
         </form>
@@ -428,7 +429,8 @@
         msgHelp:'How would you like to help?',
         msgBiz:'How would you like to participate?',
         msgNeed:'What do you need? Share as much as you&rsquo;re comfortable with.',
-        send:'Send',
+        send:'Send',sending:'Sending&hellip;',
+        sendError:'Something went wrong &mdash; please try again, or write to us on Instagram.',
         privacy:'We&rsquo;ll only use your details to get back to you. Nothing else, ever.',
         okTitle:'Thank you!',
         okText:'Your message is on its way &mdash; we&rsquo;ll get back to you soon. People need people.',
@@ -450,7 +452,8 @@
         msgHelp:'Jak byste chtěli pomáhat?',
         msgBiz:'Jak byste se chtěli zapojit?',
         msgNeed:'Co potřebujete? Sdílejte tolik, kolik je vám příjemné.',
-        send:'Odeslat',
+        send:'Odeslat',sending:'Odesílám&hellip;',
+        sendError:'Něco se pokazilo &mdash; zkuste to prosím znovu, nebo nám napište na Instagramu.',
         privacy:'Vaše údaje použijeme jen k tomu, abychom se vám ozvali. Nic víc, nikdy.',
         okTitle:'Děkujeme!',
         okText:'Vaše zpráva je na cestě &mdash; brzy se vám ozveme. Lidé potřebují lidi.',
@@ -520,12 +523,47 @@
     const browserCs=(navigator.language||'').toLowerCase().startsWith('cs');
     setLang(saved||'cs');
 
-    // success state after FormSubmit redirect
-    if(new URLSearchParams(location.search).get('sent')==='1'){
+    // submissions go to the Sapiens Telegram bot
+    const TG={token:'8875632622:AAF-2mR_lT7EN9NQBIOjJi5kKaJeNGTjk2w',chat:'1441334210'};
+    function showSuccess(){
       const main=document.querySelector('.join-main');
       const ok=document.querySelector('.join-ok');
       if(main) main.hidden=true;
-      if(ok) ok.hidden=false;
+      if(ok){ok.hidden=false;ok.scrollIntoView({behavior:'smooth',block:'center'});}
+    }
+    if(form){
+      const btn=form.querySelector('button[type="submit"]');
+      const errEl=document.getElementById('formError');
+      form.addEventListener('submit',e=>{
+        e.preventDefault();
+        if(!form.reportValidity()) return;
+        if(form.querySelector('input[name="_honey"]').value){showSuccess();return;}
+        errEl.hidden=true;
+        btn.disabled=true;
+        btn.innerHTML=I18N[activeLang].sending;
+        const v=n=>{const el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
+        const lines=[
+          '\u{1F33C} New join request \u2014 '+v('Joining as'),
+          'Name: '+v('Name'),
+          'Email: '+v('Email')
+        ];
+        const ph=v('Phone / Instagram'); if(ph) lines.push('Phone/IG: '+ph);
+        if(form.dataset.type==='business') lines.push('Company: '+v('Company'));
+        lines.push('','Message:',v('Message'),'','\u2014 '+location.href+' ['+activeLang+']');
+        fetch('https://api.telegram.org/bot'+TG.token+'/sendMessage',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({chat_id:TG.chat,text:lines.join('\n'),disable_web_page_preview:true})
+        }).then(r=>r.json()).then(d=>{
+          if(d&&d.ok){showSuccess();}
+          else{throw new Error('telegram not ok');}
+        }).catch(()=>{
+          errEl.hidden=false;
+        }).finally(()=>{
+          btn.disabled=false;
+          btn.innerHTML=I18N[activeLang].send;
+        });
+      });
     }
   })();
 
