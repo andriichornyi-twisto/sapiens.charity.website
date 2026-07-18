@@ -232,17 +232,38 @@
   }
   .cta-band p{
     margin:18px auto 0;max-width:46ch;
-    font-size:clamp(1rem,1.3vw,1.15rem);font-weight:600;line-height:1.55;opacity:.92;
+    font-size:clamp(1rem,1.3vw,1.15rem);font-weight:600;line-height:1.55;
+    color:var(--wine);opacity:.9;
   }
+  .cta-row{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
   .btn{
     display:inline-flex;align-items:center;gap:10px;
     font-family:var(--font);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
     text-decoration:none;border-radius:999px;padding:18px 30px;
     transition:transform .15s ease, background .2s ease;
-    margin-top:36px;
     background:var(--wine);color:var(--cream);
   }
+  .btn-ghost{background:none;border:2px solid var(--wine);color:var(--wine);}
+  .btn-ghost:hover{background:rgba(85,32,46,.06);}
+  .btn:active{transform:translateY(0) scale(.97);}
   .btn:hover{transform:translateY(-2px);background:var(--wine-deep);}
+
+  .to-top{
+    position:fixed;right:18px;bottom:18px;z-index:70;
+    width:46px;height:46px;border-radius:999px;border:0;cursor:pointer;
+    background:var(--wine);color:var(--cream);font-size:18px;font-weight:800;
+    font-family:var(--font);display:grid;place-items:center;
+    opacity:0;transform:translateY(12px);pointer-events:none;
+    transition:opacity .25s ease,transform .25s ease,background .2s ease;
+  }
+  .to-top.show{opacity:1;transform:none;pointer-events:auto;}
+  .to-top:hover{background:var(--wine-deep);}
+  .foot-links{margin-top:28px;display:flex;gap:22px;flex-wrap:wrap;}
+  .foot-links a{
+    font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--cream);text-decoration:none;opacity:.75;
+  }
+  .foot-links a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px;}
 
   /* ---------- footer (same as home) ---------- */
   footer{
@@ -279,7 +300,7 @@
       <nav class="nav-links" aria-label="Main">
         <a href="/#who" data-i18n="navWho">Kdo jsme</a>
         <a href="/#why" data-i18n="navWhy">Proč to děláme</a>
-        <a href="/events/" class="active" data-i18n="navEvents">Akce</a>
+        <a href="/events/" class="active" aria-current="page" data-i18n="navEvents">Akce</a>
         <a href="/join/" data-i18n="navJoin">Přidejte se</a>
         <a class="nav-ig" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"></circle></svg>
@@ -377,10 +398,13 @@
   <div class="wrap">
     <h2 class="rv" data-split="" data-i18n="ctaTitle">Chcete být u toho?</h2>
     <p class="rv" data-i18n="ctaText">Každou akci oznamujeme nejdřív na našem Instagramu. Sledujte nás — nebo nám napište a pomozte vytvořit tu další.</p>
-    <a class="btn rv" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"></circle></svg>
-      <span data-i18n="btnFollow">Sledovat @sapiens.cz</span>
-    </a>
+    <div class="cta-row rv">
+      <a class="btn" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"></circle></svg>
+        <span data-i18n="btnFollow">Sledovat @sapiens.cz</span>
+      </a>
+      <a class="btn btn-ghost" href="/join/" data-i18n="btnJoin">Přidejte se ke komunitě</a>
+    </div>
   </div>
 </section>
 
@@ -401,12 +425,19 @@
       </div>
       <span class="foot-tag" data-i18n="footTag">Lidé potřebují lidi</span>
     </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="/events/" data-i18n="navEvents">Akce</a>
+      <a href="/join/" data-i18n="navJoin">Přidejte se</a>
+      <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> <span data-i18n="footCredit">Sapiens — projekt se sociálním přesahem</span></span>
       <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">instagram.com/sapiens.cz</a>
     </div>
   </div>
 </footer>
+
+<button class="to-top" id="toTop" aria-label="Zpět nahoru">↑</button>
 
 <script src="/js/gsap.min.js"></script>
 <script src="/js/ScrollTrigger.min.js"></script>
@@ -418,7 +449,7 @@
       en:{
         title:'Events — Sapiens',
         desc:'Moments we create — flowers for strangers, visits, small acts of connection. Come to a Sapiens event or start one of your own.',
-        menuOpen:'Open menu',menuClose:'Close menu',
+        menuOpen:'Open menu',menuClose:'Close menu',toTop:'Back to top',
         navWho:'Who we are',navWhy:'Why we do this',navEvents:'Events',navJoin:'Join us',skipLink:'Skip to content',
         eventsTitle:'Moments <span class="hl">we create</span>',
         eventsIntro:'Small, real events that bring people together &mdash; flowers for strangers, visits, shared afternoons. Come to one, or just come say hi.',
@@ -435,14 +466,14 @@
         card3Text:'The next moment is in the making. Follow us on Instagram to be the first to know.',
         ctaTitle:'Want to be there?',
         ctaText:'Every event is announced on our Instagram first. Follow along &mdash; or write to us and help us create the next one.',
-        btnFollow:'Follow @sapiens.cz',
+        btnFollow:'Follow @sapiens.cz',btnJoin:'Join the society',
         footTag:'People need people',
         footCredit:'Sapiens &mdash; a social impact project'
       },
       cs:{
         title:'Akce — Sapiens',
         desc:'Okamžiky, které vytváříme — květiny pro neznámé, návštěvy, malé skutky propojení. Přijďte na akci Sapiens, nebo vytvořte vlastní.',
-        menuOpen:'Otevřít menu',menuClose:'Zavřít menu',
+        menuOpen:'Otevřít menu',menuClose:'Zavřít menu',toTop:'Zpět nahoru',
         navWho:'Kdo jsme',navWhy:'Proč to děláme',navEvents:'Akce',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
         eventsTitle:'Okamžiky, <span class="hl">které vytváříme</span>',
         eventsIntro:'Malé skutečné akce, které lidi spojují &mdash; květiny pro neznámé, návštěvy, společná odpoledne. Přijďte na některou z nich, nebo se jen zastavte.',
@@ -459,7 +490,7 @@
         card3Text:'Další okamžik se právě rodí. Sledujte nás na Instagramu a dozvíte se to jako první.',
         ctaTitle:'Chcete být u toho?',
         ctaText:'Každou akci oznamujeme nejdřív na našem Instagramu. Sledujte nás &mdash; nebo nám napište a pomozte vytvořit tu další.',
-        btnFollow:'Sledovat @sapiens.cz',
+        btnFollow:'Sledovat @sapiens.cz',btnJoin:'Přidejte se ke komunitě',
         footTag:'Lidé potřebují lidi',
         footCredit:'Sapiens &mdash; projekt se sociálním přesahem'
       }
@@ -485,6 +516,8 @@
       document.querySelectorAll('.lang-toggle button').forEach(b=>{
         b.setAttribute('aria-pressed',String(b.dataset.lang===lang));
       });
+      const tt=document.getElementById('toTop');
+      if(tt) tt.setAttribute('aria-label',t.toTop);
       try{localStorage.setItem('sapiens-lang',lang);}catch(e){}
       if(window.ScrollTrigger) ScrollTrigger.refresh();
     }
@@ -609,21 +642,35 @@
     }
   })();
 
-  // Mobile menu
+  // Mobile menu — scroll lock, Esc + outside-click close
   (function(){
     const burger=document.getElementById('burger');
     const headerEl=document.querySelector('header');
     if(!burger) return;
-    burger.addEventListener('click',()=>{
-      const open=headerEl.classList.toggle('menu-open');
+    function setState(open){
+      headerEl.classList.toggle('menu-open',open);
       burger.setAttribute('aria-expanded',String(open));
       burger.setAttribute('aria-label',
         open?(burger.dataset.labelClose||'Close menu'):(burger.dataset.labelOpen||'Open menu'));
+      document.body.style.overflow=open?'hidden':'';
+    }
+    burger.addEventListener('click',()=>setState(!headerEl.classList.contains('menu-open')));
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>setState(false)));
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&headerEl.classList.contains('menu-open')) setState(false);
     });
-    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
-      headerEl.classList.remove('menu-open');
-      burger.setAttribute('aria-expanded','false');
-    }));
+    document.addEventListener('pointerdown',e=>{
+      if(headerEl.classList.contains('menu-open')&&!e.target.closest('header')) setState(false);
+    });
+  })();
+
+  // Back to top
+  (function(){
+    const b=document.getElementById('toTop');
+    if(!b) return;
+    const onScroll=()=>{b.classList.toggle('show',scrollY>innerHeight*1.2);};
+    addEventListener('scroll',onScroll,{passive:true});onScroll();
+    b.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
   })();
 
   document.getElementById('year').textContent=new Date().getFullYear();
