@@ -4,22 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#FFFAF4">
-<title>Events — Sapiens</title>
-<meta name="description" content="Moments we create — flowers for strangers, visits, small acts of connection. Come to a Sapiens event or start one of your own.">
-<meta property="og:title" content="Events — Sapiens">
-<meta property="og:description" content="Moments we create — come to a Sapiens event or start one of your own.">
+<title>Join us — Sapiens</title>
+<meta name="description" content="Join the Sapiens society — volunteer with us, partner as a business, or reach out when you need help yourself.">
+<meta property="og:title" content="Join us — Sapiens">
+<meta property="og:description" content="Volunteer, partner as a business, or ask for help — join the Sapiens society.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://sapienscz.com/events/">
+<meta property="og:url" content="https://sapienscz.com/join/">
 <meta property="og:image" content="https://sapienscz.com/img/team.jpg">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1350">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="cs_CZ">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://sapienscz.com/events/">
-<link rel="alternate" hreflang="en" href="https://sapienscz.com/events/">
-<link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/events/">
-<link rel="alternate" hreflang="x-default" href="https://sapienscz.com/events/">
+<link rel="canonical" href="https://sapienscz.com/join/">
+<link rel="alternate" hreflang="en" href="https://sapienscz.com/join/">
+<link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/join/">
+<link rel="alternate" hreflang="x-default" href="https://sapienscz.com/join/">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
@@ -165,85 +165,81 @@
 
   /* ---------- page head ---------- */
   .page-head{
-    padding:clamp(140px,18vh,190px) 0 clamp(40px,6vw,64px);
+    padding:clamp(130px,16vh,180px) 0 clamp(28px,4vw,44px);
     text-align:center;
   }
   .page-head .eyebrow{display:block;margin-bottom:16px;opacity:.85;}
   .page-head h1{
-    font-size:clamp(2.8rem,7vw,5.6rem);
+    font-size:clamp(2.6rem,6.5vw,5rem);
     font-weight:800;letter-spacing:-.03em;line-height:.95;text-transform:uppercase;
   }
   .page-head h1 .hl{color:var(--ochre);}
   .page-head p{
-    margin:24px auto 0;max-width:52ch;
+    margin:24px auto 0;max-width:54ch;
     font-size:clamp(1rem,1.4vw,1.2rem);font-weight:600;line-height:1.55;opacity:.85;
   }
 
-  /* ---------- event cards ---------- */
-  .events{padding:clamp(24px,4vw,48px) 0 clamp(80px,10vw,120px);}
-  .cards{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);
+  /* ---------- join form ---------- */
+  .join-section{padding:clamp(16px,3vw,40px) 0 clamp(80px,10vw,120px);}
+  .join-wrap{max-width:780px;margin:0 auto;}
+  .type-cards{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:34px;
   }
-  @media (max-width:960px){.cards{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:640px){.cards{grid-template-columns:1fr;}}
-  .card{
-    display:flex;flex-direction:column;
-    border-radius:22px;overflow:hidden;
-    background:var(--white);
-    border:1px solid rgba(85,32,46,.1);
+  @media (max-width:720px){.type-cards{grid-template-columns:1fr;}}
+  .type-card{
+    position:relative;display:flex;flex-direction:column;gap:6px;
+    border:2px solid rgba(85,32,46,.18);border-radius:18px;
+    padding:18px;cursor:pointer;background:transparent;
+    transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;
   }
-  .card-photo{
-    aspect-ratio:4/5;position:relative;overflow:hidden;
-    display:grid;place-items:center;text-align:center;
+  .type-card:hover{border-color:rgba(85,32,46,.45);}
+  .type-card:has(input:checked){
+    border-color:var(--wine);background:var(--white);
+    box-shadow:0 10px 24px rgba(85,32,46,.08);
   }
-  .card-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
-  .card-photo.ph-ochre{background:var(--ochre);color:var(--white);}
-  .card-photo.ph-peri{background:var(--peri);color:var(--royal);}
-  .card-photo.ph-wine{background:var(--wine);color:var(--cream);}
-  .ph-inner{display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px;}
-  .ph-inner svg{width:clamp(72px,9vw,110px);height:auto;opacity:.95;}
-  .ph-inner .eyebrow{opacity:.8;font-size:10px;}
-  .card-body{padding:22px 22px 26px;display:flex;flex-direction:column;gap:10px;flex:1;}
-  .card-date{
-    font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--royal);
-  }
-  .card h3{
-    font-size:clamp(1.25rem,1.8vw,1.5rem);
-    font-weight:800;letter-spacing:-.015em;line-height:1.15;
-  }
-  .card p{
-    font-size:.95rem;font-weight:600;line-height:1.5;opacity:.8;
-  }
-  .card-link{
-    margin-top:auto;padding-top:8px;
-    font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--wine);text-decoration:none;
-  }
-  .card-link:hover{color:var(--wine-deep);text-decoration:underline;text-underline-offset:4px;}
+  .type-card:has(input:focus-visible){outline:3px solid var(--royal);outline-offset:3px;}
+  .type-card input{position:absolute;opacity:0;pointer-events:none;}
+  .tc-title{font-weight:800;font-size:1.05rem;letter-spacing:-.01em;}
+  .tc-desc{font-weight:600;font-size:.85rem;opacity:.72;line-height:1.4;}
 
-  /* ---------- CTA band ---------- */
-  .cta-band{
-    background:var(--ochre);color:var(--white);
-    padding:clamp(64px,8vw,100px) 0;text-align:center;
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}
+  @media (max-width:640px){.frow{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+  .field label{
+    font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8;
   }
-  .cta-band h2{
-    font-size:clamp(2rem,4.6vw,3.6rem);
-    font-weight:800;letter-spacing:-.025em;line-height:1;text-transform:uppercase;
+  .field input,.field textarea{
+    font-family:var(--font);font-size:1rem;font-weight:600;color:var(--wine);
+    background:var(--white);border:1.5px solid rgba(85,32,46,.25);border-radius:12px;
+    padding:13px 14px;width:100%;
   }
-  .cta-band p{
-    margin:18px auto 0;max-width:46ch;
-    font-size:clamp(1rem,1.3vw,1.15rem);font-weight:600;line-height:1.55;opacity:.92;
+  .field textarea{resize:vertical;min-height:130px;}
+  .field input:focus,.field textarea:focus{
+    outline:3px solid var(--royal);outline-offset:1px;border-color:var(--royal);
   }
+  .row-company{display:none;}
+  form[data-type="business"] .row-company{display:flex;}
+
+  .join-actions{margin-top:8px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
   .btn{
     display:inline-flex;align-items:center;gap:10px;
     font-family:var(--font);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-    text-decoration:none;border-radius:999px;padding:18px 30px;
-    transition:transform .15s ease, background .2s ease;
-    margin-top:36px;
+    text-decoration:none;border-radius:999px;padding:17px 32px;border:0;cursor:pointer;
     background:var(--wine);color:var(--cream);
+    transition:transform .15s ease, background .2s ease;
   }
   .btn:hover{transform:translateY(-2px);background:var(--wine-deep);}
+  .privacy{font-size:.85rem;font-weight:600;opacity:.6;line-height:1.5;max-width:52ch;}
+
+  /* success panel */
+  .join-ok{text-align:center;padding:24px 0 12px;}
+  .join-ok svg{width:96px;height:auto;margin-bottom:22px;}
+  .join-ok h2{
+    font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;
+    letter-spacing:-.025em;line-height:1;text-transform:uppercase;
+  }
+  .join-ok p{margin:18px auto 0;max-width:44ch;font-weight:600;line-height:1.55;opacity:.85;}
+  .join-ok .btn{margin-top:30px;}
 
   /* ---------- footer (same as home) ---------- */
   footer{
@@ -280,8 +276,8 @@
       <nav class="nav-links" aria-label="Main">
         <a href="/#who" data-i18n="navWho">Who we are</a>
         <a href="/#why" data-i18n="navWhy">Why we do this</a>
-        <a href="/events/" class="active" data-i18n="navEvents">Events</a>
-        <a href="/join/" data-i18n="navJoin">Join us</a>
+        <a href="/events/" data-i18n="navEvents">Events</a>
+        <a href="/join/" class="active" data-i18n="navJoin">Join us</a>
         <a class="nav-ig" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
           @sapiens.cz
@@ -302,91 +298,91 @@
 <section class="page-head" id="main">
   <div class="wrap">
     <span class="eyebrow">Sapiens</span>
-    <h1 data-split data-i18n="eventsTitle">Moments <span class="hl">we create</span></h1>
-    <p class="rv" data-i18n="eventsIntro">Small, real events that bring people together — flowers for
-    strangers, visits, shared afternoons. Come to one, or just come say hi.</p>
+    <h1 data-split data-i18n="joinTitle">Join <span class="hl">the society</span></h1>
+    <p class="rv" data-i18n="joinIntro">Whether you want to give a hand, team up as a business,
+    or could use a hand yourself &mdash; this is the door. Fill in the form and we&rsquo;ll get back to you.</p>
   </div>
 </section>
 
-<!-- ================= EVENT CARDS ================= -->
-<section class="events">
+<!-- ================= FORM ================= -->
+<section class="join-section">
   <div class="wrap">
-    <div class="cards">
+    <div class="join-wrap">
 
-      <!-- EVENT CARD — to add a photo, replace the .ph-inner div with:
-           <img src="../img/your-photo.jpg" alt="..."> inside .card-photo -->
-      <article class="card rv">
-        <div class="card-photo ph-ochre">
-          <div class="ph-inner">
-            <svg viewBox="0 0 110 110" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" aria-hidden="true">
-              <path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z" transform="rotate(-8 43 35)"/>
-              <path d="M62 88 C54 79 61 68 69 74 C77 66 87 76 79 86 C75 91 70 95 70 95 C70 95 66 92 62 88 Z" transform="rotate(10 70 82)"/>
-            </svg>
-            <span class="eyebrow" data-i18n="photoSoon">Photo coming soon</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-date" data-i18n="card1Date">Date coming soon</span>
-          <h3 data-i18n="card1Title">Flowers for strangers</h3>
-          <p data-i18n="card1Text">We hand out flowers on the street — no reason, no catch.
-          Just a small moment that makes someone's day.</p>
-          <a class="card-link" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener" data-i18n="cardLink">Details on Instagram &rarr;</a>
-        </div>
-      </article>
+      <div class="join-main rv">
+        <form class="join-form" id="joinForm" data-type="help"
+              action="https://formsubmit.co/nozzjoy@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Sapiens website — join form">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://sapienscz.com/join/?sent=1">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-      <article class="card rv">
-        <div class="card-photo ph-peri">
-          <div class="ph-inner">
-            <svg viewBox="0 0 200 200" aria-hidden="true"><path class="sun-ph" fill="currentColor" d=""/></svg>
-            <span class="eyebrow" data-i18n="photoSoon">Photo coming soon</span>
+          <div class="type-cards" role="radiogroup" aria-label="How would you like to join?">
+            <label class="type-card">
+              <input type="radio" name="Joining as" value="Volunteer — I want to help" data-type="help" checked>
+              <span class="tc-title" data-i18n="t1">I want to help</span>
+              <span class="tc-desc" data-i18n="t1d">Volunteer at events or behind the scenes.</span>
+            </label>
+            <label class="type-card">
+              <input type="radio" name="Joining as" value="Business — we want to participate" data-type="business">
+              <span class="tc-title" data-i18n="t2">We&rsquo;re a business</span>
+              <span class="tc-desc" data-i18n="t2d">Partner with us and take part in what we do.</span>
+            </label>
+            <label class="type-card">
+              <input type="radio" name="Joining as" value="I need help" data-type="need">
+              <span class="tc-title" data-i18n="t3">I need help</span>
+              <span class="tc-desc" data-i18n="t3d">Tell us what&rsquo;s going on. No judgement, no strings.</span>
+            </label>
           </div>
-        </div>
-        <div class="card-body">
-          <span class="card-date" data-i18n="card2Date">Date coming soon</span>
-          <h3 data-i18n="card2Title">A visit that matters</h3>
-          <p data-i18n="card2Text">An afternoon with people who are often alone —
-          conversation, coffee and time spent together.</p>
-          <a class="card-link" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener" data-i18n="cardLink">Details on Instagram &rarr;</a>
-        </div>
-      </article>
 
-      <article class="card rv">
-        <div class="card-photo ph-wine">
-          <div class="ph-inner">
-            <svg viewBox="0 0 240 200" aria-hidden="true">
-              <circle cx="64" cy="54" r="13" fill="currentColor" opacity=".85"/>
-              <path d="M79,168 C60,157 44,133 40,109 C36,87 46,73 62,73 C77,73 85,86 85,106 C85,128 83,151 79,168 Z" fill="currentColor" opacity=".85"/>
-              <circle cx="176" cy="54" r="13" fill="currentColor" opacity=".85"/>
-              <path d="M161,168 C180,157 196,133 200,109 C204,87 194,73 178,73 C163,73 155,86 155,106 C155,128 157,151 161,168 Z" fill="currentColor" opacity=".85"/>
-              <circle cx="120" cy="46" r="16" fill="currentColor"/>
-              <path d="M120,182 C103,165 89,137 89,112 C89,85 102,71 120,71 C138,71 151,85 151,112 C151,137 137,165 120,182 Z" fill="currentColor"/>
-            </svg>
-            <span class="eyebrow" data-i18n="photoSoon">Photo coming soon</span>
+          <div class="frow">
+            <div class="field">
+              <label for="jName" data-i18n="fName">Your name</label>
+              <input id="jName" name="Name" type="text" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="jEmail" data-i18n="fEmail">Email</label>
+              <input id="jEmail" name="Email" type="email" required autocomplete="email">
+            </div>
           </div>
-        </div>
-        <div class="card-body">
-          <span class="card-date" data-i18n="card3Date">Date coming soon</span>
-          <h3 data-i18n="card3Title">Something we're planning</h3>
-          <p data-i18n="card3Text">The next moment is in the making. Follow us
-          on Instagram to be the first to know.</p>
-          <a class="card-link" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener" data-i18n="cardLink">Details on Instagram &rarr;</a>
-        </div>
-      </article>
+          <div class="frow">
+            <div class="field">
+              <label for="jPhone" data-i18n="fPhone">Phone or Instagram (optional)</label>
+              <input id="jPhone" name="Phone / Instagram" type="text">
+            </div>
+            <div class="field row-company">
+              <label for="jCompany" data-i18n="fCompany">Company name</label>
+              <input id="jCompany" name="Company" type="text">
+            </div>
+          </div>
+          <div class="field">
+            <label for="jMsg" id="msgLabel" data-i18n="msgHelp">How would you like to help?</label>
+            <textarea id="jMsg" name="Message" required></textarea>
+          </div>
+
+          <div class="join-actions">
+            <button class="btn" type="submit" data-i18n="send">Send</button>
+            <p class="privacy" data-i18n="privacy">We&rsquo;ll only use your details to get back to you. Nothing else, ever.</p>
+          </div>
+        </form>
+      </div>
+
+      <div class="join-ok" hidden>
+        <svg viewBox="0 0 240 200" role="img" aria-label="Sapiens logo">
+          <circle cx="64" cy="54" r="13" fill="#55202E"/>
+          <path d="M79,168 C60,157 44,133 40,109 C36,87 46,73 62,73 C77,73 85,86 85,106 C85,128 83,151 79,168 Z" fill="#55202E" opacity=".85"/>
+          <circle cx="176" cy="54" r="13" fill="#9DB9E6"/>
+          <path d="M161,168 C180,157 196,133 200,109 C204,87 194,73 178,73 C163,73 155,86 155,106 C155,128 157,151 161,168 Z" fill="#9DB9E6"/>
+          <circle cx="120" cy="46" r="16" fill="#DFA84F"/>
+          <path d="M120,182 C103,165 89,137 89,112 C89,85 102,71 120,71 C138,71 151,85 151,112 C151,137 137,165 120,182 Z" fill="#DFA84F"/>
+        </svg>
+        <h2 data-i18n="okTitle">Thank you!</h2>
+        <p data-i18n="okText">Your message is on its way &mdash; we&rsquo;ll get back to you soon. People need people.</p>
+        <a class="btn" href="/" data-i18n="okBtn">Back to the homepage</a>
+      </div>
 
     </div>
-  </div>
-</section>
-
-<!-- ================= CTA ================= -->
-<section class="cta-band">
-  <div class="wrap">
-    <h2 class="rv" data-split data-i18n="ctaTitle">Want to be there?</h2>
-    <p class="rv" data-i18n="ctaText">Every event is announced on our Instagram first.
-    Follow along — or write to us and help us create the next one.</p>
-    <a class="btn rv" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
-      <span data-i18n="btnFollow">Follow @sapiens.cz</span>
-    </a>
   </div>
 </section>
 
@@ -418,62 +414,75 @@
 <script src="/js/ScrollTrigger.min.js"></script>
 <script src="/js/SplitText.min.js"></script>
 <script>
-  // Language toggle (EN / CZ) — shares the 'sapiens-lang' choice with the home page
+  // Language toggle (EN / CZ) — shares the 'sapiens-lang' choice with the other pages
   (function(){
     const I18N={
       en:{
-        title:'Events — Sapiens',
-        desc:'Moments we create — flowers for strangers, visits, small acts of connection. Come to a Sapiens event or start one of your own.',
+        title:'Join us — Sapiens',
+        desc:'Join the Sapiens society — volunteer with us, partner as a business, or reach out when you need help yourself.',
         menuOpen:'Open menu',menuClose:'Close menu',
         navWho:'Who we are',navWhy:'Why we do this',navEvents:'Events',navJoin:'Join us',skipLink:'Skip to content',
-        eventsTitle:'Moments <span class="hl">we create</span>',
-        eventsIntro:'Small, real events that bring people together &mdash; flowers for strangers, visits, shared afternoons. Come to one, or just come say hi.',
-        photoSoon:'Photo coming soon',
-        cardLink:'Details on Instagram &rarr;',
-        card1Date:'Date coming soon',
-        card1Title:'Flowers for strangers',
-        card1Text:'We hand out flowers on the street &mdash; no reason, no catch. Just a small moment that makes someone&rsquo;s day.',
-        card2Date:'Date coming soon',
-        card2Title:'A visit that matters',
-        card2Text:'An afternoon with people who are often alone &mdash; conversation, coffee and time spent together.',
-        card3Date:'Date coming soon',
-        card3Title:'Something we&rsquo;re planning',
-        card3Text:'The next moment is in the making. Follow us on Instagram to be the first to know.',
-        ctaTitle:'Want to be there?',
-        ctaText:'Every event is announced on our Instagram first. Follow along &mdash; or write to us and help us create the next one.',
-        btnFollow:'Follow @sapiens.cz',
+        joinTitle:'Join <span class="hl">the society</span>',
+        joinIntro:'Whether you want to give a hand, team up as a business, or could use a hand yourself &mdash; this is the door. Fill in the form and we&rsquo;ll get back to you.',
+        t1:'I want to help',t1d:'Volunteer at events or behind the scenes.',
+        t2:'We&rsquo;re a business',t2d:'Partner with us and take part in what we do.',
+        t3:'I need help',t3d:'Tell us what&rsquo;s going on. No judgement, no strings.',
+        fName:'Your name',fEmail:'Email',fPhone:'Phone or Instagram (optional)',fCompany:'Company name',
+        msgHelp:'How would you like to help?',
+        msgBiz:'How would you like to participate?',
+        msgNeed:'What do you need? Share as much as you&rsquo;re comfortable with.',
+        send:'Send',
+        privacy:'We&rsquo;ll only use your details to get back to you. Nothing else, ever.',
+        okTitle:'Thank you!',
+        okText:'Your message is on its way &mdash; we&rsquo;ll get back to you soon. People need people.',
+        okBtn:'Back to the homepage',
         footTag:'People need people',
         footCredit:'Sapiens &mdash; a social impact project'
       },
       cs:{
-        title:'Akce — Sapiens',
-        desc:'Okamžiky, které vytváříme — květiny pro neznámé, návštěvy, malé skutky propojení. Přijďte na akci Sapiens, nebo vytvořte vlastní.',
+        title:'Přidejte se — Sapiens',
+        desc:'Přidejte se ke komunitě Sapiens — jako dobrovolník, jako firma, nebo se ozvěte, když sami potřebujete pomoc.',
         menuOpen:'Otevřít menu',menuClose:'Zavřít menu',
         navWho:'Kdo jsme',navWhy:'Proč to děláme',navEvents:'Akce',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
-        eventsTitle:'Okamžiky, <span class="hl">které vytváříme</span>',
-        eventsIntro:'Malé skutečné akce, které lidi spojují &mdash; květiny pro neznámé, návštěvy, společná odpoledne. Přijďte na některou z nich, nebo se jen zastavte.',
-        photoSoon:'Fotka už brzy',
-        cardLink:'Podrobnosti na Instagramu &rarr;',
-        card1Date:'Termín už brzy',
-        card1Title:'Květiny pro neznámé',
-        card1Text:'Rozdáváme květiny na ulici &mdash; bez důvodu, bez háčku. Jen malý okamžik, který někomu udělá den.',
-        card2Date:'Termín už brzy',
-        card2Title:'Návštěva, na které záleží',
-        card2Text:'Odpoledne s lidmi, kteří jsou často sami &mdash; povídání, káva a společně strávený čas.',
-        card3Date:'Termín už brzy',
-        card3Title:'Něco, co chystáme',
-        card3Text:'Další okamžik se právě rodí. Sledujte nás na Instagramu a dozvíte se to jako první.',
-        ctaTitle:'Chcete být u toho?',
-        ctaText:'Každou akci oznamujeme nejdřív na našem Instagramu. Sledujte nás &mdash; nebo nám napište a pomozte vytvořit tu další.',
-        btnFollow:'Sledovat @sapiens.cz',
+        joinTitle:'Přidejte se <span class="hl">ke komunitě</span>',
+        joinIntro:'Ať už chcete pomáhat, zapojit se jako firma, nebo pomoc sami potřebujete &mdash; tohle jsou ty dveře. Vyplňte formulář a ozveme se vám.',
+        t1:'Chci pomáhat',t1d:'Dobrovolnictví na akcích i v zákulisí.',
+        t2:'Jsme firma',t2d:'Spolupracujte s námi a zapojte se do toho, co děláme.',
+        t3:'Potřebuji pomoc',t3d:'Napište nám, co se děje. Bez soudů, bez podmínek.',
+        fName:'Vaše jméno',fEmail:'E-mail',fPhone:'Telefon nebo Instagram (nepovinné)',fCompany:'Název firmy',
+        msgHelp:'Jak byste chtěli pomáhat?',
+        msgBiz:'Jak byste se chtěli zapojit?',
+        msgNeed:'Co potřebujete? Sdílejte tolik, kolik je vám příjemné.',
+        send:'Odeslat',
+        privacy:'Vaše údaje použijeme jen k tomu, abychom se vám ozvali. Nic víc, nikdy.',
+        okTitle:'Děkujeme!',
+        okText:'Vaše zpráva je na cestě &mdash; brzy se vám ozveme. Lidé potřebují lidi.',
+        okBtn:'Zpět na hlavní stránku',
         footTag:'Lidé potřebují lidi',
         footCredit:'Sapiens &mdash; projekt se sociálním přesahem'
       }
     };
     const burger=document.getElementById('burger');
     const metaDesc=document.querySelector('meta[name="description"]');
+    const form=document.getElementById('joinForm');
+    const msgLabel=document.getElementById('msgLabel');
+    const company=document.getElementById('jCompany');
+    let activeLang='en';
+    function updateTypeUI(){
+      if(!form) return;
+      const sel=form.querySelector('input[name="Joining as"]:checked');
+      const type=sel?sel.dataset.type:'help';
+      form.dataset.type=type;
+      if(company) company.required=(type==='business');
+      const key=type==='business'?'msgBiz':(type==='need'?'msgNeed':'msgHelp');
+      if(msgLabel){
+        msgLabel.setAttribute('data-i18n',key);
+        msgLabel.innerHTML=I18N[activeLang][key];
+      }
+    }
     function setLang(lang){
       if(!I18N[lang]) lang='en';
+      activeLang=lang;
       const t=I18N[lang];
       document.querySelectorAll('[data-i18n]').forEach(el=>{
         const k=el.getAttribute('data-i18n');
@@ -492,49 +501,44 @@
         b.setAttribute('aria-pressed',String(b.dataset.lang===lang));
       });
       try{localStorage.setItem('sapiens-lang',lang);}catch(e){}
+      updateTypeUI();
       if(window.ScrollTrigger) ScrollTrigger.refresh();
     }
     document.querySelectorAll('.lang-toggle button').forEach(b=>{
       b.addEventListener('click',()=>setLang(b.dataset.lang));
     });
+    if(form){
+      form.querySelectorAll('input[name="Joining as"]').forEach(r=>{
+        r.addEventListener('change',updateTypeUI);
+      });
+      // deep link: /join/?type=business|need|help
+      const want=new URLSearchParams(location.search).get('type');
+      if(want){
+        const r=form.querySelector('input[data-type="'+want+'"]');
+        if(r) r.checked=true;
+      }
+    }
     let saved=null;
     try{saved=localStorage.getItem('sapiens-lang');}catch(e){}
     const browserCs=(navigator.language||'').toLowerCase().startsWith('cs');
     setLang(saved||(browserCs?'cs':'en'));
+
+    // success state after FormSubmit redirect
+    if(new URLSearchParams(location.search).get('sent')==='1'){
+      const main=document.querySelector('.join-main');
+      const ok=document.querySelector('.join-ok');
+      if(main) main.hidden=true;
+      if(ok) ok.hidden=false;
+    }
   })();
 
-  // Wavy sun placeholder — same generator as the home page
-  (function(){
-    const el=document.querySelector('.sun-ph');
-    if(!el) return;
-    const cx=100, cy=100, rays=16, R=96, r=58, pts=[];
-    const steps=rays*2;
-    for(let i=0;i<steps;i++){
-      const a=(i/steps)*Math.PI*2 - Math.PI/2;
-      const rad=(i%2===0)?R:r;
-      pts.push([cx+Math.cos(a)*rad, cy+Math.sin(a)*rad]);
-    }
-    let d='';
-    for(let i=0;i<steps;i++){
-      const p=pts[i], n=pts[(i+1)%steps];
-      const mx=(p[0]+n[0])/2, my=(p[1]+n[1])/2;
-      if(i===0) d+='M'+mx.toFixed(1)+' '+my.toFixed(1)+' ';
-      const nn=pts[(i+2)%steps];
-      const mx2=(n[0]+nn[0])/2, my2=(n[1]+nn[1])/2;
-      d+='Q'+n[0].toFixed(1)+' '+n[1].toFixed(1)+' '+mx2.toFixed(1)+' '+my2.toFixed(1)+' ';
-    }
-    d+='Z';
-    el.setAttribute('d', d);
-  })();
-
-  // Animations (GSAP) — page stays fully visible if the CDN is unreachable
+  // Animations (GSAP) — page stays fully visible if scripts fail to load
   (function(){
     if(!window.gsap) return;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     gsap.registerPlugin(ScrollTrigger);
     const hasSplit=!!window.SplitText;
     if(hasSplit) gsap.registerPlugin(SplitText);
-
     gsap.from('header',{y:-70,opacity:0,duration:.6,ease:'power2.out'});
     document.querySelectorAll('[data-split]').forEach(el=>{
       let targets=[el];
@@ -545,8 +549,8 @@
         scrollTrigger:{trigger:el,start:'top 86%',once:true}
       });
     });
-    gsap.utils.toArray('.rv:not([data-split])').forEach((el,i)=>{
-      gsap.from(el,{y:34,opacity:0,duration:.8,ease:'power2.out',delay:(i%3)*.08,
+    gsap.utils.toArray('.rv').forEach(el=>{
+      gsap.from(el,{y:34,opacity:0,duration:.8,ease:'power2.out',
         scrollTrigger:{trigger:el,start:'top 88%',once:true}});
     });
   })();
@@ -566,53 +570,6 @@
     addEventListener('scroll',onScroll,{passive:true});
     addEventListener('resize',onScroll,{passive:true});
     update();
-  })();
-
-  // Playful touches — hearts on click, card tilt
-  (function(){
-    if(!window.gsap) return;
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const colors=['#DFA84F','#B9CBEA','#2B57C6','#55202E','#C9D6F0'];
-    const heartPath='M20 35 C8 24 0 15 3 8 C6 1 15 1 20 9 C25 1 34 1 37 8 C40 15 32 24 20 35 Z';
-    document.addEventListener('pointerdown',e=>{
-      if(e.target.closest('a,button,input,textarea,select,.lang-toggle,header')) return;
-      const n=4+Math.floor(Math.random()*3);
-      for(let i=0;i<n;i++){
-        const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
-        s.setAttribute('viewBox','0 0 40 40');
-        s.setAttribute('aria-hidden','true');
-        s.style.cssText='position:fixed;left:0;top:0;width:22px;height:22px;pointer-events:none;z-index:80;';
-        const p=document.createElementNS('http://www.w3.org/2000/svg','path');
-        p.setAttribute('d',heartPath);
-        p.setAttribute('fill',colors[Math.floor(Math.random()*colors.length)]);
-        s.appendChild(p);
-        document.body.appendChild(s);
-        const dx=(Math.random()-.5)*140, dy=-60-Math.random()*120;
-        gsap.fromTo(s,
-          {x:e.clientX-11,y:e.clientY-11,scale:.4,rotation:(Math.random()-.5)*40,opacity:1},
-          {x:e.clientX-11+dx,y:e.clientY-11+dy,scale:.9+Math.random()*.6,
-           rotation:(Math.random()-.5)*90,opacity:0,
-           duration:1+Math.random()*.6,ease:'power2.out',onComplete:()=>s.remove()});
-      }
-    },{passive:true});
-
-    if(matchMedia('(pointer:fine)').matches){
-      document.querySelectorAll('.card').forEach(card=>{
-        card.style.transition='box-shadow .2s ease';
-        gsap.set(card,{transformPerspective:900});
-        const rx=gsap.quickTo(card,'rotationX',{duration:.35,ease:'power2.out'});
-        const ry=gsap.quickTo(card,'rotationY',{duration:.35,ease:'power2.out'});
-        const lift=gsap.quickTo(card,'y',{duration:.25,ease:'power2.out'});
-        card.addEventListener('pointerenter',()=>lift(-6));
-        card.addEventListener('pointermove',e=>{
-          const r=card.getBoundingClientRect();
-          ry(((e.clientX-r.left)/r.width-.5)*8);
-          rx(-((e.clientY-r.top)/r.height-.5)*8);
-        });
-        card.addEventListener('pointerleave',()=>{rx(0);ry(0);lift(0);});
-      });
-    }
   })();
 
   // Mobile menu

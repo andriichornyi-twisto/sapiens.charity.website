@@ -36,6 +36,7 @@ assert 'Lidé potřebují lidi' in html or 'Akce — Sapiens' in html, f'Czech r
 # root-relative asset/page links (pages live one level deeper)
 html = html.replace('src="img/', 'src="/img/')
 html = html.replace('href="events/', 'href="/events/')
+html = html.replace('href="join/', 'href="/join/')
 
 # this page IS the Czech version
 old_canon = canon.replace('/cs/', '/', 1)
@@ -52,11 +53,18 @@ if src == 'index.html':
                         '<meta property="og:title" content="Sapiens — Lidé potřebují lidi">')
     html = html.replace('<meta property="og:description" content="A social impact project that brings people together through charity and human connection.">',
                         '<meta property="og:description" content="Projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení.">')
-else:
+elif src == 'events/index.html':
     html = html.replace('<meta property="og:title" content="Events — Sapiens">',
                         '<meta property="og:title" content="Akce — Sapiens">')
     html = html.replace('<meta property="og:description" content="Moments we create — come to a Sapiens event or start one of your own.">',
                         '<meta property="og:description" content="Okamžiky, které vytváříme — přijďte na akci Sapiens, nebo vytvořte vlastní.">')
+else:
+    html = html.replace('<meta property="og:title" content="Join us — Sapiens">',
+                        '<meta property="og:title" content="Přidejte se — Sapiens">')
+    html = html.replace('<meta property="og:description" content="Volunteer, partner as a business, or ask for help — join the Sapiens society.">',
+                        '<meta property="og:description" content="Dobrovolnictví, firemní spolupráce, nebo žádost o pomoc — přidejte se ke komunitě Sapiens.">')
+    html = html.replace('value="https://sapienscz.com/join/?sent=1"',
+                        'value="https://sapienscz.com/cs/join/?sent=1"')
 
 # language default: no saved choice means Czech here
 html, n = re.subn(r"setLang\(saved\|\|\(browserCs\?'cs':'en'\)\);", "setLang(saved||'cs');", html)
@@ -72,3 +80,4 @@ EOF
 
 render index.html          cs        /cs/
 render events/index.html   cs/events /cs/events/
+render join/index.html     cs/join   /cs/join/

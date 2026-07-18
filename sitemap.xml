@@ -25,4 +25,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://sapienscz.com/events/"/>
     <xhtml:link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/events/"/>
   </url>
+  <url>
+    <loc>https://sapienscz.com/join/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sapienscz.com/join/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/join/"/>
+  </url>
+  <url>
+    <loc>https://sapienscz.com/cs/join/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sapienscz.com/join/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/join/"/>
+  </url>
 </urlset>
