@@ -885,6 +885,89 @@
     if(hero) obs.observe(hero);
   })();
 
+  // Playful touches — hearts on click, logo & sun reactions, card tilt
+  (function(){
+    if(!window.gsap) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // floating hearts wherever you click or tap
+    const colors=['#DFA84F','#B9CBEA','#2B57C6','#55202E','#C9D6F0'];
+    const heartPath='M20 35 C8 24 0 15 3 8 C6 1 15 1 20 9 C25 1 34 1 37 8 C40 15 32 24 20 35 Z';
+    document.addEventListener('pointerdown',e=>{
+      if(e.target.closest('a,button,input,textarea,select,.lang-toggle,header')) return;
+      const n=4+Math.floor(Math.random()*3);
+      for(let i=0;i<n;i++){
+        const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        s.setAttribute('viewBox','0 0 40 40');
+        s.setAttribute('aria-hidden','true');
+        s.style.cssText='position:fixed;left:0;top:0;width:22px;height:22px;pointer-events:none;z-index:80;';
+        const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('d',heartPath);
+        p.setAttribute('fill',colors[Math.floor(Math.random()*colors.length)]);
+        s.appendChild(p);
+        document.body.appendChild(s);
+        const dx=(Math.random()-.5)*140, dy=-60-Math.random()*120;
+        gsap.fromTo(s,
+          {x:e.clientX-11,y:e.clientY-11,scale:.4,rotation:(Math.random()-.5)*40,opacity:1},
+          {x:e.clientX-11+dx,y:e.clientY-11+dy,scale:.9+Math.random()*.6,
+           rotation:(Math.random()-.5)*90,opacity:0,
+           duration:1+Math.random()*.6,ease:'power2.out',onComplete:()=>s.remove()});
+      }
+    },{passive:true});
+
+    // hero logo does a happy bounce when poked
+    const mark=document.querySelector('.hero .mark');
+    if(mark){
+      mark.style.cursor='pointer';
+      mark.addEventListener('click',()=>{
+        gsap.fromTo(mark,{scale:1},
+          {scale:1.15,rotation:(Math.random()<.5?-1:1)*8,duration:.18,yoyo:true,repeat:1,
+           ease:'power2.inOut',onComplete:()=>gsap.set(mark,{rotation:0,scale:1})});
+      });
+    }
+
+    // the sun takes an extra spin when clicked
+    const sun=document.querySelector('.sun-wrap');
+    if(sun){
+      sun.style.cursor='pointer';
+      let spinning=false;
+      sun.addEventListener('click',()=>{
+        if(spinning) return; spinning=true;
+        gsap.fromTo(sun,{rotation:0},
+          {rotation:360,scale:1.06,duration:1,ease:'back.inOut(1.2)',
+           onComplete:()=>{gsap.set(sun,{rotation:0,scale:1});spinning=false;}});
+      });
+    }
+
+    // gentle 3D tilt on the help cards (mouse only)
+    if(matchMedia('(pointer:fine)').matches){
+      document.querySelectorAll('.help-card').forEach(card=>{
+        card.style.transition='box-shadow .2s ease';
+        gsap.set(card,{transformPerspective:700});
+        const rx=gsap.quickTo(card,'rotationX',{duration:.35,ease:'power2.out'});
+        const ry=gsap.quickTo(card,'rotationY',{duration:.35,ease:'power2.out'});
+        const lift=gsap.quickTo(card,'y',{duration:.25,ease:'power2.out'});
+        card.addEventListener('pointerenter',()=>lift(-6));
+        card.addEventListener('pointermove',e=>{
+          const r=card.getBoundingClientRect();
+          ry(((e.clientX-r.left)/r.width-.5)*10);
+          rx(-((e.clientY-r.top)/r.height-.5)*10);
+        });
+        card.addEventListener('pointerleave',()=>{rx(0);ry(0);lift(0);});
+      });
+    }
+
+    // scroll hint takes you to the first section
+    const hint=document.querySelector('.scroll-hint');
+    if(hint){
+      hint.style.cursor='pointer';
+      hint.addEventListener('click',()=>{
+        const who=document.getElementById('who');
+        if(who) who.scrollIntoView({behavior:'smooth'});
+      });
+    }
+  })();
+
   // Mobile menu
   (function(){
     const burger=document.getElementById('burger');
