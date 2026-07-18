@@ -125,6 +125,57 @@
   }
   .skip-link:focus{left:0;}
 
+  /* ---------- kindness game (logo easter egg) ---------- */
+  .game-overlay{
+    position:fixed;inset:0;z-index:90;background:var(--cream);
+    display:flex;flex-direction:column;font-family:var(--font);
+  }
+  .game-top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px clamp(16px,3vw,28px);border-bottom:1px solid rgba(85,32,46,.08);
+  }
+  .game-hud{display:flex;align-items:baseline;gap:22px;}
+  .game-score{font-size:16px;font-weight:800;letter-spacing:.08em;color:var(--wine);}
+  .game-time{font-size:16px;font-weight:800;letter-spacing:.08em;color:var(--royal);font-variant-numeric:tabular-nums;}
+  .game-close{
+    background:none;border:2px solid var(--wine);border-radius:999px;
+    width:40px;height:40px;font-size:15px;font-weight:800;color:var(--wine);
+    cursor:pointer;line-height:1;font-family:var(--font);
+  }
+  .game-close:hover{background:var(--wine);color:var(--cream);}
+  .game-stage{position:relative;flex:1;overflow:hidden;touch-action:none;}
+  .game-stage.playing{cursor:none;}
+  .game-heart{position:absolute;left:0;top:0;pointer-events:none;transition:opacity .3s ease,scale .3s ease;}
+  .game-catcher{
+    position:absolute;bottom:8px;left:0;width:92px;pointer-events:none;
+    filter:drop-shadow(0 6px 12px rgba(85,32,46,.18));
+  }
+  .game-panel{
+    position:absolute;inset:0;z-index:2;cursor:default;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:16px;text-align:center;padding:24px;
+    background:color-mix(in srgb, var(--cream) 90%, transparent);
+    backdrop-filter:blur(4px);
+  }
+  .game-panel .eyebrow{opacity:.8;}
+  .game-panel h2{
+    font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:800;
+    letter-spacing:-.025em;line-height:1;text-transform:uppercase;
+  }
+  .game-panel h2 .hl{color:var(--ochre);}
+  .game-panel p{max-width:46ch;font-weight:600;line-height:1.55;opacity:.85;}
+  .game-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px;}
+  .game-btn{
+    display:inline-flex;align-items:center;font-size:13px;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+    border-radius:999px;padding:15px 26px;border:0;cursor:pointer;
+    font-family:var(--font);background:var(--wine);color:var(--cream);
+    transition:transform .15s ease,background .2s ease;
+  }
+  .game-btn:hover{transform:translateY(-2px);background:var(--wine-deep);}
+  .game-btn-ghost{background:none;border:2px solid var(--wine);color:var(--wine);}
+  .game-btn-ghost:hover{background:rgba(85,32,46,.06);}
+
   /* ---------- scroll progress ---------- */
   .progress{
     position:fixed;top:0;left:0;right:0;height:3px;z-index:60;
@@ -995,6 +1046,160 @@
         const who=document.getElementById('who');
         if(who) who.scrollIntoView({behavior:'smooth'});
       });
+    }
+  })();
+
+  // Kindness game — click the hero logo 5x quickly to unlock
+  (function(){
+    const mark=document.querySelector('.hero .mark');
+    if(!mark) return;
+    const HEART='M20 35 C8 24 0 15 3 8 C6 1 15 1 20 9 C25 1 34 1 37 8 C40 15 32 24 20 35 Z';
+    const LOGO='<svg viewBox="0 0 240 200" aria-hidden="true"><circle cx="64" cy="54" r="13" fill="#55202E"/><path d="M79,168 C60,157 44,133 40,109 C36,87 46,73 62,73 C77,73 85,86 85,106 C85,128 83,151 79,168 Z" fill="#55202E" opacity=".85"/><circle cx="176" cy="54" r="13" fill="#9DB9E6"/><path d="M161,168 C180,157 196,133 200,109 C204,87 194,73 178,73 C163,73 155,86 155,106 C155,128 157,151 161,168 Z" fill="#9DB9E6"/><circle cx="120" cy="46" r="16" fill="#DFA84F"/><path d="M120,182 C103,165 89,137 89,112 C89,85 102,71 120,71 C138,71 151,85 151,112 C151,137 137,165 120,182 Z" fill="#DFA84F"/></svg>';
+    const T={
+      en:{label:'Catch the kindness — a small game',eyebrow:'A little game',
+        title:'Catch <span class="hl">the kindness</span>',
+        intro:'Hearts fall for 30 seconds — catch as many as you can with the Sapiens crew. Move with your mouse, finger or arrow keys. Golden hearts count for three.',
+        start:'Start',again:'Play again',events:'Come to a real event',closeLabel:'Close game',
+        endTitle:n=>n>=25?'Wow!':(n>=12?'Beautiful!':'Every heart counts'),
+        endText:n=>'You caught <strong>'+n+'</strong> heart'+(n===1?'':'s')+'. Off the screen it&rsquo;s even easier &mdash; one real moment of kindness is enough.'},
+      cs:{label:'Chyťte laskavost — malá hra',eyebrow:'Malá hra',
+        title:'Chyťte <span class="hl">laskavost</span>',
+        intro:'30 vteřin padají srdíčka — chytejte jich s partou Sapiens co nejvíc. Ovládejte myší, prstem nebo šipkami. Zlatá srdíčka se počítají za tři.',
+        start:'Start',again:'Hrát znovu',events:'Přijďte na skutečnou akci',closeLabel:'Zavřít hru',
+        endTitle:n=>n>=25?'Páni!':(n>=12?'Krása!':'Každé srdíčko se počítá'),
+        endText:n=>'Chytili jste <strong>'+n+'</strong> '+(n===1?'srdíčko':(n>=2&&n<=4?'srdíčka':'srdíček'))+'. Mimo obrazovku je to ještě snazší &mdash; stačí jeden skutečný okamžik laskavosti.'}
+    };
+    function curLang(){
+      try{const l=localStorage.getItem('sapiens-lang');if(l&&T[l])return l;}catch(e){}
+      return (document.documentElement.lang||'').indexOf('cs')===0?'cs':'en';
+    }
+    let clicks=[],overlay=null,round=null,onDocKey=null;
+    mark.addEventListener('click',()=>{
+      const now=Date.now();
+      clicks=clicks.filter(ts=>now-ts<2500);
+      clicks.push(now);
+      if(clicks.length>=5){clicks=[];open();}
+    });
+    function open(){
+      if(overlay) return;
+      const t=T[curLang()];
+      overlay=document.createElement('div');
+      overlay.className='game-overlay';
+      overlay.setAttribute('role','dialog');
+      overlay.setAttribute('aria-modal','true');
+      overlay.setAttribute('aria-label',t.label);
+      overlay.innerHTML=
+        '<div class="game-top"><div class="game-hud">'+
+        '<span class="game-score">♥ 0</span><span class="game-time">30</span></div>'+
+        '<button class="game-close" aria-label="'+t.closeLabel+'">✕</button></div>'+
+        '<div class="game-stage"><div class="game-catcher">'+LOGO+'</div>'+
+        '<div class="game-panel"><span class="eyebrow">'+t.eyebrow+'</span>'+
+        '<h2>'+t.title+'</h2><p>'+t.intro+'</p>'+
+        '<div class="game-row"><button class="game-btn game-start">'+t.start+'</button></div></div></div>';
+      document.body.appendChild(overlay);
+      document.body.style.overflow='hidden';
+      overlay.querySelector('.game-close').addEventListener('click',close);
+      overlay.querySelector('.game-start').addEventListener('click',()=>startRound(t));
+      onDocKey=e=>{
+        if(e.key==='Escape'){close();return;}
+        if(round&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){round.key(e.key);e.preventDefault();}
+      };
+      document.addEventListener('keydown',onDocKey);
+      overlay.querySelector('.game-close').focus();
+    }
+    function close(){
+      if(!overlay) return;
+      if(round){round.stop();round=null;}
+      document.removeEventListener('keydown',onDocKey);
+      overlay.remove();overlay=null;
+      document.body.style.overflow='';
+      mark.focus();
+    }
+    function startRound(t){
+      const stage=overlay.querySelector('.game-stage');
+      const panel=overlay.querySelector('.game-panel');
+      if(panel) panel.remove();
+      stage.classList.add('playing');
+      const catcher=overlay.querySelector('.game-catcher');
+      const scoreEl=overlay.querySelector('.game-score');
+      const timeEl=overlay.querySelector('.game-time');
+      const colors=['#B9CBEA','#2B57C6','#55202E','#C9D6F0'];
+      let W=stage.clientWidth,H=stage.clientHeight;
+      let cx=W/2,score=0,left=30,hearts=[],elapsed=0,spawnAt=0;
+      let rafId=0,timerId=0,last=performance.now();
+      const place=()=>{catcher.style.transform='translateX('+(cx-46)+'px)';};
+      place();scoreEl.textContent='♥ 0';timeEl.textContent='30';
+      const onResize=()=>{W=stage.clientWidth;H=stage.clientHeight;};
+      const onMove=e=>{
+        const r=stage.getBoundingClientRect();
+        cx=Math.max(20,Math.min(W-20,e.clientX-r.left));place();
+      };
+      addEventListener('resize',onResize);
+      stage.addEventListener('pointermove',onMove);
+      timerId=setInterval(()=>{
+        left--;timeEl.textContent=String(left);
+        if(left<=0) finish();
+      },1000);
+      function spawn(){
+        const golden=Math.random()<.12;
+        const size=golden?30:22;
+        const el=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        el.setAttribute('viewBox','0 0 40 40');
+        el.setAttribute('class','game-heart');
+        el.setAttribute('aria-hidden','true');
+        el.style.width=el.style.height=size+'px';
+        const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('d',HEART);
+        p.setAttribute('fill',golden?'#DFA84F':colors[Math.floor(Math.random()*colors.length)]);
+        el.appendChild(p);stage.appendChild(el);
+        hearts.push({el,x:20+Math.random()*Math.max(40,W-60),y:-40,
+          v:110+Math.random()*70+elapsed*3,rot:(Math.random()-.5)*50,golden,size,done:false});
+      }
+      function tick(now){
+        const dt=Math.min((now-last)/1000,.05);last=now;elapsed+=dt;
+        spawnAt-=dt;
+        if(spawnAt<=0){spawn();spawnAt=Math.max(.28,.8-elapsed*.015);}
+        const catchTop=H-78;
+        hearts.forEach(h=>{
+          if(h.done) return;
+          h.y+=h.v*dt;
+          h.el.style.transform='translate('+h.x+'px,'+h.y+'px) rotate('+h.rot+'deg)';
+          if(h.y+h.size>=catchTop&&h.y<H-8&&Math.abs(h.x+h.size/2-cx)<52){
+            h.done=true;score+=h.golden?3:1;
+            scoreEl.textContent='♥ '+score;
+            h.el.style.scale='1.8';h.el.style.opacity='0';
+            setTimeout(()=>h.el.remove(),300);
+          }else if(h.y>H){
+            h.done=true;h.el.style.opacity='0';
+            setTimeout(()=>h.el.remove(),300);
+          }
+        });
+        hearts=hearts.filter(h=>!h.done);
+        rafId=requestAnimationFrame(tick);
+      }
+      rafId=requestAnimationFrame(tick);
+      round={
+        stop(){
+          cancelAnimationFrame(rafId);clearInterval(timerId);
+          removeEventListener('resize',onResize);
+          stage.removeEventListener('pointermove',onMove);
+          hearts.forEach(h=>h.el.remove());hearts=[];
+          stage.classList.remove('playing');
+        },
+        key(k){cx=Math.max(20,Math.min(W-20,cx+(k==='ArrowLeft'?-48:48)));place();}
+      };
+      function finish(){
+        round.stop();round=null;
+        const end=document.createElement('div');
+        end.className='game-panel';
+        end.innerHTML='<span class="eyebrow">'+t.eyebrow+'</span>'+
+          '<h2>'+t.endTitle(score)+'</h2><p>'+t.endText(score)+'</p>'+
+          '<div class="game-row"><a class="game-btn" href="events/">'+t.events+'</a>'+
+          '<button class="game-btn game-btn-ghost game-again">'+t.again+'</button></div>';
+        stage.appendChild(end);
+        end.querySelector('.game-again').addEventListener('click',()=>{end.remove();startRound(t);});
+        end.querySelector('.game-again').focus();
+      }
     }
   })();
 
