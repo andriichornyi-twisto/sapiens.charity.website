@@ -16,5 +16,13 @@
   <url>
     <loc>https://sapienscz.com/events/</loc>
     <lastmod>2026-07-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sapienscz.com/events/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/events/"/>
+  </url>
+  <url>
+    <loc>https://sapienscz.com/cs/events/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sapienscz.com/events/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/events/"/>
   </url>
 </urlset>

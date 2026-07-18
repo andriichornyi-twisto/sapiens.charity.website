@@ -36,10 +36,18 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  @font-face{
+    font-family:'Archivo';font-style:normal;font-weight:500 900;font-display:swap;
+    src:url('/fonts/archivo-latin-ext.woff2') format('woff2');
+    unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face{
+    font-family:'Archivo';font-style:normal;font-weight:500 900;font-display:swap;
+    src:url('/fonts/archivo-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
   :root{
     --cream:#FFFAF4;
     --ochre:#DFA84F;
@@ -108,6 +116,14 @@
     color:var(--white);white-space:nowrap;padding-right:2.6em;
   }
   @keyframes scrollx{to{transform:translateX(-50%);}}
+
+  .skip-link{
+    position:fixed;top:0;left:-9999px;z-index:100;
+    background:var(--wine);color:var(--cream);
+    padding:12px 20px;border-radius:0 0 12px 0;
+    font-weight:800;font-size:13px;letter-spacing:.08em;text-decoration:none;
+  }
+  .skip-link:focus{left:0;}
 
   /* ---------- scroll progress ---------- */
   .progress{
@@ -441,6 +457,7 @@
 </head>
 <body>
 
+<a class="skip-link" href="#top" data-i18n="skipLink">Skip to content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header>
@@ -658,9 +675,9 @@
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
+<script src="/js/gsap.min.js"></script>
+<script src="/js/ScrollTrigger.min.js"></script>
+<script src="/js/SplitText.min.js"></script>
 <script>
   // Language toggle (EN / CZ) — runs first so animations split the right text
   (function(){
@@ -670,7 +687,7 @@
         desc:'Sapiens is a social impact project that brings people together through charity and human connection. We create projects, support meaningful initiatives and help where it’s needed.',
         marquee:'People need people',
         menuOpen:'Open menu',menuClose:'Close menu',
-        navWho:'Who we are',navWhy:'Why we do this',navShare:'Why we share it',navEvents:'Events',
+        navWho:'Who we are',navWhy:'Why we do this',navShare:'Why we share it',navEvents:'Events',skipLink:'Skip to content',
         heroEyebrow:'People need people',
         heroH1:'Making <span class="hl">humanity</span> feel real again',
         heroP:'Sapiens is a social impact project. We create real moments of charity and human connection &mdash; and help where it&rsquo;s needed.',
@@ -712,7 +729,7 @@
         desc:'Sapiens je projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení. Vytváříme projekty, podporujeme smysluplné iniciativy a pomáháme tam, kde je to potřeba.',
         marquee:'Lidé potřebují lidi',
         menuOpen:'Otevřít menu',menuClose:'Zavřít menu',
-        navWho:'Kdo jsme',navWhy:'Proč to děláme',navShare:'Proč to sdílíme',navEvents:'Akce',
+        navWho:'Kdo jsme',navWhy:'Proč to děláme',navShare:'Proč to sdílíme',navEvents:'Akce',skipLink:'Přeskočit na obsah',
         heroEyebrow:'Lidé potřebují lidi',
         heroH1:'Aby <span class="hl">lidskost</span> byla zase skutečná',
         heroP:'Sapiens je projekt se sociálním přesahem. Vytváříme skutečné okamžiky dobročinnosti a lidského propojení &mdash; a pomáháme tam, kde je to potřeba.',
@@ -884,13 +901,13 @@
     const links=[...document.querySelectorAll('.nav-links a[href^="#"]')];
     if(!links.length||!('IntersectionObserver' in window)) return;
     const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
-    const clear=()=>links.forEach(l=>l.classList.remove('active'));
+    const clear=()=>links.forEach(l=>{l.classList.remove('active');l.removeAttribute('aria-current');});
     const obs=new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(!e.isIntersecting) return;
         const a=map.get(e.target.id);
         clear();
-        if(a) a.classList.add('active');
+        if(a){a.classList.add('active');a.setAttribute('aria-current','true');}
       });
     },{rootMargin:'-40% 0px -55% 0px'});
     map.forEach((a,id)=>{const s=document.getElementById(id);if(s)obs.observe(s);});
