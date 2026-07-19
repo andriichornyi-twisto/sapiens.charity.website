@@ -152,13 +152,6 @@
     font-size:clamp(5rem,12vw,8.5rem);font-weight:800;line-height:1;opacity:.13;pointer-events:none;
   }
   .quote blockquote{position:relative;}
-  .hero-sun{
-    position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);
-    width:clamp(380px,50vw,640px);height:auto;color:var(--ochre);opacity:.05;
-    pointer-events:none;z-index:0;
-  }
-  .hero > :not(.hero-sun){position:relative;z-index:1;}
-
   /* ---------- kindness game (logo easter egg) ---------- */
   .game-overlay{
     position:fixed;inset:0;z-index:90;background:var(--cream);
@@ -308,7 +301,7 @@
     position:relative;
     background:var(--cream);
   }
-  .hero .mark{width:clamp(76px,9vw,110px);height:auto;margin-bottom:24px;mix-blend-mode:multiply;}
+  .hero .mark{width:clamp(76px,9vw,110px);height:auto;margin-bottom:24px;}
   .hero .eyebrow{color:var(--wine);opacity:.85;margin-bottom:22px;}
   .hero h1{
     font-weight:800;letter-spacing:-.03em;line-height:.95;text-transform:uppercase;
@@ -526,8 +519,10 @@
     .who-grid,.why-grid,.share-grid{gap:36px;}
     .foot-top{flex-direction:column;align-items:flex-start;}
     .quote .eyebrow{margin-top:26px;}
+    .hero{min-height:auto;justify-content:flex-start;padding-top:104px;}
     .hero h1{font-size:2.35rem;}
     .hero p{font-size:1rem;line-height:1.6;}
+    .scroll-hint{margin-top:34px;padding:20px 0 26px;}
     .sec-head{margin-bottom:32px;}
     .sec-head h2{font-size:2.3rem;}
     .quote blockquote{font-size:1.45rem;line-height:1.25;}
@@ -573,7 +568,6 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <svg class="hero-sun" viewBox="0 0 200 200" aria-hidden="true"><path class="sun-shape" fill="currentColor" d=""/></svg>
   <svg class="doodle" style="top:20%;right:11%;width:26px;color:var(--ochre);--r:15deg;animation-delay:0s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/></svg>
   <svg class="doodle" style="top:27%;left:9%;width:40px;color:var(--peri);--r:-14deg;animation-delay:1.2s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
   <img class="mark" src="img/logo.jpg" alt="Sapiens logo — three people standing together" width="559" height="559">
