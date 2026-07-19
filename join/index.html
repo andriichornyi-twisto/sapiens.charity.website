@@ -10,9 +10,9 @@
 <meta property="og:description" content="Volunteer, partner as a business, or ask for help — join the Sapiens society.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sapienscz.com/join/">
-<meta property="og:image" content="https://sapienscz.com/img/team.jpg">
-<meta property="og:image:width" content="1080">
-<meta property="og:image:height" content="1350">
+<meta property="og:image" content="https://sapienscz.com/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="cs_CZ">
 <meta name="twitter:card" content="summary_large_image">
@@ -357,26 +357,26 @@
           <div class="frow">
             <div class="field">
               <label for="jName" data-i18n="fName">Your name</label>
-              <input id="jName" name="Name" type="text" required autocomplete="name">
+              <input id="jName" name="Name" type="text" required autocomplete="name" maxlength="100">
             </div>
             <div class="field">
               <label for="jEmail" data-i18n="fEmail">Email</label>
-              <input id="jEmail" name="Email" type="email" required autocomplete="email">
+              <input id="jEmail" name="Email" type="email" required autocomplete="email" maxlength="120">
             </div>
           </div>
           <div class="frow">
             <div class="field">
               <label for="jPhone" data-i18n="fPhone">Phone or Instagram (optional)</label>
-              <input id="jPhone" name="Phone / Instagram" type="text">
+              <input id="jPhone" name="Phone / Instagram" type="text" maxlength="100">
             </div>
             <div class="field row-company">
               <label for="jCompany" data-i18n="fCompany">Company name</label>
-              <input id="jCompany" name="Company" type="text">
+              <input id="jCompany" name="Company" type="text" maxlength="120">
             </div>
           </div>
           <div class="field">
             <label for="jMsg" id="msgLabel" data-i18n="msgHelp">How would you like to help?</label>
-            <textarea id="jMsg" name="Message" required></textarea>
+            <textarea id="jMsg" name="Message" required maxlength="1500"></textarea>
           </div>
 
           <div class="join-actions">
@@ -429,7 +429,8 @@
     </nav>
     <div class="foot-bottom">
       <span>&copy; <span id="year"></span> <span data-i18n="footCredit">Sapiens &mdash; a social impact project</span></span>
-      <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">instagram.com/sapiens.cz</a>
+      <span><a href="/privacy/" data-i18n="footPrivacy">Privacy</a> &nbsp;&middot;&nbsp;
+      <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">instagram.com/sapiens.cz</a></span>
     </div>
   </div>
 </footer>
@@ -459,12 +460,13 @@
         msgNeed:'What do you need? Share as much as you&rsquo;re comfortable with.',
         send:'Send',sending:'Sending&hellip;',
         sendError:'Something went wrong &mdash; please try again, or write to us on Instagram.',
+        coolDown:'One moment &mdash; you just sent a message. Please try again in a minute.',
         privacy:'We&rsquo;ll only use your details to get back to you. Nothing else, ever.',
         okTitle:'Thank you!',
         okText:'Your message is on its way &mdash; we&rsquo;ll get back to you soon. People need people.',
         okBtn:'Back to the homepage',
         footTag:'People need people',
-        footCredit:'Sapiens &mdash; a social impact project'
+        footPrivacy:'Privacy',footCredit:'Sapiens &mdash; a social impact project'
       },
       cs:{
         title:'Přidejte se — Sapiens',
@@ -482,12 +484,13 @@
         msgNeed:'Co potřebujete? Sdílejte tolik, kolik je vám příjemné.',
         send:'Odeslat',sending:'Odesílám&hellip;',
         sendError:'Něco se pokazilo &mdash; zkuste to prosím znovu, nebo nám napište na Instagramu.',
+        coolDown:'Momentík &mdash; právě jste zprávu odeslali. Zkuste to prosím za minutu.',
         privacy:'Vaše údaje použijeme jen k tomu, abychom se vám ozvali. Nic víc, nikdy.',
         okTitle:'Děkujeme!',
         okText:'Vaše zpráva je na cestě &mdash; brzy se vám ozveme. Lidé potřebují lidi.',
         okBtn:'Zpět na hlavní stránku',
         footTag:'Lidé potřebují lidi',
-        footCredit:'Sapiens &mdash; projekt se sociálním přesahem'
+        footPrivacy:'Soukromí',footCredit:'Sapiens &mdash; projekt se sociálním přesahem'
       }
     };
     const burger=document.getElementById('burger');
@@ -569,25 +572,38 @@
         if(!form.reportValidity()) return;
         if(form.querySelector('input[name="_honey"]').value){showSuccess();return;}
         errEl.hidden=true;
+        let lastTs=0;
+        try{lastTs=parseInt(localStorage.getItem('sapiens-join-ts')||'0',10);}catch(err){}
+        if(Date.now()-lastTs<60000){
+          errEl.innerHTML=I18N[activeLang].coolDown;
+          errEl.hidden=false;
+          return;
+        }
         btn.disabled=true;
         btn.innerHTML=I18N[activeLang].sending;
         const v=n=>{const el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
+        const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const typeEmoji={help:'\u{1F64B}',business:'\u{1F4BC}',need:'\u{1F198}'}[form.dataset.type]||'\u{1F33C}';
         const lines=[
-          '\u{1F33C} New join request \u2014 '+v('Joining as'),
-          'Name: '+v('Name'),
-          'Email: '+v('Email')
+          typeEmoji+' <b>New join request</b> \u2014 '+esc(v('Joining as')),
+          '<b>Name:</b> '+esc(v('Name')),
+          '<b>Email:</b> '+esc(v('Email'))
         ];
-        const ph=v('Phone / Instagram'); if(ph) lines.push('Phone/IG: '+ph);
-        if(form.dataset.type==='business') lines.push('Company: '+v('Company'));
-        lines.push('','Message:',v('Message'),'','\u2014 '+location.href+' ['+activeLang+']');
+        const ph=v('Phone / Instagram'); if(ph) lines.push('<b>Phone/IG:</b> '+esc(ph));
+        if(form.dataset.type==='business') lines.push('<b>Company:</b> '+esc(v('Company')));
+        lines.push('','<b>Message:</b>',esc(v('Message')),'','\u2014 '+esc(location.href)+' ['+activeLang+']');
         fetch('https://api.telegram.org/bot'+TG.token+'/sendMessage',{
           method:'POST',
           headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({chat_id:TG.chat,text:lines.join('\n'),disable_web_page_preview:true})
+          body:JSON.stringify({chat_id:TG.chat,text:lines.join('\n'),parse_mode:'HTML',disable_web_page_preview:true})
         }).then(r=>r.json()).then(d=>{
-          if(d&&d.ok){showSuccess();}
+          if(d&&d.ok){
+            try{localStorage.setItem('sapiens-join-ts',String(Date.now()));}catch(err){}
+            showSuccess();
+          }
           else{throw new Error('telegram not ok');}
         }).catch(()=>{
+          errEl.innerHTML=I18N[activeLang].sendError;
           errEl.hidden=false;
         }).finally(()=>{
           btn.disabled=false;
