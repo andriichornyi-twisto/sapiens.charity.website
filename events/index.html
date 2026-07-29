@@ -83,6 +83,17 @@
     body::after{display:none;}
   }
 
+  .wave{height:clamp(26px,4.5vw,52px);line-height:0;}
+  .wave svg{display:block;width:100%;height:100%;}
+  .wave.flip svg{transform:scaleX(-1);}
+  .doodle{position:absolute;pointer-events:none;opacity:.5;animation:floaty 7s ease-in-out infinite;}
+  @keyframes floaty{
+    0%,100%{transform:rotate(var(--r,0deg)) translateY(0);}
+    50%{transform:rotate(var(--r,0deg)) translateY(-9px);}
+  }
+  @media (max-width:640px){.doodle{display:none;}}
+  @media (prefers-reduced-motion: reduce){.doodle{animation:none !important;}}
+
   /* ---------- scroll progress ---------- */
   .progress{
     position:fixed;top:0;left:0;right:0;height:3px;z-index:60;
@@ -172,6 +183,7 @@
   }
 
   /* ---------- page head ---------- */
+  section{position:relative;}
   .page-head{
     padding:clamp(140px,18vh,190px) 0 clamp(40px,6vw,64px);
     text-align:center;
@@ -407,7 +419,11 @@
 </section>
 
 <!-- ================= CTA ================= -->
+<div class="wave" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--ochre)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+
 <section class="cta-band">
+  <svg class="doodle" style="top:12%;right:9%;width:24px;color:var(--white);--r:14deg;animation-delay:.6s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/></svg>
+  <svg class="doodle" style="bottom:14%;left:8%;width:40px;color:var(--white);--r:-10deg;animation-delay:1.8s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
   <div class="wrap">
     <h2 class="rv" data-split data-i18n="ctaTitle">Want to be there?</h2>
     <p class="rv" data-i18n="ctaText">Every event is announced on our Instagram first.
@@ -423,6 +439,8 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
+<div class="wave flip" style="background:var(--ochre)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--wine)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+
 <footer>
   <div class="wrap">
     <div class="foot-top">

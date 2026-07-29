@@ -83,6 +83,17 @@
     body::after{display:none;}
   }
 
+  .wave{height:clamp(26px,4.5vw,52px);line-height:0;}
+  .wave svg{display:block;width:100%;height:100%;}
+  .wave.flip svg{transform:scaleX(-1);}
+  .doodle{position:absolute;pointer-events:none;opacity:.5;animation:floaty 7s ease-in-out infinite;}
+  @keyframes floaty{
+    0%,100%{transform:rotate(var(--r,0deg)) translateY(0);}
+    50%{transform:rotate(var(--r,0deg)) translateY(-9px);}
+  }
+  @media (max-width:640px){.doodle{display:none;}}
+  @media (prefers-reduced-motion: reduce){.doodle{animation:none !important;}}
+
   /* ---------- scroll progress ---------- */
   .progress{
     position:fixed;top:0;left:0;right:0;height:3px;z-index:60;
@@ -172,6 +183,7 @@
   }
 
   /* ---------- page head ---------- */
+  section{position:relative;}
   .page-head{
     padding:clamp(130px,16vh,180px) 0 clamp(28px,4vw,44px);
     text-align:center;
@@ -327,6 +339,8 @@
 
 <!-- ================= PAGE HEAD ================= -->
 <section class="page-head" id="main">
+  <svg class="doodle" style="top:24%;left:9%;width:22px;color:var(--ochre);--r:-16deg;animation-delay:.9s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/></svg>
+  <svg class="doodle" style="top:20%;right:10%;width:38px;color:var(--peri);--r:12deg;animation-delay:2.1s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
   <div class="wrap">
     <span class="eyebrow">Sapiens</span>
     <h1 data-split data-i18n="joinTitle">Join <span class="hl">the society</span></h1>
@@ -414,6 +428,8 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
+<div class="wave flip" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--wine)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+
 <footer>
   <div class="wrap">
     <div class="foot-top">
