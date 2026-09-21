@@ -37,6 +37,7 @@ assert 'Lidé potřebují lidi' in html or 'Akce — Sapiens' in html, f'Czech r
 html = html.replace('src="img/', 'src="/img/')
 html = html.replace('href="events/', 'href="/events/')
 html = html.replace('href="join/', 'href="/join/')
+html = html.replace('href="pets/', 'href="/pets/')
 
 # this page IS the Czech version
 old_canon = canon.replace('/cs/', '/', 1)
@@ -58,6 +59,11 @@ elif src == 'events/index.html':
                         '<meta property="og:title" content="Akce — Sapiens">')
     html = html.replace('<meta property="og:description" content="Moments we create — come to a Sapiens event or start one of your own.">',
                         '<meta property="og:description" content="Okamžiky, které vytváříme — přijďte na akci Sapiens, nebo vytvořte vlastní.">')
+elif src == 'pets/index.html':
+    html = html.replace('<meta property="og:title" content="Adopt a friend — Sapiens">',
+                        '<meta property="og:title" content="Najděte si kamaráda — Sapiens">')
+    html = html.replace('<meta property="og:description" content="Swipe through animals looking for a home in Prague — keep the ones who stay with you and we put you in touch.">',
+                        '<meta property="og:description" content="Projděte si zvířata, která v Praze hledají domov — nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme.">')
 else:
     html = html.replace('<meta property="og:title" content="Join us — Sapiens">',
                         '<meta property="og:title" content="Přidejte se — Sapiens">')
@@ -81,3 +87,4 @@ EOF
 render index.html          cs        /cs/
 render events/index.html   cs/events /cs/events/
 render join/index.html     cs/join   /cs/join/
+render pets/index.html     cs/pets   /cs/pets/

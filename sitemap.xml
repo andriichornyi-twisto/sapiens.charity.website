@@ -26,6 +26,18 @@
     <xhtml:link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/events/"/>
   </url>
   <url>
+    <loc>https://sapienscz.com/pets/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sapienscz.com/pets/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/pets/"/>
+  </url>
+  <url>
+    <loc>https://sapienscz.com/cs/pets/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sapienscz.com/pets/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/pets/"/>
+  </url>
+  <url>
     <loc>https://sapienscz.com/join/</loc>
     <lastmod>2026-07-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://sapienscz.com/join/"/>

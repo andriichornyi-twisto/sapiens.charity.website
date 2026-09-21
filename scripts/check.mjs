@@ -3,8 +3,8 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { Script } from 'node:vm';
 
-const pages = ['index.html', 'events/index.html', 'join/index.html', '404.html', 'privacy/index.html'];
-const dictPages = ['index.html', 'events/index.html', 'join/index.html', 'privacy/index.html'];
+const pages = ['index.html', 'events/index.html', 'join/index.html', 'pets/index.html', '404.html', 'privacy/index.html'];
+const dictPages = ['index.html', 'events/index.html', 'join/index.html', 'pets/index.html', 'privacy/index.html'];
 let failures = 0;
 const fail = msg => { failures++; console.error('✗ ' + msg); };
 const ok = msg => console.log('✓ ' + msg);
@@ -38,7 +38,7 @@ for (const page of pages) {
   }
 
   // 3. local links/assets resolve to real files
-  const refs = [...html.matchAll(/(?:href|src)="(\/[^"#?]*|(?:img|js|fonts|events|join|cs|privacy)\/[^"#?]*)"/g)]
+  const refs = [...html.matchAll(/(?:href|src)="(\/[^"#?]*|(?:img|js|fonts|events|join|pets|cs|privacy)\/[^"#?]*)"/g)]
     .map(m => m[1])
     .filter(u => !u.startsWith('//'));
   for (let u of refs) {
@@ -51,7 +51,7 @@ for (const page of pages) {
 }
 
 // 4. pre-rendered Czech pages exist and are actually Czech
-for (const cs of ['cs/index.html', 'cs/events/index.html', 'cs/join/index.html']) {
+for (const cs of ['cs/index.html', 'cs/events/index.html', 'cs/join/index.html', 'cs/pets/index.html']) {
   if (!existsSync(cs)) { fail(`${cs} missing — run ./build-cs.sh`); continue; }
   const html = readFileSync(cs, 'utf-8');
   if (!/lang="cs"/.test(html)) fail(`${cs}: not rendered in Czech — run ./build-cs.sh`);

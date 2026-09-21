@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="cs"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFAF4">
+<title>Najděte si kamaráda — Sapiens</title>
+<meta name="description" content="Psi, kočky a králíci, kteří v Praze hledají domov. Projděte si je, nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme.">
+<meta property="og:title" content="Najděte si kamaráda — Sapiens">
+<meta property="og:description" content="Projděte si zvířata, která v Praze hledají domov — nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sapienscz.com/cs/pets/">
+<meta property="og:image" content="https://sapienscz.com/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sapienscz.com/cs/pets/">
+<link rel="alternate" hreflang="en" href="https://sapienscz.com/pets/">
+<link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/pets/">
+<link rel="alternate" hreflang="x-default" href="https://sapienscz.com/pets/">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin="">
+<style>
+  @font-face{
+    font-family:'Archivo';font-style:normal;font-weight:500 900;font-display:swap;
+    src:url('/fonts/archivo-latin-ext.woff2') format('woff2');
+    unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face{
+    font-family:'Archivo';font-style:normal;font-weight:500 900;font-display:swap;
+    src:url('/fonts/archivo-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  :root{
+    --cream:#FFFAF4;
+    --ochre:#DFA84F;
+    --peri:#B9CBEA;
+    --peri-light:#C9D6F0;
+    --royal:#2B57C6;
+    --wine:#55202E;
+    --wine-deep:#471A26;
+    --white:#FFFFFF;
+    --font:'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  /* our own display rules would otherwise beat the [hidden] attribute */
+  [hidden]{display:none !important;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--cream);}
+  ::selection{background:var(--ochre);color:var(--white);}
+  body{
+    font-family:var(--font);
+    background:var(--cream);
+    color:var(--wine);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px);}
+  .eyebrow{
+    font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  }
+  a:focus-visible,button:focus-visible{outline:3px solid var(--royal);outline-offset:3px;border-radius:4px;}
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .nav-links{transition:none !important;}
+  }
+
+  .skip-link{
+    position:fixed;top:0;left:-9999px;z-index:100;
+    background:var(--wine);color:var(--cream);
+    padding:12px 20px;border-radius:0 0 12px 0;
+    font-weight:800;font-size:13px;letter-spacing:.08em;text-decoration:none;
+  }
+  .skip-link:focus{left:0;}
+
+  body::after{
+    content:'';position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.045;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0 0 0 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  @media (pointer:coarse){
+    body::after{display:none;}
+  }
+
+  .wave{height:clamp(26px,4.5vw,52px);line-height:0;}
+  .wave svg{display:block;width:100%;height:100%;}
+  .wave.flip svg{transform:scaleX(-1);}
+  .doodle{position:absolute;pointer-events:none;opacity:.5;animation:floaty 7s ease-in-out infinite;}
+  @keyframes floaty{
+    0%,100%{transform:rotate(var(--r,0deg)) translateY(0);}
+    50%{transform:rotate(var(--r,0deg)) translateY(-9px);}
+  }
+  @media (max-width:640px){.doodle{display:none;}}
+  @media (prefers-reduced-motion: reduce){.doodle{animation:none !important;}}
+
+  /* ---------- scroll progress ---------- */
+  .progress{
+    position:fixed;top:0;left:0;right:0;height:3px;z-index:60;
+    background:var(--ochre);transform:scaleX(0);transform-origin:left;
+    pointer-events:none;
+  }
+
+  /* ---------- nav (same as home) ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:color-mix(in srgb, var(--cream) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(85,32,46,.08);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .wordmark{
+    font-weight:700;font-size:15px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--wine);text-decoration:none;
+  }
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{
+    font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--wine);text-decoration:none;opacity:.75;transition:opacity .2s;
+  }
+  .nav-links a:not(.nav-ig){position:relative;}
+  .nav-links a:not(.nav-ig)::after{
+    content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;
+    background:var(--ochre);transform:scaleX(0);transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .nav-links a:not(.nav-ig):hover::after,
+  .nav-links a:not(.nav-ig):focus-visible::after,
+  .nav-links a.active::after{transform:scaleX(1);}
+  .nav-links a:hover,.nav-links a:focus-visible,.nav-links a.active{opacity:1;}
+  .nav-ig{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--wine);color:var(--cream) !important;opacity:1 !important;
+    padding:9px 16px;border-radius:999px;
+  }
+  .nav-ig:hover{background:var(--wine-deep);}
+  .burger{
+    display:none;background:none;border:0;width:42px;height:42px;cursor:pointer;
+    position:relative;z-index:5;padding:0;
+  }
+  .burger span{
+    display:block;width:22px;height:2px;background:var(--wine);margin:5px auto;
+    transition:transform .3s ease,opacity .3s ease;
+  }
+  .nav-right{display:flex;align-items:center;gap:24px;}
+  .lang-toggle{
+    display:inline-flex;padding:2px;border:1.5px solid rgba(85,32,46,.35);border-radius:999px;
+    position:relative;z-index:5;
+  }
+  .lang-toggle button{
+    font-family:var(--font);font-size:10px;font-weight:800;letter-spacing:.1em;
+    color:var(--wine);background:none;border:0;border-radius:999px;
+    padding:6px 10px;cursor:pointer;opacity:.55;
+    transition:opacity .2s,background .2s,color .2s;
+  }
+  .lang-toggle button[aria-pressed="true"]{background:var(--wine);color:var(--cream);opacity:1;}
+  @media (max-width:1180px) and (min-width:901px){
+    .nav-links{gap:16px;}
+    .nav-right{gap:16px;}
+  }
+  @media (max-width:900px){
+    .burger{display:block;}
+    .nav-right{gap:14px;}
+    .wordmark{position:relative;z-index:5;}
+    .nav-links{
+      position:fixed;top:0;left:0;right:0;z-index:1;
+      background:var(--cream);
+      flex-direction:column;align-items:stretch;gap:0;
+      padding:84px 24px 28px;
+      transform:translateY(-102%);
+      transition:transform .4s cubic-bezier(.22,.8,.3,1);
+      box-shadow:0 24px 48px rgba(85,32,46,.12);
+    }
+    header.menu-open .nav-links{transform:none;}
+    .nav-links a:not(.nav-ig){
+      display:block;font-size:17px;letter-spacing:.1em;
+      padding:16px 0;border-bottom:1px solid rgba(85,32,46,.08);
+    }
+    .nav-links a:not(.nav-ig)::after{display:none;}
+    .nav-ig{margin-top:18px;justify-content:center;}
+    header.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    header.menu-open .burger span:nth-child(2){opacity:0;}
+    header.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  }
+
+  /* ---------- page head ---------- */
+  section{position:relative;}
+  /* tighter than the other pages — the deck needs the vertical room */
+  .page-head{
+    padding:clamp(84px,11vh,140px) 0 clamp(10px,1.5vw,16px);
+    text-align:center;
+  }
+  .page-head .eyebrow{display:block;margin-bottom:14px;opacity:.85;}
+  .page-head h1{
+    font-size:clamp(2.2rem,4.8vw,3.6rem);
+    font-weight:800;letter-spacing:-.03em;line-height:.95;text-transform:uppercase;
+  }
+  .page-head h1 .hl{color:var(--ochre);}
+  .page-head p{
+    margin:16px auto 0;max-width:50ch;
+    font-size:clamp(.95rem,1.2vw,1.08rem);font-weight:600;line-height:1.5;opacity:.85;
+  }
+
+  /* ---------- swipe deck ---------- */
+  .deck-section{padding:clamp(12px,2vw,24px) 0 clamp(80px,10vw,120px);}
+  .deck-head{
+    display:flex;align-items:baseline;justify-content:center;gap:12px;
+    margin-bottom:clamp(10px,1.5vw,16px);
+  }
+  .deck-count{
+    font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;opacity:.6;
+  }
+  .deck{
+    position:relative;margin:0 auto;
+    width:min(360px,86vw);height:clamp(320px,48vh,440px);
+    touch-action:pan-y;
+  }
+  .pcard{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    background:var(--white);border-radius:26px;overflow:hidden;
+    box-shadow:0 18px 44px rgba(85,32,46,.16);
+    transform-origin:50% 100%;
+    user-select:none;-webkit-user-select:none;
+  }
+  .pcard[data-depth="0"]{cursor:grab;}
+  .pcard[data-depth="0"].dragging{cursor:grabbing;}
+  .pcard.tone-ochre{--band:var(--ochre);}
+  .pcard.tone-peri{--band:var(--peri);}
+  .pcard.tone-sand{--band:#F1E2CC;}
+  .pcard .art{
+    position:relative;flex:1;min-height:0;
+    background:var(--band);display:grid;place-items:center;
+  }
+  .pcard .art svg{width:min(62%,200px);height:auto;aspect-ratio:1;color:var(--wine);}
+  .pcard .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .pcard .meta{
+    padding:18px 20px 20px;background:var(--white);
+  }
+  .pcard h3{
+    font-size:1.6rem;font-weight:800;letter-spacing:-.02em;line-height:1;
+  }
+  .pcard .facts{
+    margin-top:7px;font-size:.82rem;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;opacity:.6;
+  }
+  .pcard .bio{
+    margin-top:11px;font-size:.92rem;font-weight:600;line-height:1.5;opacity:.85;
+  }
+  .ptags{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px;}
+  .ptags span{
+    font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    background:rgba(85,32,46,.08);border-radius:999px;padding:5px 10px;
+  }
+  .stamp{
+    position:absolute;top:22px;z-index:3;
+    font-size:1.5rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+    border:4px solid currentColor;border-radius:12px;padding:5px 12px;
+    opacity:0;pointer-events:none;background:rgba(255,250,244,.82);
+  }
+  .stamp.yes{left:20px;transform:rotate(-14deg);color:var(--royal);}
+  .stamp.no{right:20px;transform:rotate(14deg);color:#B3261E;}
+
+  .deck-controls{
+    display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,22px);
+    margin-top:clamp(14px,2vw,22px);
+  }
+  .ctrl{
+    width:64px;height:64px;border-radius:999px;cursor:pointer;
+    display:grid;place-items:center;background:var(--white);
+    border:2px solid rgba(85,32,46,.2);color:var(--wine);
+    transition:transform .15s ease,background .2s ease,border-color .2s ease,color .2s ease;
+  }
+  .ctrl svg{width:26px;height:26px;}
+  .ctrl:hover{transform:translateY(-2px);border-color:var(--wine);}
+  .ctrl:active{transform:scale(.94);}
+  .ctrl.like{background:var(--wine);border-color:var(--wine);color:var(--cream);}
+  .ctrl.like:hover{background:var(--wine-deep);}
+  .ctrl.undo{width:46px;height:46px;}
+  .ctrl.undo svg{width:19px;height:19px;}
+  .ctrl[disabled]{opacity:.35;cursor:default;transform:none !important;}
+  .deck-hint{
+    margin:clamp(12px,2vw,18px) auto 0;max-width:40ch;text-align:center;
+    font-size:.85rem;font-weight:600;line-height:1.5;opacity:.6;
+  }
+
+  /* ---------- results + enquiry ---------- */
+  .done-wrap{max-width:660px;margin:0 auto;}
+  .done-head{text-align:center;margin-bottom:clamp(26px,4vw,36px);}
+  .done-head svg{width:88px;height:auto;margin-bottom:20px;}
+  .done-head h2{
+    font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;
+    letter-spacing:-.025em;line-height:1;text-transform:uppercase;
+  }
+  .done-head p{margin:16px auto 0;max-width:46ch;font-weight:600;line-height:1.55;opacity:.85;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:26px 0 30px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--white);border:2px solid rgba(85,32,46,.2);border-radius:999px;
+    padding:8px 10px 8px 16px;font-weight:800;font-size:.95rem;
+  }
+  .chip button{
+    width:24px;height:24px;border-radius:999px;border:0;cursor:pointer;
+    background:rgba(85,32,46,.1);color:var(--wine);
+    font-family:var(--font);font-size:14px;font-weight:800;line-height:1;
+    display:grid;place-items:center;
+  }
+  .chip button:hover{background:var(--wine);color:var(--cream);}
+
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}
+  @media (max-width:640px){.frow{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+  .field label{
+    font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8;
+  }
+  .field input,.field textarea{
+    font-family:var(--font);font-size:1rem;font-weight:600;color:var(--wine);
+    background:var(--white);border:1.5px solid rgba(85,32,46,.25);border-radius:12px;
+    padding:13px 14px;width:100%;
+  }
+  .field textarea{resize:vertical;min-height:110px;}
+  .field input:focus,.field textarea:focus{
+    outline:3px solid var(--royal);outline-offset:1px;border-color:var(--royal);
+  }
+  .field input:user-invalid,.field textarea:user-invalid{border-color:#B3261E;}
+
+  .form-actions{margin-top:8px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    text-decoration:none;border-radius:999px;padding:17px 32px;border:0;cursor:pointer;
+    background:var(--wine);color:var(--cream);
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn:active{transform:translateY(0) scale(.97);}
+  .btn:hover{transform:translateY(-2px);background:var(--wine-deep);}
+  .btn.ghost{
+    background:transparent;color:var(--wine);border:2px solid var(--wine);padding:15px 30px;
+  }
+  .btn.ghost:hover{background:var(--wine);color:var(--cream);}
+  .btn[disabled]{opacity:.6;cursor:default;transform:none !important;}
+  .btn-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+  .privacy{font-size:.85rem;font-weight:600;opacity:.6;line-height:1.5;max-width:52ch;}
+  .form-error{
+    font-size:.95rem;font-weight:700;color:#B3261E;line-height:1.5;max-width:52ch;
+  }
+
+  .to-top{
+    position:fixed;right:18px;bottom:18px;z-index:70;
+    width:46px;height:46px;border-radius:999px;border:0;cursor:pointer;
+    background:var(--wine);color:var(--cream);font-size:18px;font-weight:800;
+    font-family:var(--font);display:grid;place-items:center;
+    opacity:0;transform:translateY(12px);pointer-events:none;
+    transition:opacity .25s ease,transform .25s ease,background .2s ease;
+  }
+  .to-top.show{opacity:1;transform:none;pointer-events:auto;}
+  .to-top:hover{background:var(--wine-deep);}
+  .foot-links{margin-top:28px;display:flex;gap:22px;flex-wrap:wrap;}
+  .foot-links a{
+    font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--cream);text-decoration:none;opacity:.75;
+  }
+  .foot-links a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px;}
+
+  /* ---------- footer (same as home) ---------- */
+  footer{
+    background:var(--wine);color:var(--cream);
+    padding:64px 0 40px;
+  }
+  .foot-top{
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .foot-mark{display:flex;align-items:center;gap:16px;}
+  .foot-mark svg{width:52px;height:auto;}
+  .foot-mark .wordmark{color:var(--cream);}
+  .foot-tag{font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;opacity:.7;}
+  .foot-bottom{
+    margin-top:44px;padding-top:24px;border-top:1px solid rgba(250,246,238,.18);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:12px;font-weight:600;letter-spacing:.06em;opacity:.65;
+  }
+  footer a{color:var(--cream);}
+  @media (max-width:640px){
+    .foot-top{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="skipLink">Přeskočit na obsah</a>
+<div class="progress" id="progress" aria-hidden="true" style="transform: scaleX(0);"></div>
+
+<!-- placeholder pet portraits — swapped for real photos once we have them -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="pet-dog" viewBox="0 0 120 120">
+    <ellipse cx="28" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(-12 28 52)"></ellipse>
+    <ellipse cx="92" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(12 92 52)"></ellipse>
+    <rect x="26" y="26" width="68" height="70" rx="32" fill="currentColor"></rect>
+    <circle cx="47" cy="56" r="5" fill="#FFFAF4"></circle>
+    <circle cx="73" cy="56" r="5" fill="#FFFAF4"></circle>
+    <ellipse cx="60" cy="79" rx="19" ry="14" fill="#FFFAF4" opacity=".92"></ellipse>
+    <ellipse cx="60" cy="72" rx="7" ry="5" fill="#DFA84F"></ellipse>
+    <path d="M60 77 v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+    <path d="M60 82 q-6 5 -10 0 M60 82 q6 5 10 0" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
+  </symbol>
+  <symbol id="pet-cat" viewBox="0 0 120 120">
+    <path d="M32 46 L30 16 L54 33 Z" fill="currentColor"></path>
+    <path d="M88 46 L90 16 L66 33 Z" fill="currentColor"></path>
+    <ellipse cx="60" cy="66" rx="36" ry="32" fill="currentColor"></ellipse>
+    <ellipse cx="46" cy="62" rx="4.5" ry="6" fill="#FFFAF4"></ellipse>
+    <ellipse cx="74" cy="62" rx="4.5" ry="6" fill="#FFFAF4"></ellipse>
+    <path d="M60 74 l-5.5 4.5 h11 Z" fill="#DFA84F"></path>
+    <path d="M60 79 q-5 6 -10 2 M60 79 q5 6 10 2" stroke="#FFFAF4" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
+    <g stroke="#FFFAF4" stroke-width="2" stroke-linecap="round" opacity=".75">
+      <path d="M24 69 h14 M24 78 h14 M96 69 h-14 M96 78 h-14"></path>
+    </g>
+  </symbol>
+  <symbol id="pet-rabbit" viewBox="0 0 120 120">
+    <ellipse cx="46" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(-8 46 32)"></ellipse>
+    <ellipse cx="74" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(8 74 32)"></ellipse>
+    <ellipse cx="46" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(-8 46 34)"></ellipse>
+    <ellipse cx="74" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(8 74 34)"></ellipse>
+    <ellipse cx="60" cy="76" rx="32" ry="28" fill="currentColor"></ellipse>
+    <circle cx="48" cy="72" r="4.5" fill="#FFFAF4"></circle>
+    <circle cx="72" cy="72" r="4.5" fill="#FFFAF4"></circle>
+    <ellipse cx="60" cy="84" rx="5" ry="3.5" fill="#DFA84F"></ellipse>
+    <path d="M60 87 v4 M60 91 q-5 4 -9 1 M60 91 q5 4 9 1" stroke="#FFFAF4" stroke-width="2.2" fill="none" stroke-linecap="round"></path>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="/">Sapiens</a>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Main">
+        <a href="/#who" data-i18n="navWho">Kdo jsme</a>
+        <a href="/#why" data-i18n="navWhy">Proč to děláme</a>
+        <a href="/events/" data-i18n="navEvents">Akce</a>
+        <a href="/pets/" class="active" aria-current="page" data-i18n="navPets">Adopce</a>
+        <a href="/join/" data-i18n="navJoin">Přidejte se</a>
+        <a class="nav-ig" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"></circle></svg>
+          @sapiens.cz
+        </a>
+      </nav>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="cs" aria-pressed="true">CZ</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Otevřít menu" aria-expanded="false" data-label-open="Otevřít menu" data-label-close="Zavřít menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PAGE HEAD ================= -->
+<section class="page-head" id="main">
+  <svg class="doodle" style="top:24%;left:9%;width:22px;color:var(--ochre);--r:-16deg;animation-delay:.9s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"></path></svg>
+  <svg class="doodle" style="top:20%;right:10%;width:38px;color:var(--peri);--r:12deg;animation-delay:2.1s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"></path></svg>
+  <div class="wrap">
+    <span class="eyebrow">Sapiens</span>
+    <h1 data-split="" data-i18n="petsTitle">Najděte si <span class="hl">kamaráda</span></h1>
+    <p class="rv" data-i18n="petsIntro">Tahle zvířata čekají na někoho v Praze a okolí. Projděte si je — nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme s lidmi, kteří se o ně starají.</p>
+  </div>
+</section>
+
+<!-- ================= DECK ================= -->
+<section class="deck-section">
+  <div class="wrap">
+
+    <div class="deck-main" id="deckMain">
+      <div class="deck-head">
+        <span class="deck-count" id="deckCount">1 z 7</span>
+      </div>
+
+      <div class="deck" id="deck"><article class="pcard tone-sand" data-depth="2" data-id="pepik" role="group" aria-label="Pepík — Králík" aria-hidden="true" style="z-index: 8; transform: translateY(20px) scale(0.92);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-rabbit"></use></svg></div><div class="meta"><h3>Pepík</h3><p class="facts">Králík · 1 rok · Praha 4</p><p class="bio">Pepík udělá malý skok, když má radost, což je skoro pořád. Je naučený na toaletu a moc by si přál někoho, s kým se podělí o seno.</p><div class="ptags"><span>Naučený na toaletu</span><span>Mírný</span><span>Uvítal by kamaráda</span></div></div></article><article class="pcard tone-peri" data-depth="1" data-id="momo" role="group" aria-label="Momo — Kocour" aria-hidden="true" style="z-index: 9; transform: translateY(10px) scale(0.96);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-cat"></use></svg></div><div class="meta"><h3>Momo</h3><p class="facts">Kocour · 2 roky · Praha 5</p><p class="bio">Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.</p><div class="ptags"><span>Vhodný do bytu</span><span>Upovídaný</span><span>Nejlépe sám</span></div></div></article><article class="pcard tone-ochre" data-depth="0" data-id="bara" role="group" aria-label="Bára — Fenka" style="z-index: 10; transform: translateY(0px) scale(1);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-dog"></use></svg></div><div class="meta"><h3>Bára</h3><p class="facts">Fenka · 3 roky · Praha 8</p><p class="bio">Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.</p><div class="ptags"><span>Dobrá s dětmi</span><span>Zná základy</span><span>Miluje dlouhé procházky</span></div></div></article></div>
+
+      <div class="deck-controls">
+        <button class="ctrl undo" id="btnUndo" type="button" data-label="ctrlUndo" aria-label="Vrátit poslední" disabled="">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h11a5 5 0 0 1 0 10h-3"></path><path d="M7 5 3 9l4 4"></path></svg>
+        </button>
+        <button class="ctrl nope" id="btnNope" type="button" data-label="ctrlNope" aria-label="Tenhle ne">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+        </button>
+        <button class="ctrl like" id="btnLike" type="button" data-label="ctrlLike" aria-label="Tenhle se mi líbí">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-9.6-9.2C.7 8.4 2.5 5 5.9 5c2 0 3.4 1.1 4.3 2.3l.8 1 .8-1C12.7 6.1 14.1 5 16.1 5c3.4 0 5.2 3.4 3.5 6.8C19.5 16.1 12 21 12 21z"></path></svg>
+        </button>
+      </div>
+
+      <p class="deck-hint" data-i18n="deckHint">Přetáhněte kartu doleva nebo doprava, nebo použijte tlačítka. Fungují i šipky.</p>
+      <p class="sr-only" id="deckLive" aria-live="polite"></p>
+    </div>
+
+    <div class="done-wrap" id="deckDone" hidden="">
+      <div class="done-head">
+        <svg viewBox="0 0 240 200" role="img" aria-label="Sapiens logo">
+          <circle cx="64" cy="54" r="13" fill="#55202E"></circle>
+          <path d="M79,168 C60,157 44,133 40,109 C36,87 46,73 62,73 C77,73 85,86 85,106 C85,128 83,151 79,168 Z" fill="#55202E" opacity=".85"></path>
+          <circle cx="176" cy="54" r="13" fill="#9DB9E6"></circle>
+          <path d="M161,168 C180,157 196,133 200,109 C204,87 194,73 178,73 C163,73 155,86 155,106 C155,128 157,151 161,168 Z" fill="#9DB9E6"></path>
+          <circle cx="120" cy="46" r="16" fill="#DFA84F"></circle>
+          <path d="M120,182 C103,165 89,137 89,112 C89,85 102,71 120,71 C138,71 151,85 151,112 C151,137 137,165 120,182 Z" fill="#DFA84F"></path>
+        </svg>
+        <h2 id="doneTitle" data-i18n="emptyTitle">Tentokrát nikdo</h2>
+        <p id="doneText" data-i18n="emptyText">Vůbec nevadí — ten pravý tu zatím není. Vraťte se, až přidáme další, nebo se k nám přidejte jinak.</p>
+      </div>
+
+      <div class="chips" id="chips"></div>
+
+      <form class="pets-form" id="petsForm" novalidate="false" hidden="">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="frow">
+          <div class="field">
+            <label for="pName" data-i18n="fName">Vaše jméno</label>
+            <input id="pName" name="Name" type="text" required="" autocomplete="name" maxlength="100">
+          </div>
+          <div class="field">
+            <label for="pEmail" data-i18n="fEmail">E-mail</label>
+            <input id="pEmail" name="Email" type="email" required="" autocomplete="email" maxlength="120">
+          </div>
+        </div>
+        <div class="field">
+          <label for="pPhone" data-i18n="fPhone">Telefon nebo Instagram (nepovinné)</label>
+          <input id="pPhone" name="Phone / Instagram" type="text" maxlength="100">
+        </div>
+        <div class="field">
+          <label for="pMsg" data-i18n="fMsg">Chcete nám něco říct? (nepovinné)</label>
+          <textarea id="pMsg" name="Message" maxlength="1500"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn" type="submit" data-i18n="send">Odeslat</button>
+          <p class="form-error" id="formError" hidden="" data-i18n="sendError">Něco se pokazilo — zkuste to prosím znovu, nebo nám napište na Instagramu.</p>
+          <p class="privacy" data-i18n="privacy">Vaše údaje použijeme jen k tomu, abychom se vám ozvali. Nic víc, nikdy.</p>
+        </div>
+      </form>
+
+      <div class="btn-row" id="emptyActions">
+        <button class="btn ghost" type="button" id="btnRestart" data-i18n="restart">Začít znovu</button>
+        <a class="btn" href="/join/" data-i18n="doneJoin">Přidat se ke komunitě</a>
+      </div>
+    </div>
+
+    <div class="done-wrap" id="deckSent" hidden="">
+      <div class="done-head">
+        <svg viewBox="0 0 240 200" role="img" aria-label="Sapiens logo">
+          <circle cx="64" cy="54" r="13" fill="#55202E"></circle>
+          <path d="M79,168 C60,157 44,133 40,109 C36,87 46,73 62,73 C77,73 85,86 85,106 C85,128 83,151 79,168 Z" fill="#55202E" opacity=".85"></path>
+          <circle cx="176" cy="54" r="13" fill="#9DB9E6"></circle>
+          <path d="M161,168 C180,157 196,133 200,109 C204,87 194,73 178,73 C163,73 155,86 155,106 C155,128 157,151 161,168 Z" fill="#9DB9E6"></path>
+          <circle cx="120" cy="46" r="16" fill="#DFA84F"></circle>
+          <path d="M120,182 C103,165 89,137 89,112 C89,85 102,71 120,71 C138,71 151,85 151,112 C151,137 137,165 120,182 Z" fill="#DFA84F"></path>
+        </svg>
+        <h2 data-i18n="okTitle">Děkujeme!</h2>
+        <p data-i18n="okText">Vaše zpráva je na cestě — brzy se vám ozveme. Lidé potřebují lidi.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn" href="/" data-i18n="okBtn">Zpět na hlavní stránku</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<div class="wave flip" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--wine)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"></path></svg></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <svg viewBox="0 0 240 200" role="img" aria-label="Sapiens logo">
+          <circle cx="64" cy="54" r="13" fill="#FAF6EE"></circle>
+          <path d="M79,168 C60,157 44,133 40,109 C36,87 46,73 62,73 C77,73 85,86 85,106 C85,128 83,151 79,168 Z" fill="#FAF6EE" opacity=".85"></path>
+          <circle cx="176" cy="54" r="13" fill="#9DB9E6"></circle>
+          <path d="M161,168 C180,157 196,133 200,109 C204,87 194,73 178,73 C163,73 155,86 155,106 C155,128 157,151 161,168 Z" fill="#9DB9E6"></path>
+          <circle cx="120" cy="46" r="16" fill="#DFA84F"></circle>
+          <path d="M120,182 C103,165 89,137 89,112 C89,85 102,71 120,71 C138,71 151,85 151,112 C151,137 137,165 120,182 Z" fill="#DFA84F"></path>
+        </svg>
+        <span class="wordmark">Sapiens</span>
+      </div>
+      <span class="foot-tag" data-i18n="footTag">Lidé potřebují lidi</span>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="/events/" data-i18n="navEvents">Akce</a>
+      <a href="/pets/" data-i18n="navPets">Adopce</a>
+      <a href="/join/" data-i18n="navJoin">Přidejte se</a>
+      <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> <span data-i18n="footCredit">Sapiens — projekt se sociálním přesahem</span></span>
+      <span><a href="/privacy/" data-i18n="footPrivacy">Soukromí</a> &nbsp;·&nbsp;
+      <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">instagram.com/sapiens.cz</a></span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Zpět nahoru">↑</button>
+
+<script src="/js/gsap.min.js"></script>
+<script src="/js/ScrollTrigger.min.js"></script>
+<script src="/js/SplitText.min.js"></script>
+<script>
+  // Language toggle (EN / CZ) + the swipe deck — one scope so a language
+  // switch can re-render the cards.
+  (function(){
+    const I18N={
+      en:{
+        title:'Adopt a friend — Sapiens',
+        desc:'Meet dogs, cats and rabbits looking for a home in Prague. Swipe through them, keep the ones who stay with you, and we put you in touch.',
+        menuOpen:'Open menu',menuClose:'Close menu',toTop:'Back to top',
+        navWho:'Who we are',navWhy:'Why we do this',navEvents:'Events',navPets:'Adopt',navJoin:'Join us',skipLink:'Skip to content',
+        petsTitle:'Find <span class="hl">your friend</span>',
+        petsIntro:'These animals are waiting for someone in Prague and around. Swipe through them &mdash; keep the ones who stay with you, and we&rsquo;ll put you in touch with their carers.',
+        deckHint:'Drag a card left or right, or use the buttons. The arrow keys work too.',
+        counter:'{i} of {n}',
+        stampYes:'Yes!',stampNo:'Not now',
+        ctrlUndo:'Undo the last one',ctrlNope:'Not this one',ctrlLike:'Keep this one',
+        liveLike:'Kept {name}. {n} to go.',
+        liveNope:'Passed on {name}. {n} to go.',
+        liveUndo:'Brought {name} back.',
+        liveEnd:'That was the last one.',
+        doneTitle:'That&rsquo;s everyone',
+        doneText:'Leave your details and we&rsquo;ll connect you with the people looking after them. No paperwork yet &mdash; just a conversation.',
+        emptyTitle:'No match this time',
+        emptyText:'That is completely fine &mdash; the right one is not here yet. Come back when we add more, or join us in another way.',
+        chipRemove:'Remove {name}',
+        restart:'Start over',
+        doneJoin:'Join the society',
+        fName:'Your name',fEmail:'Email',fPhone:'Phone or Instagram (optional)',
+        fMsg:'Anything we should know? (optional)',
+        send:'Send',sending:'Sending&hellip;',
+        sendError:'Something went wrong &mdash; please try again, or write to us on Instagram.',
+        coolDown:'One moment &mdash; you just sent a message. Please try again in a minute.',
+        privacy:'We&rsquo;ll only use your details to get back to you. Nothing else, ever.',
+        okTitle:'Thank you!',
+        okText:'Your message is on its way &mdash; we&rsquo;ll get back to you soon. People need people.',
+        okBtn:'Back to the homepage',
+        footTag:'People need people',
+        footPrivacy:'Privacy',footCredit:'Sapiens &mdash; a social impact project'
+      },
+      cs:{
+        title:'Najděte si kamaráda — Sapiens',
+        desc:'Psi, kočky a králíci, kteří v Praze hledají domov. Projděte si je, nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme.',
+        menuOpen:'Otevřít menu',menuClose:'Zavřít menu',toTop:'Zpět nahoru',
+        navWho:'Kdo jsme',navWhy:'Proč to děláme',navEvents:'Akce',navPets:'Adopce',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
+        petsTitle:'Najděte si <span class="hl">kamaráda</span>',
+        petsIntro:'Tahle zvířata čekají na někoho v Praze a okolí. Projděte si je &mdash; nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme s lidmi, kteří se o ně starají.',
+        deckHint:'Přetáhněte kartu doleva nebo doprava, nebo použijte tlačítka. Fungují i šipky.',
+        counter:'{i} z {n}',
+        stampYes:'Ano!',stampNo:'Teď ne',
+        ctrlUndo:'Vrátit poslední',ctrlNope:'Tenhle ne',ctrlLike:'Tenhle se mi líbí',
+        liveLike:'{name} přidán mezi vybrané. Zbývá {n}.',
+        liveNope:'{name} přeskočen. Zbývá {n}.',
+        liveUndo:'{name} je zpátky.',
+        liveEnd:'To byl poslední.',
+        doneTitle:'A to jsou všichni',
+        doneText:'Nechte nám na sebe kontakt a my vás spojíme s lidmi, kteří se o ně starají. Zatím žádné papírování &mdash; jen popovídání.',
+        emptyTitle:'Tentokrát nikdo',
+        emptyText:'Vůbec nevadí &mdash; ten pravý tu zatím není. Vraťte se, až přidáme další, nebo se k nám přidejte jinak.',
+        chipRemove:'Odebrat {name}',
+        restart:'Začít znovu',
+        doneJoin:'Přidat se ke komunitě',
+        fName:'Vaše jméno',fEmail:'E-mail',fPhone:'Telefon nebo Instagram (nepovinné)',
+        fMsg:'Chcete nám něco říct? (nepovinné)',
+        send:'Odeslat',sending:'Odesílám&hellip;',
+        sendError:'Něco se pokazilo &mdash; zkuste to prosím znovu, nebo nám napište na Instagramu.',
+        coolDown:'Momentík &mdash; právě jste zprávu odeslali. Zkuste to prosím za minutu.',
+        privacy:'Vaše údaje použijeme jen k tomu, abychom se vám ozvali. Nic víc, nikdy.',
+        okTitle:'Děkujeme!',
+        okText:'Vaše zpráva je na cestě &mdash; brzy se vám ozveme. Lidé potřebují lidi.',
+        okBtn:'Zpět na hlavní stránku',
+        footTag:'Lidé potřebují lidi',
+        footPrivacy:'Soukromí',footCredit:'Sapiens &mdash; projekt se sociálním přesahem'
+      }
+    };
+
+    // Placeholder residents — real names, photos and details replace these
+    // once the shelters send them over. Add `photo:'/img/pets/name.jpg'` and
+    // the card uses the photo instead of the drawing.
+    const PETS=[
+      {id:'bara',art:'pet-dog',tone:'ochre',name:'Bára',place:'Praha 8',photo:null,
+       kindEn:'Dog',kindCs:'Fenka',ageEn:'3 years',ageCs:'3 roky',
+       bioEn:'Bára was found waiting outside a closed shop and never stopped believing someone would come back for her. She walks beautifully on a lead and sleeps through the night.',
+       bioCs:'Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.',
+       tagsEn:['Good with kids','Knows the basics','Loves long walks'],
+       tagsCs:['Dobrá s dětmi','Zná základy','Miluje dlouhé procházky']},
+      {id:'momo',art:'pet-cat',tone:'peri',name:'Momo',place:'Praha 5',photo:null,
+       kindEn:'Cat',kindCs:'Kocour',ageEn:'2 years',ageCs:'2 roky',
+       bioEn:'Momo supervises the household from the highest shelf in the room. He purrs before you even touch him and has strong opinions about closed doors.',
+       bioCs:'Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.',
+       tagsEn:['Flat friendly','Talkative','Best as an only cat'],
+       tagsCs:['Vhodný do bytu','Upovídaný','Nejlépe sám']},
+      {id:'pepik',art:'pet-rabbit',tone:'sand',name:'Pepík',place:'Praha 4',photo:null,
+       kindEn:'Rabbit',kindCs:'Králík',ageEn:'1 year',ageCs:'1 rok',
+       bioEn:'Pepík does a small jump when he is happy, which is most of the time. He is litter trained and would love someone to share the hay with.',
+       bioCs:'Pepík udělá malý skok, když má radost, což je skoro pořád. Je naučený na toaletu a moc by si přál někoho, s kým se podělí o seno.',
+       tagsEn:['Litter trained','Gentle','Would like a companion'],
+       tagsCs:['Naučený na toaletu','Mírný','Uvítal by kamaráda']},
+      {id:'rita',art:'pet-dog',tone:'peri',name:'Rita',place:'Praha 9',photo:null,
+       kindEn:'Dog',kindCs:'Fenka',ageEn:'8 years',ageCs:'8 let',
+       bioEn:'Rita is eight and completely done with drama. She asks for one slow walk, one warm blanket and someone who stays.',
+       bioCs:'Ritě je osm a dramata už ji dávno nebaví. Přeje si jednu pomalou procházku, jednu teplou deku a někoho, kdo zůstane.',
+       tagsEn:['Senior','Calm at home','Fine with cats'],
+       tagsCs:['Senior','Doma klidná','Vyjde s kočkami']},
+      {id:'kastan',art:'pet-cat',tone:'ochre',name:'Kaštan',place:'Praha 10',photo:null,
+       kindEn:'Kitten',kindCs:'Koťátko',ageEn:'5 months',ageCs:'5 měsíců',
+       bioEn:'Kaštan discovered that curtains can be climbed and has not recovered from the news. He falls asleep mid-game, usually on a shoe.',
+       bioCs:'Kaštan zjistil, že po záclonách se dá lézt, a dodnes se z té zprávy nevzpamatoval. Usíná uprostřed hry, většinou na botě.',
+       tagsEn:['Kitten energy','Loves other cats','Needs a playmate'],
+       tagsCs:['Koťácí energie','Miluje jiné kočky','Potřebuje parťáka']},
+      {id:'fila',art:'pet-dog',tone:'sand',name:'Fíla',place:'Kladno',photo:null,
+       kindEn:'Dog',kindCs:'Pes',ageEn:'5 years',ageCs:'5 let',
+       bioEn:'Fíla is a big soft shadow who follows you from room to room. He needs a garden, a job to do and someone patient about strangers.',
+       bioCs:'Fíla je velký měkký stín, který vás následuje z pokoje do pokoje. Potřebuje zahradu, nějaký úkol a někoho trpělivého na cizí lidi.',
+       tagsEn:['Needs a garden','Shy with strangers','Very loyal'],
+       tagsCs:['Potřebuje zahradu','Plachý na cizí','Velmi věrný']},
+      {id:'liza',art:'pet-cat',tone:'peri',name:'Líza',place:'Praha 6',photo:null,
+       kindEn:'Cat',kindCs:'Kočka',ageEn:'9 years',ageCs:'9 let',
+       bioEn:'Líza spent her whole life in one home and then lost it. She is shy for about a week, and after that she is entirely yours, usually from your lap.',
+       bioCs:'Líza strávila celý život v jednom domově a pak o něj přišla. Asi týden je plachá a potom je úplně vaše, většinou přímo z klína.',
+       tagsEn:['Senior','Lap cat','Quiet home please'],
+       tagsCs:['Senior','Mazlivá','Prosím klidný domov']}
+    ];
+
+    const burger=document.getElementById('burger');
+    const metaDesc=document.querySelector('meta[name="description"]');
+    const deck=document.getElementById('deck');
+    const deckMain=document.getElementById('deckMain');
+    const deckDone=document.getElementById('deckDone');
+    const deckSent=document.getElementById('deckSent');
+    const deckCount=document.getElementById('deckCount');
+    const deckLive=document.getElementById('deckLive');
+    const chips=document.getElementById('chips');
+    const form=document.getElementById('petsForm');
+    const emptyActions=document.getElementById('emptyActions');
+    const btnUndo=document.getElementById('btnUndo');
+    const doneTitle=document.getElementById('doneTitle');
+    const doneText=document.getElementById('doneText');
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let activeLang='en';
+    let idx=0;
+    let liked=[];
+    let hist=[];
+
+    const t=()=>I18N[activeLang];
+    const fill=(s,vars)=>s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!=null?vars[k]:m);
+    const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+    function announce(msg){ if(deckLive) deckLive.textContent=msg; }
+
+    function buildCard(pet,depth){
+      const el=document.createElement('article');
+      el.className='pcard tone-'+pet.tone;
+      el.dataset.depth=String(depth);
+      el.dataset.id=pet.id;
+      el.style.zIndex=String(10-depth);
+      el.style.transform='translateY('+(depth*10)+'px) scale('+(1-depth*.04)+')';
+      el.setAttribute('role','group');
+      el.setAttribute('aria-label',pet.name+' — '+pet[activeLang==='cs'?'kindCs':'kindEn']);
+      if(depth>0) el.setAttribute('aria-hidden','true');
+      const art=pet.photo
+        ? '<img src="'+pet.photo+'" alt="'+esc(pet.name)+'" loading="lazy">'
+        : '<svg viewBox="0 0 120 120" aria-hidden="true"><use href="#'+pet.art+'"></use></svg>';
+      const tags=(activeLang==='cs'?pet.tagsCs:pet.tagsEn)
+        .map(x=>'<span>'+esc(x)+'</span>').join('');
+      el.innerHTML=
+        '<span class="stamp yes">'+t().stampYes+'</span>'+
+        '<span class="stamp no">'+t().stampNo+'</span>'+
+        '<div class="art">'+art+'</div>'+
+        '<div class="meta">'+
+          '<h3>'+esc(pet.name)+'</h3>'+
+          '<p class="facts">'+esc(pet[activeLang==='cs'?'kindCs':'kindEn'])+' &middot; '+
+            esc(pet[activeLang==='cs'?'ageCs':'ageEn'])+' &middot; '+esc(pet.place)+'</p>'+
+          '<p class="bio">'+esc(activeLang==='cs'?pet.bioCs:pet.bioEn)+'</p>'+
+          '<div class="ptags">'+tags+'</div>'+
+        '</div>';
+      if(depth===0) attachDrag(el);
+      return el;
+    }
+
+    function renderStack(){
+      if(!deck) return;
+      deck.querySelectorAll('.pcard:not([data-depth="fly"])').forEach(c=>c.remove());
+      const slice=PETS.slice(idx,idx+3);
+      for(let d=slice.length-1;d>=0;d--) deck.appendChild(buildCard(slice[d],d));
+      updateCount();
+      if(btnUndo) btnUndo.disabled=hist.length===0;
+    }
+
+    function updateCount(){
+      if(!deckCount) return;
+      const i=Math.min(idx+1,PETS.length);
+      deckCount.textContent=fill(t().counter,{i:i,n:PETS.length});
+    }
+
+    function attachDrag(card){
+      let startX=0,startY=0,dx=0,dy=0,active=false,decided=false;
+      const yes=card.querySelector('.stamp.yes');
+      const no=card.querySelector('.stamp.no');
+      card.addEventListener('pointerdown',e=>{
+        if(e.button!==0&&e.pointerType==='mouse') return;
+        active=true;decided=false;startX=e.clientX;startY=e.clientY;dx=0;dy=0;
+        card.setPointerCapture(e.pointerId);
+        card.classList.add('dragging');
+        card.style.transition='none';
+      });
+      card.addEventListener('pointermove',e=>{
+        if(!active) return;
+        dx=e.clientX-startX;dy=e.clientY-startY;
+        if(Math.abs(dy)>Math.abs(dx)*1.6&&Math.abs(dx)<12) return;
+        card.style.transform='translate('+dx+'px,'+dy*.3+'px) rotate('+(dx/18)+'deg)';
+        const p=Math.min(Math.abs(dx)/110,1);
+        if(yes) yes.style.opacity=dx>0?p:0;
+        if(no) no.style.opacity=dx<0?p:0;
+      });
+      function release(){
+        if(!active||decided) return;
+        active=false;
+        card.classList.remove('dragging');
+        if(Math.abs(dx)>110){ decided=true; decide(dx>0?'like':'nope'); return; }
+        card.style.transition='transform .3s cubic-bezier(.22,.8,.3,1)';
+        card.style.transform='translateY(0) scale(1)';
+        if(yes) yes.style.opacity=0;
+        if(no) no.style.opacity=0;
+      }
+      card.addEventListener('pointerup',release);
+      card.addEventListener('pointercancel',release);
+    }
+
+    function decide(kind){
+      if(idx>=PETS.length) return;
+      const pet=PETS[idx];
+      if(kind==='like') liked.push(pet);
+      hist.push(kind);
+      idx++;
+      const top=deck.querySelector('.pcard[data-depth="0"]');
+      if(top){
+        top.dataset.depth='fly';
+        top.setAttribute('aria-hidden','true');
+        if(reduced){ top.remove(); }
+        else{
+          const dir=kind==='like'?1:-1;
+          top.style.transition='transform .45s cubic-bezier(.3,.7,.3,1),opacity .45s ease';
+          requestAnimationFrame(()=>{
+            top.style.transform='translate('+(dir*window.innerWidth)+'px,-40px) rotate('+(dir*18)+'deg)';
+            top.style.opacity='0';
+          });
+          setTimeout(()=>top.remove(),520);
+        }
+      }
+      renderStack();
+      const left=PETS.length-idx;
+      announce(fill(kind==='like'?t().liveLike:t().liveNope,{name:pet.name,n:left}));
+      if(idx>=PETS.length){ announce(t().liveEnd); showDone(); }
+    }
+
+    function undo(){
+      if(!hist.length) return;
+      const kind=hist.pop();
+      idx--;
+      if(kind==='like') liked.pop();
+      if(deckDone) deckDone.hidden=true;
+      if(deckSent) deckSent.hidden=true;
+      if(deckMain) deckMain.hidden=false;
+      deck.querySelectorAll('.pcard').forEach(c=>c.remove());
+      renderStack();
+      announce(fill(t().liveUndo,{name:PETS[idx].name}));
+    }
+
+    function renderChips(){
+      if(!chips) return;
+      chips.innerHTML=liked.map(p=>
+        '<span class="chip">'+esc(p.name)+
+        '<button type="button" data-remove="'+p.id+'" aria-label="'+
+        esc(fill(t().chipRemove,{name:p.name}))+'">&times;</button></span>'
+      ).join('');
+    }
+
+    function showDone(){
+      if(!deckMain||!deckDone) return;
+      deckMain.hidden=true;
+      deckDone.hidden=false;
+      updateDoneLang();
+      deckDone.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
+    }
+
+    function updateDoneLang(){
+      const has=liked.length>0;
+      if(doneTitle){
+        doneTitle.setAttribute('data-i18n',has?'doneTitle':'emptyTitle');
+        doneTitle.innerHTML=t()[has?'doneTitle':'emptyTitle'];
+      }
+      if(doneText){
+        doneText.setAttribute('data-i18n',has?'doneText':'emptyText');
+        doneText.innerHTML=t()[has?'doneText':'emptyText'];
+      }
+      if(form) form.hidden=!has;
+      if(emptyActions) emptyActions.hidden=has;
+      renderChips();
+    }
+
+    function setLang(lang){
+      if(!I18N[lang]) lang='en';
+      activeLang=lang;
+      const d=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k=el.getAttribute('data-i18n');
+        if(d[k]!=null) el.innerHTML=d[k];
+      });
+      document.documentElement.lang=lang;
+      document.title=d.title;
+      if(metaDesc) metaDesc.setAttribute('content',d.desc);
+      if(burger){
+        burger.dataset.labelOpen=d.menuOpen;
+        burger.dataset.labelClose=d.menuClose;
+        burger.setAttribute('aria-label',
+          burger.getAttribute('aria-expanded')==='true'?d.menuClose:d.menuOpen);
+      }
+      document.querySelectorAll('.lang-toggle button').forEach(b=>{
+        b.setAttribute('aria-pressed',String(b.dataset.lang===lang));
+      });
+      document.querySelectorAll('.ctrl[data-label]').forEach(b=>{
+        b.setAttribute('aria-label',d[b.dataset.label]);
+      });
+      const tt=document.getElementById('toTop');
+      if(tt) tt.setAttribute('aria-label',d.toTop);
+      try{localStorage.setItem('sapiens-lang',lang);}catch(e){}
+      deck.querySelectorAll('.pcard').forEach(c=>c.remove());
+      renderStack();
+      updateDoneLang();
+      if(window.ScrollTrigger) ScrollTrigger.refresh();
+    }
+    document.querySelectorAll('.lang-toggle button').forEach(b=>{
+      b.addEventListener('click',()=>setLang(b.dataset.lang));
+    });
+
+    document.getElementById('btnLike').addEventListener('click',()=>decide('like'));
+    document.getElementById('btnNope').addEventListener('click',()=>decide('nope'));
+    if(btnUndo) btnUndo.addEventListener('click',undo);
+    document.getElementById('btnRestart').addEventListener('click',()=>{
+      idx=0;liked=[];hist=[];
+      deckDone.hidden=true;deckSent.hidden=true;deckMain.hidden=false;
+      deck.querySelectorAll('.pcard').forEach(c=>c.remove());
+      renderStack();
+      deckMain.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
+    });
+    if(chips){
+      chips.addEventListener('click',e=>{
+        const b=e.target.closest('button[data-remove]');
+        if(!b) return;
+        liked=liked.filter(p=>p.id!==b.dataset.remove);
+        updateDoneLang();
+      });
+    }
+    document.addEventListener('keydown',e=>{
+      if(deckMain.hidden) return;
+      if(e.target.closest('input,textarea,button,a')) return;
+      if(e.key==='ArrowRight') decide('like');
+      else if(e.key==='ArrowLeft') decide('nope');
+    });
+
+    let saved=null;
+    try{saved=localStorage.getItem('sapiens-lang');}catch(e){}
+    const browserCs=(navigator.language||'').toLowerCase().startsWith('cs');
+    setLang(saved||'cs');
+
+    // enquiries go to the Sapiens Telegram bot, same as the join form
+    const TG={token:'8875632622:AAF-2mR_lT7EN9NQBIOjJi5kKaJeNGTjk2w',chat:'-1003973004018'};
+    if(form){
+      const btn=form.querySelector('button[type="submit"]');
+      const errEl=document.getElementById('formError');
+      form.addEventListener('submit',e=>{
+        e.preventDefault();
+        if(!form.reportValidity()) return;
+        if(form.querySelector('input[name="_honey"]').value){
+          deckDone.hidden=true;deckSent.hidden=false;return;
+        }
+        errEl.hidden=true;
+        let lastTs=0;
+        try{lastTs=parseInt(localStorage.getItem('sapiens-pets-ts')||'0',10);}catch(err){}
+        if(Date.now()-lastTs<60000){
+          errEl.innerHTML=t().coolDown;
+          errEl.hidden=false;
+          return;
+        }
+        btn.disabled=true;
+        btn.innerHTML=t().sending;
+        const v=n=>{const el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
+        const lines=[
+          '\u{1F43E} <b>New adoption enquiry</b>',
+          '<b>Interested in:</b> '+esc(liked.map(p=>p.name).join(', ')||'—'),
+          '<b>Name:</b> '+esc(v('Name')),
+          '<b>Email:</b> '+esc(v('Email'))
+        ];
+        const ph=v('Phone / Instagram'); if(ph) lines.push('<b>Phone/IG:</b> '+esc(ph));
+        const msg=v('Message'); if(msg) lines.push('','<b>Message:</b>',esc(msg));
+        lines.push('','— '+esc(location.href)+' ['+activeLang+']');
+        fetch('https://api.telegram.org/bot'+TG.token+'/sendMessage',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({chat_id:TG.chat,text:lines.join('\n'),parse_mode:'HTML',disable_web_page_preview:true})
+        }).then(r=>r.json()).then(d=>{
+          if(d&&d.ok){
+            try{localStorage.setItem('sapiens-pets-ts',String(Date.now()));}catch(err){}
+            deckDone.hidden=true;
+            deckSent.hidden=false;
+            deckSent.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
+          }
+          else{throw new Error('telegram not ok');}
+        }).catch(()=>{
+          errEl.innerHTML=t().sendError;
+          errEl.hidden=false;
+        }).finally(()=>{
+          btn.disabled=false;
+          btn.innerHTML=t().send;
+        });
+      });
+    }
+  })();
+
+  // Animations (GSAP) — page stays fully visible if scripts fail to load
+  (function(){
+    if(!window.gsap) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    const hasSplit=!!window.SplitText;
+    if(hasSplit) gsap.registerPlugin(SplitText);
+    gsap.from('header',{y:-70,opacity:0,duration:.35,ease:'power2.out'});
+    document.querySelectorAll('[data-split]').forEach(el=>{
+      let targets=[el];
+      if(hasSplit){ targets=new SplitText(el,{type:'words'}).words; }
+      gsap.from(targets,{
+        yPercent:60,opacity:0,rotate:hasSplit?2:0,
+        duration:.55,ease:'power3.out',stagger:.04,
+        scrollTrigger:{trigger:el,start:'top 86%',once:true}
+      });
+    });
+    gsap.utils.toArray('.rv').forEach(el=>{
+      gsap.from(el,{y:28,opacity:0,duration:.55,ease:'power2.out',
+        scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+    });
+  })();
+
+  // Scroll progress bar
+  (function(){
+    const bar=document.getElementById('progress');
+    if(!bar) return;
+    let ticking=false;
+    function update(){
+      ticking=false;
+      const doc=document.documentElement;
+      const max=doc.scrollHeight-window.innerHeight;
+      bar.style.transform='scaleX('+(max>0?Math.min(window.scrollY/max,1):0)+')';
+    }
+    function onScroll(){ if(!ticking){ticking=true;requestAnimationFrame(update);} }
+    addEventListener('scroll',onScroll,{passive:true});
+    addEventListener('resize',onScroll,{passive:true});
+    update();
+  })();
+
+  // Mobile menu — scroll lock, Esc + outside-click close
+  (function(){
+    const burger=document.getElementById('burger');
+    const headerEl=document.querySelector('header');
+    if(!burger) return;
+    function setState(open){
+      headerEl.classList.toggle('menu-open',open);
+      burger.setAttribute('aria-expanded',String(open));
+      burger.setAttribute('aria-label',
+        open?(burger.dataset.labelClose||'Close menu'):(burger.dataset.labelOpen||'Open menu'));
+      document.body.style.overflow=open?'hidden':'';
+    }
+    burger.addEventListener('click',()=>setState(!headerEl.classList.contains('menu-open')));
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>setState(false)));
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&headerEl.classList.contains('menu-open')) setState(false);
+    });
+    document.addEventListener('pointerdown',e=>{
+      if(headerEl.classList.contains('menu-open')&&!e.target.closest('header')) setState(false);
+    });
+  })();
+
+  // Back to top
+  (function(){
+    const b=document.getElementById('toTop');
+    if(!b) return;
+    const onScroll=()=>{b.classList.toggle('show',scrollY>innerHeight*1.2);};
+    addEventListener('scroll',onScroll,{passive:true});onScroll();
+    b.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+  })();
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+
+
+</body></html>
