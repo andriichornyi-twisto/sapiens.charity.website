@@ -123,6 +123,7 @@
   }
   .nav-links{display:flex;align-items:center;gap:28px;}
   .nav-links a{
+    white-space:nowrap;
     font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
     color:var(--wine);text-decoration:none;opacity:.75;transition:opacity .2s;
   }
@@ -162,10 +163,6 @@
     transition:opacity .2s,background .2s,color .2s;
   }
   .lang-toggle button[aria-pressed="true"]{background:var(--wine);color:var(--cream);opacity:1;}
-  @media (max-width:1180px) and (min-width:901px){
-    .nav-links{gap:16px;}
-    .nav-right{gap:16px;}
-  }
   @media (max-width:900px){
     .burger{display:block;}
     .nav-right{gap:14px;}
@@ -226,8 +223,11 @@
   .pcard{
     position:absolute;inset:0;
     display:flex;flex-direction:column;
-    background:var(--white);border-radius:26px;overflow:hidden;
-    box-shadow:0 18px 44px rgba(85,32,46,.16);
+    background:var(--white);border-radius:28px;overflow:hidden;
+    box-shadow:
+      0 1px 2px rgba(85,32,46,.05),
+      0 10px 20px rgba(85,32,46,.09),
+      0 30px 60px rgba(85,32,46,.14);
     transform-origin:50% 100%;
     user-select:none;-webkit-user-select:none;
   }
@@ -238,29 +238,33 @@
   .pcard.tone-sand{--band:#F1E2CC;}
   .pcard .art{
     position:relative;flex:1 1 auto;min-height:44%;
-    background:var(--band);display:grid;place-items:center;
+    background:
+      radial-gradient(115% 90% at 50% 14%, rgba(255,255,255,.32), rgba(255,255,255,0) 64%),
+      var(--band);
+    display:grid;place-items:center;
   }
   /* fills the band at any card size — the viewBox keeps it square */
   .pcard .art svg{width:100%;height:100%;padding:12px;color:var(--wine);}
   .pcard .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .pcard .meta{
-    padding:18px 20px 20px;background:var(--white);
+    padding:20px 22px 22px;background:var(--white);
   }
   .pcard h3{
-    font-size:1.6rem;font-weight:800;letter-spacing:-.02em;line-height:1;
+    font-size:1.75rem;font-weight:800;letter-spacing:-.025em;line-height:1;
   }
   .pcard .facts{
-    margin-top:7px;font-size:.82rem;font-weight:700;letter-spacing:.06em;
-    text-transform:uppercase;opacity:.6;
+    margin-top:7px;font-size:.78rem;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;opacity:.55;
   }
   .pcard .bio{
-    margin-top:11px;font-size:.92rem;font-weight:600;line-height:1.5;opacity:.85;
+    margin-top:12px;font-size:.95rem;font-weight:600;line-height:1.5;opacity:.82;
     display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;
   }
   .ptags{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px;}
   .ptags span{
     font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    background:rgba(85,32,46,.08);border-radius:999px;padding:5px 10px;
+    background:rgba(85,32,46,.06);border:1px solid rgba(85,32,46,.07);
+    border-radius:999px;padding:5px 11px;
   }
   .stamp{
     position:absolute;top:22px;z-index:3;
@@ -363,9 +367,33 @@
       justify-content:center;align-items:center;gap:0 20px;
     }
     .deck-head{grid-column:1 / -1;margin-bottom:6px;}
-    .deck{width:min(300px,44vw);height:min(300px,60vh);margin:0;min-height:0;}
+    .deck{width:min(320px,46vw);height:min(330px,66vh);margin:0;min-height:0;}
     .deck-controls{flex-direction:column;margin:0;gap:12px;}
     .deck-hint{display:none;}
+  }
+
+  /* ---------- desktop: intro left, big card right ---------- */
+  @media (min-width:1000px){
+    .adopt{
+      display:grid;grid-template-columns:minmax(0,1fr) auto;
+      align-items:center;gap:clamp(40px,6vw,90px);
+      max-width:1180px;margin:0 auto;min-height:100svh;
+      padding:clamp(88px,11vh,124px) clamp(20px,4vw,48px) clamp(36px,6vh,64px);
+    }
+    .adopt:not(.is-done) .page-head .wrap,
+    .adopt:not(.is-done) .deck-section > .wrap{padding:0;max-width:none;}
+    .page-head{padding:0;text-align:left;}
+    .page-head h1{font-size:clamp(2.6rem,4.6vw,4.1rem);}
+    .page-head p{margin:20px 0 0;max-width:40ch;font-size:1.05rem;}
+    .deck-section{padding:0;}
+    .deck{width:min(420px,40vw);height:min(600px,70vh);}
+    .deck-hint{margin-left:auto;margin-right:auto;}
+    /* the results panel wants the full width back */
+    .adopt.is-done{display:block;min-height:0;padding-bottom:clamp(70px,9vw,110px);}
+    .adopt.is-done .page-head{
+      text-align:center;padding:clamp(88px,11vh,124px) 0 clamp(10px,1.5vw,16px);
+    }
+    .adopt.is-done .page-head p{margin-left:auto;margin-right:auto;}
   }
 
   /* ---------- results + enquiry ---------- */
@@ -426,6 +454,13 @@
   .btn.ghost:hover{background:var(--wine);color:var(--cream);}
   .btn[disabled]{opacity:.6;cursor:default;transform:none !important;}
   .btn-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+  .restart-line{margin-top:24px;text-align:center;}
+  .linkbtn{
+    background:none;border:0;cursor:pointer;font-family:var(--font);
+    font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--wine);opacity:.55;text-decoration:underline;text-underline-offset:4px;
+  }
+  .linkbtn:hover{opacity:1;}
   .privacy{font-size:.85rem;font-weight:600;opacity:.6;line-height:1.5;max-width:52ch;}
   .form-error{
     font-size:.95rem;font-weight:700;color:#B3261E;line-height:1.5;max-width:52ch;
@@ -519,8 +554,6 @@
     <a class="wordmark" href="/">Sapiens</a>
     <div class="nav-right">
       <nav class="nav-links" aria-label="Main">
-        <a href="/#who" data-i18n="navWho">Kdo jsme</a>
-        <a href="/#why" data-i18n="navWhy">Proč to děláme</a>
         <a href="/events/" data-i18n="navEvents">Akce</a>
         <a href="/pets/" class="active" aria-current="page" data-i18n="navPets">Adopce</a>
         <a href="/join/" data-i18n="navJoin">Přidejte se</a>
@@ -623,8 +656,12 @@
         </div>
       </form>
 
+      <p class="restart-line" id="restartLine" hidden="">
+        <button class="linkbtn js-restart" type="button" data-i18n="restart">Začít znovu</button>
+      </p>
+
       <div class="btn-row" id="emptyActions">
-        <button class="btn ghost" type="button" id="btnRestart" data-i18n="restart">Začít znovu</button>
+        <button class="btn ghost js-restart" type="button" data-i18n="restart">Začít znovu</button>
         <a class="btn" href="/join/" data-i18n="doneJoin">Přidat se ke komunitě</a>
       </div>
     </div>
@@ -652,7 +689,7 @@
 </div>
 
 <!-- ================= FOOTER ================= -->
-<div class="wave flip" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--wine)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"></path></svg></div>
+<div class="wave flip" style="background:var(--wine)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"></path></svg></div>
 
 <footer>
   <div class="wrap">
@@ -955,6 +992,7 @@
       if(deckDone) deckDone.hidden=true;
       if(deckSent) deckSent.hidden=true;
       if(deckMain) deckMain.hidden=false;
+      if(stage) stage.classList.remove('is-done');
       deck.querySelectorAll('.pcard').forEach(c=>c.remove());
       renderStack();
       announce(fill(t().liveUndo,{name:PETS[idx].name}));
@@ -969,10 +1007,12 @@
       ).join('');
     }
 
+    const stage=document.querySelector('.adopt');
     function showDone(){
       if(!deckMain||!deckDone) return;
       deckMain.hidden=true;
       deckDone.hidden=false;
+      if(stage) stage.classList.add('is-done');
       updateDoneLang();
       deckDone.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
     }
@@ -989,6 +1029,8 @@
       }
       if(form) form.hidden=!has;
       if(emptyActions) emptyActions.hidden=has;
+      const rl=document.getElementById('restartLine');
+      if(rl) rl.hidden=!has;
       renderChips();
     }
 
@@ -1030,13 +1072,15 @@
     document.getElementById('btnLike').addEventListener('click',()=>decide('like'));
     document.getElementById('btnNope').addEventListener('click',()=>decide('nope'));
     if(btnUndo) btnUndo.addEventListener('click',undo);
-    document.getElementById('btnRestart').addEventListener('click',()=>{
+    const restart=()=>{
       idx=0;liked=[];hist=[];
       deckDone.hidden=true;deckSent.hidden=true;deckMain.hidden=false;
+      if(stage) stage.classList.remove('is-done');
       deck.querySelectorAll('.pcard').forEach(c=>c.remove());
       renderStack();
       deckMain.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
-    });
+    };
+    document.querySelectorAll('.js-restart').forEach(b=>b.addEventListener('click',restart));
     if(chips){
       chips.addEventListener('click',e=>{
         const b=e.target.closest('button[data-remove]');

@@ -229,11 +229,8 @@
     color:var(--wine);text-decoration:none;
   }
   .nav-links{display:flex;align-items:center;gap:28px;}
-  @media (max-width:1180px) and (min-width:901px){
-    .nav-links{gap:16px;}
-    .nav-right{gap:16px;}
-  }
   .nav-links a{
+    white-space:nowrap;
     font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
     color:var(--wine);text-decoration:none;opacity:.75;transition:opacity .2s;
   }
@@ -346,8 +343,7 @@
   /* ---------- color band sections ---------- */
   section{position:relative;}
   .band{
-    padding:clamp(64px,8vw,110px) 0;
-    min-height:100svh;
+    padding:clamp(68px,7.5vw,118px) 0;
     display:flex;flex-direction:column;justify-content:center;
   }
   .band-flush{justify-content:flex-end;}
@@ -498,6 +494,23 @@
   .btn-ghost{border:2px solid var(--wine);color:var(--wine);}
   .btn-ghost:hover{background:rgba(85,32,46,.06);}
 
+  .foot-links{margin-top:28px;display:flex;gap:22px;flex-wrap:wrap;}
+  .foot-links a{
+    font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--cream);text-decoration:none;opacity:.75;
+  }
+  .foot-links a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px;}
+  .to-top{
+    position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:70;
+    width:46px;height:46px;border-radius:999px;border:0;cursor:pointer;
+    background:var(--wine);color:var(--cream);font-size:18px;font-weight:800;
+    font-family:var(--font);display:grid;place-items:center;
+    opacity:0;transform:translateY(12px);pointer-events:none;
+    transition:opacity .25s ease,transform .25s ease,background .2s ease;
+  }
+  .to-top.show{opacity:1;transform:none;pointer-events:auto;}
+  .to-top:hover{background:var(--wine-deep);}
+
   /* footer */
   footer{
     background:var(--wine);color:var(--cream);
@@ -552,9 +565,6 @@
     <a class="wordmark" href="#top">Sapiens</a>
     <div class="nav-right">
       <nav class="nav-links" aria-label="Main">
-        <a href="#who" data-i18n="navWho">Who we are</a>
-        <a href="#why" data-i18n="navWhy">Why we do this</a>
-        <a href="#share" data-i18n="navShare">Why we share it</a>
         <a href="events/" data-i18n="navEvents">Events</a>
         <a href="pets/" data-i18n="navPets">Adopt</a>
         <a href="join/" data-i18n="navJoin">Join us</a>
@@ -718,10 +728,10 @@
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
-<div class="wave flip" style="background:var(--peri)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--ochre)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave flip" style="background:var(--peri-light)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--ochre)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
 
 <!-- ================= HOW TO HELP ================= -->
-<section class="band band-peri help" id="help">
+<section class="band band-peri-light help" id="help">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow" data-i18n="helpEyebrow">Get involved</span>
@@ -747,7 +757,7 @@
   </div>
 </section>
 
-<div class="wave" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--peri)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--peri-light)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
 
 <!-- ================= JOIN ================= -->
 <section class="band band-cream join" id="join">

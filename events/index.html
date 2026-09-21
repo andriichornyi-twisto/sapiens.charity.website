@@ -117,11 +117,8 @@
     color:var(--wine);text-decoration:none;
   }
   .nav-links{display:flex;align-items:center;gap:28px;}
-  @media (max-width:1180px) and (min-width:901px){
-    .nav-links{gap:16px;}
-    .nav-right{gap:16px;}
-  }
   .nav-links a{
+    white-space:nowrap;
     font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
     color:var(--wine);text-decoration:none;opacity:.75;transition:opacity .2s;
   }
@@ -323,8 +320,6 @@
     <a class="wordmark" href="/">Sapiens</a>
     <div class="nav-right">
       <nav class="nav-links" aria-label="Main">
-        <a href="/#who" data-i18n="navWho">Who we are</a>
-        <a href="/#why" data-i18n="navWhy">Why we do this</a>
         <a href="/events/" class="active" aria-current="page" data-i18n="navEvents">Events</a>
         <a href="/pets/" data-i18n="navPets">Adopt</a>
         <a href="/join/" data-i18n="navJoin">Join us</a>
@@ -424,7 +419,7 @@
 </section>
 
 <!-- ================= CTA ================= -->
-<div class="wave" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--ochre)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave" style="background:var(--ochre)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
 
 <section class="cta-band">
   <svg class="doodle" style="top:12%;right:9%;width:24px;color:var(--white);--r:14deg;animation-delay:.6s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/></svg>
@@ -444,7 +439,7 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
-<div class="wave flip" style="background:var(--ochre)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--wine)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave flip" style="background:var(--wine)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--ochre)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
 
 <footer>
   <div class="wrap">
