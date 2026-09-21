@@ -220,7 +220,7 @@
   }
   .deck{
     position:relative;margin:0 auto;
-    width:min(360px,86vw);height:clamp(320px,48vh,440px);
+    width:min(400px,86vw);height:clamp(320px,50vh,460px);
     touch-action:pan-y;
   }
   .pcard{
@@ -237,10 +237,11 @@
   .pcard.tone-peri{--band:var(--peri);}
   .pcard.tone-sand{--band:#F1E2CC;}
   .pcard .art{
-    position:relative;flex:1;min-height:0;
+    position:relative;flex:1 1 auto;min-height:44%;
     background:var(--band);display:grid;place-items:center;
   }
-  .pcard .art svg{width:min(62%,200px);height:auto;aspect-ratio:1;color:var(--wine);}
+  /* fills the band at any card size — the viewBox keeps it square */
+  .pcard .art svg{width:100%;height:100%;padding:12px;color:var(--wine);}
   .pcard .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .pcard .meta{
     padding:18px 20px 20px;background:var(--white);
@@ -254,6 +255,7 @@
   }
   .pcard .bio{
     margin-top:11px;font-size:.92rem;font-weight:600;line-height:1.5;opacity:.85;
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;
   }
   .ptags{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px;}
   .ptags span{
@@ -292,7 +294,83 @@
     font-size:.85rem;font-weight:600;line-height:1.5;opacity:.6;
   }
 
+  /* ---------- phones: fit head + deck + buttons on one screen ---------- */
+  @media (max-width:900px){
+    .page-head{padding:calc(64px + clamp(10px,3vh,26px)) 0 clamp(8px,1.4vh,14px);}
+    .page-head .eyebrow{margin-bottom:10px;}
+    .page-head h1{font-size:clamp(1.75rem,8.5vw,2.4rem);}
+    .page-head p{margin-top:10px;max-width:none;font-size:clamp(.84rem,3.6vw,.95rem);line-height:1.45;}
+    .deck-section{padding:0 0 calc(16px + env(safe-area-inset-bottom));}
+    .deck{width:min(340px,88vw);}
+    .pcard{border-radius:22px;}
+    .pcard .meta{padding:14px 16px 16px;}
+    .pcard h3{font-size:1.35rem;}
+    .pcard .facts{margin-top:5px;font-size:.74rem;}
+    .pcard .bio{
+      margin-top:8px;font-size:.86rem;line-height:1.45;
+      display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;
+    }
+    /* one row of tags — the rest would push the picture off the card.
+       The fade keeps a clipped tag from looking like a bug. */
+    .ptags{
+      margin-top:10px;flex-wrap:nowrap;overflow:hidden;
+      -webkit-mask-image:linear-gradient(to right,#000 80%,transparent 99%);
+      mask-image:linear-gradient(to right,#000 80%,transparent 99%);
+    }
+    .ptags span{flex:0 0 auto;font-size:.65rem;padding:4px 9px;}
+    .stamp{top:16px;font-size:1.25rem;padding:4px 10px;border-width:3px;}
+    .ctrl{width:56px;height:56px;}
+    .ctrl svg{width:23px;height:23px;}
+    .ctrl.undo{width:44px;height:44px;}
+    .ctrl.undo svg{width:17px;height:17px;}
+    .deck-hint{margin-top:10px;font-size:.78rem;}
+    .to-top{bottom:calc(18px + env(safe-area-inset-bottom));}
+  }
+  /* arrow keys are desktop-only advice */
+  @media (pointer:coarse){
+    .kbd-hint{display:none;}
+  }
+  /* tall enough to hold everything: let the deck take exactly what is left */
+  @media (max-width:900px) and (min-height:560px){
+    .adopt{min-height:100svh;display:flex;flex-direction:column;}
+    .deck-section{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
+    .deck-section > .wrap{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
+    .deck-main{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
+    .deck{flex:1 1 auto;height:auto;min-height:240px;}
+    .pcard .art{min-height:40%;}
+  }
+  /* short screens: two lines of bio leave room for the picture */
+  @media (max-width:900px) and (max-height:720px){
+    .pcard .bio{-webkit-line-clamp:2;}
+  }
+
+  /* very short screens: shrink the text panel so the picture survives */
+  @media (max-width:900px) and (max-height:640px){
+    .pcard .meta{padding:11px 14px 13px;}
+    .pcard h3{font-size:1.2rem;}
+    .pcard .facts{margin-top:4px;font-size:.7rem;}
+    .pcard .bio{margin-top:7px;font-size:.82rem;}
+    .ptags{margin-top:8px;}
+  }
+  /* landscape: card and buttons side by side, head trimmed to the title */
+  @media (max-width:900px) and (max-height:540px) and (orientation:landscape){
+    .adopt{min-height:0;}
+    .page-head{padding:72px 0 4px;}
+    .page-head .eyebrow,.page-head p{display:none;}
+    .page-head h1{font-size:1.4rem;}
+    .deck-main{
+      display:grid;grid-template-columns:auto auto;
+      justify-content:center;align-items:center;gap:0 20px;
+    }
+    .deck-head{grid-column:1 / -1;margin-bottom:6px;}
+    .deck{width:min(300px,44vw);height:min(300px,60vh);margin:0;min-height:0;}
+    .deck-controls{flex-direction:column;margin:0;gap:12px;}
+    .deck-hint{display:none;}
+  }
+
   /* ---------- results + enquiry ---------- */
+  /* clear the fixed header when the panels get scrolled into view */
+  .done-wrap,.deck-main{scroll-margin-top:86px;}
   .done-wrap{max-width:660px;margin:0 auto;}
   .done-head{text-align:center;margin-bottom:clamp(26px,4vw,36px);}
   .done-head svg{width:88px;height:auto;margin-bottom:20px;}
@@ -463,6 +541,7 @@
 </header>
 
 <!-- ================= PAGE HEAD ================= -->
+<div class="adopt">
 <section class="page-head" id="main">
   <svg class="doodle" style="top:24%;left:9%;width:22px;color:var(--ochre);--r:-16deg;animation-delay:.9s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"></path></svg>
   <svg class="doodle" style="top:20%;right:10%;width:38px;color:var(--peri);--r:12deg;animation-delay:2.1s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"></path></svg>
@@ -496,7 +575,8 @@
         </button>
       </div>
 
-      <p class="deck-hint" data-i18n="deckHint">Přetáhněte kartu doleva nebo doprava, nebo použijte tlačítka. Fungují i šipky.</p>
+      <p class="deck-hint"><span data-i18n="deckHint">Přetáhněte kartu doleva nebo doprava, nebo použijte tlačítka.</span>
+      <span class="kbd-hint" data-i18n="deckHintKeys">Fungují i šipky.</span></p>
       <p class="sr-only" id="deckLive" aria-live="polite"></p>
     </div>
 
@@ -569,6 +649,7 @@
 
   </div>
 </section>
+</div>
 
 <!-- ================= FOOTER ================= -->
 <div class="wave flip" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--wine)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"></path></svg></div>
@@ -620,7 +701,8 @@
         navWho:'Who we are',navWhy:'Why we do this',navEvents:'Events',navPets:'Adopt',navJoin:'Join us',skipLink:'Skip to content',
         petsTitle:'Find <span class="hl">your friend</span>',
         petsIntro:'These animals are waiting for someone in Prague and around. Swipe through them &mdash; keep the ones who stay with you, and we&rsquo;ll put you in touch with their carers.',
-        deckHint:'Drag a card left or right, or use the buttons. The arrow keys work too.',
+        deckHint:'Drag a card left or right, or use the buttons.',
+        deckHintKeys:'The arrow keys work too.',
         counter:'{i} of {n}',
         stampYes:'Yes!',stampNo:'Not now',
         ctrlUndo:'Undo the last one',ctrlNope:'Not this one',ctrlLike:'Keep this one',
@@ -654,7 +736,8 @@
         navWho:'Kdo jsme',navWhy:'Proč to děláme',navEvents:'Akce',navPets:'Adopce',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
         petsTitle:'Najděte si <span class="hl">kamaráda</span>',
         petsIntro:'Tahle zvířata čekají na někoho v Praze a okolí. Projděte si je &mdash; nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme s lidmi, kteří se o ně starají.',
-        deckHint:'Přetáhněte kartu doleva nebo doprava, nebo použijte tlačítka. Fungují i šipky.',
+        deckHint:'Přetáhněte kartu doleva nebo doprava, nebo použijte tlačítka.',
+        deckHintKeys:'Fungují i šipky.',
         counter:'{i} z {n}',
         stampYes:'Ano!',stampNo:'Teď ne',
         ctrlUndo:'Vrátit poslední',ctrlNope:'Tenhle ne',ctrlLike:'Tenhle se mi líbí',
