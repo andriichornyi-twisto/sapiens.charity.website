@@ -58,6 +58,9 @@
     --wine-deep:#471A26;
     --white:#FFFFFF;
     --font:'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  /* one even wave, tiled at a fixed 220px period so it reads the same at any
+     width. --top continues the section above, --bottom the one below. */
+  --wave-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='48' viewBox='0 0 220 48' preserveAspectRatio='none'><path d='M0,24 C27.5,9 82.5,9 110,24 C137.5,39 192.5,39 220,24 L220,0 L0,0 Z' fill='black'/></svg>");
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--cream);}
@@ -127,9 +130,18 @@
   .skip-link:focus{left:0;}
 
   /* ---------- visual character: waves, doodles, grain, snapshot ---------- */
-  .wave{height:clamp(26px,4.5vw,52px);line-height:0;}
-  .wave svg{display:block;width:100%;height:100%;}
-  .wave.flip svg{transform:scaleX(-1);}
+  .wave{
+    height:clamp(24px,3vw,42px);
+    background:var(--bottom);
+    position:relative;overflow:hidden;
+  }
+  .wave::before{
+    content:'';position:absolute;inset:0;background:var(--top);
+    -webkit-mask:var(--wave-mask) repeat-x 0 0/220px 100%;
+    mask:var(--wave-mask) repeat-x 0 0/220px 100%;
+    -webkit-mask-mode:alpha;mask-mode:alpha;
+  }
+  .wave.flip::before{transform:scaleX(-1);}
   .doodle{position:absolute;pointer-events:none;opacity:.5;animation:floaty 7s ease-in-out infinite;}
   @keyframes floaty{
     0%,100%{transform:rotate(var(--r,0deg)) translateY(0);}
@@ -421,7 +433,7 @@
   .why-grid h3{
     font-size:clamp(2.2rem,4.6vw,3.8rem);
     font-weight:800;letter-spacing:-.025em;line-height:1;text-transform:none;
-    color:var(--white);
+    color:var(--wine);
   }
   .why-grid h3 .hl{color:var(--royal);}
   @media (max-width:860px){
@@ -432,7 +444,7 @@
   .share-head{
     font-size:clamp(2.4rem,6vw,4.6rem);
     font-weight:800;letter-spacing:-.025em;line-height:1;
-    color:var(--white);
+    color:var(--wine);
     margin-bottom:clamp(36px,5vw,64px);
   }
   .share-grid{
@@ -441,9 +453,10 @@
   .maybe{
     font-size:clamp(1.15rem,1.8vw,1.5rem);
     font-weight:800;line-height:1.45;letter-spacing:-.01em;
+    color:var(--royal);
   }
   .maybe span{display:block;}
-  .maybe .soft{color:var(--white);}
+  .maybe .soft{color:var(--wine);opacity:.8;}
   .share-hearts{width:90px;margin-top:32px;}
   @media (max-width:860px){
     .share-grid{grid-template-columns:1fr;}
@@ -607,7 +620,7 @@
   </figure>
 </div>
 
-<div class="wave" style="background:var(--ochre)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave" style="--top:var(--cream);--bottom:var(--ochre)" aria-hidden="true"></div>
 
 <!-- ================= WHO WE ARE ================= -->
 <section class="band band-ochre who" id="who">
@@ -637,7 +650,7 @@
   <img class="full-img" src="img/grandma.jpg" alt="An elderly woman with a bouquet of carnations laughing together with a young volunteer" width="1350" height="730" loading="lazy" decoding="async">
 </section>
 
-<div class="wave flip" style="background:var(--wine)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--ochre)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave flip" style="--top:var(--ochre);--bottom:var(--wine)" aria-hidden="true"></div>
 
 <!-- ================= QUOTE 1 ================= -->
 <section class="band band-wine quote">
@@ -652,16 +665,16 @@
   </div>
 </section>
 
-<div class="wave" style="background:var(--peri)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--wine)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave" style="--top:var(--wine);--bottom:var(--cream)" aria-hidden="true"></div>
 
 <!-- ================= WHY WE DO THIS ================= -->
-<section class="band band-peri" id="why">
+<section class="band band-cream" id="why">
   <svg class="doodle" style="top:9%;right:8%;width:26px;color:var(--royal);--r:12deg;animation-delay:.8s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/></svg>
   <div class="wrap">
     <div class="why-head">
       <div class="sun-wrap">
         <svg viewBox="0 0 200 200" aria-hidden="true">
-          <path id="sunPath" class="sun-spin sun-shape" fill="#FFFFFF" d=""/>
+          <path id="sunPath" class="sun-spin sun-shape" fill="#C9D6F0" d=""/>
         </svg>
         <h2 class="sun-title" data-i18n="whyTitle">Why we<br>do this</h2>
       </div>
@@ -683,7 +696,6 @@
   </div>
 </section>
 
-<div class="wave flip" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--peri)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
 
 <!-- ================= QUOTE 2 ================= -->
 <section class="band band-cream quote">
@@ -696,10 +708,9 @@
   </div>
 </section>
 
-<div class="wave" style="background:var(--peri-light)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
 
 <!-- ================= WHY WE SHARE IT ================= -->
-<section class="band band-peri-light band-flush" id="share">
+<section class="band band-cream band-flush" id="share">
   <svg class="doodle" style="top:10%;right:9%;width:42px;color:var(--royal);--r:14deg;animation-delay:.5s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
   <div class="wrap">
     <h2 class="share-head rv" data-split data-i18n="shareTitle">Why we <span style="color:var(--royal)">share it</span></h2>
@@ -728,10 +739,10 @@
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
-<div class="wave flip" style="background:var(--peri-light)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--ochre)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave flip" style="--top:var(--ochre);--bottom:var(--peri)" aria-hidden="true"></div>
 
 <!-- ================= HOW TO HELP ================= -->
-<section class="band band-peri-light help" id="help">
+<section class="band band-peri help" id="help">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow" data-i18n="helpEyebrow">Get involved</span>
@@ -757,7 +768,7 @@
   </div>
 </section>
 
-<div class="wave" style="background:var(--cream)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--peri-light)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave" style="--top:var(--peri);--bottom:var(--cream)" aria-hidden="true"></div>
 
 <!-- ================= JOIN ================= -->
 <section class="band band-cream join" id="join">
@@ -777,7 +788,7 @@
   </div>
 </section>
 
-<div class="wave flip" style="background:var(--wine)" aria-hidden="true"><svg viewBox="0 0 1440 48" preserveAspectRatio="none"><path fill="var(--cream)" d="M0,0 L1440,0 L1440,18 C1240,42 1060,8 860,22 C660,36 460,10 260,26 C160,34 70,22 0,30 Z"/></svg></div>
+<div class="wave flip" style="--top:var(--cream);--bottom:var(--wine)" aria-hidden="true"></div>
 
 <!-- ================= FOOTER ================= -->
 <footer>
