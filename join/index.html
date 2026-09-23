@@ -45,8 +45,9 @@
     --wine-deep:#471A26;
     --white:#FFFFFF;
     --font:'Archivo', 'Helvetica Neue', Arial, sans-serif;
-  /* one even wave, tiled at a fixed 220px period so it reads the same at any
-     width. --top continues the section above, --bottom the one below. */
+  /* one long, gentle wave. The period scales with the viewport (clamped) so it
+     stays smooth on a phone and on a wide screen.
+     --top continues the section above, --bottom the one below. */
   --wave-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='48' viewBox='0 0 220 48' preserveAspectRatio='none'><path d='M0,24 C27.5,9 82.5,9 110,24 C137.5,39 192.5,39 220,24 L220,0 L0,0 Z' fill='black'/></svg>");
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -87,14 +88,14 @@
   }
 
   .wave{
-    height:clamp(24px,3vw,42px);
+    height:clamp(26px,3.2vw,46px);
     background:var(--bottom);
     position:relative;overflow:hidden;
   }
   .wave::before{
     content:'';position:absolute;inset:0;background:var(--top);
-    -webkit-mask:var(--wave-mask) repeat-x 0 0/220px 100%;
-    mask:var(--wave-mask) repeat-x 0 0/220px 100%;
+    -webkit-mask:var(--wave-mask) repeat-x 0 0/clamp(340px,58%,820px) 100%;
+    mask:var(--wave-mask) repeat-x 0 0/clamp(340px,58%,820px) 100%;
     -webkit-mask-mode:alpha;mask-mode:alpha;
   }
   .wave.flip::before{transform:scaleX(-1);}
