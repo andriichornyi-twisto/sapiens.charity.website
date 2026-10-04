@@ -463,6 +463,57 @@
     .share-grid{grid-template-columns:1fr;}
   }
 
+  /* numbers */
+  .stats-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,48px);
+    text-align:center;
+  }
+  .stat{display:flex;flex-direction:column;gap:8px;}
+  .stat-num{
+    font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;
+    letter-spacing:-.04em;line-height:.9;color:var(--ochre);
+  }
+  .stat-label{
+    font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;opacity:.7;
+  }
+  @media (max-width:640px){
+    .stats-grid{grid-template-columns:1fr;gap:28px;}
+  }
+
+  /* adoption teaser */
+  .teaser-grid{
+    display:grid;grid-template-columns:1fr auto;align-items:center;
+    gap:clamp(32px,6vw,80px);
+  }
+  .teaser-copy h2{
+    font-size:clamp(2.4rem,5.4vw,4.4rem);
+    font-weight:800;letter-spacing:-.03em;line-height:.95;text-transform:uppercase;
+  }
+  .teaser-copy h2 .hl{color:var(--ochre);}
+  .teaser-copy .eyebrow{display:block;margin-bottom:14px;opacity:.75;}
+  .teaser-copy p{
+    margin:20px 0 30px;max-width:46ch;
+    font-size:clamp(1rem,1.3vw,1.12rem);font-weight:600;line-height:1.55;opacity:.85;
+  }
+  .teaser-cards{display:flex;align-items:center;}
+  .tcard{
+    width:clamp(104px,12vw,150px);aspect-ratio:3/4;
+    border-radius:20px;display:grid;place-items:center;
+    box-shadow:0 1px 2px rgba(85,32,46,.05),0 14px 30px rgba(85,32,46,.14);
+  }
+  .tcard svg{width:76%;height:auto;color:var(--wine);}
+  .tcard.tone-ochre{background:var(--ochre);}
+  .tcard.tone-peri{background:var(--peri);}
+  .tcard.tone-sand{background:#F1E2CC;}
+  /* fanned out, the way the deck looks */
+  .tcard:nth-child(1){transform:rotate(-9deg);margin-right:-26px;z-index:1;}
+  .tcard:nth-child(2){transform:rotate(2deg);margin-right:-26px;z-index:2;}
+  .tcard:nth-child(3){transform:rotate(11deg);z-index:3;}
+  @media (max-width:860px){
+    .teaser-grid{grid-template-columns:1fr;}
+    .teaser-cards{justify-content:center;margin-top:8px;}
+  }
+
   /* how to help */
   .help .sec-head{text-align:center;}
   .help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);}
@@ -574,6 +625,44 @@
 <a class="skip-link" href="#top" data-i18n="skipLink">Skip to content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="pet-dog" viewBox="0 0 120 120">
+    <ellipse cx="28" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(-12 28 52)"/>
+    <ellipse cx="92" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(12 92 52)"/>
+    <rect x="26" y="26" width="68" height="70" rx="32" fill="currentColor"/>
+    <circle cx="47" cy="56" r="5" fill="#FFFAF4"/>
+    <circle cx="73" cy="56" r="5" fill="#FFFAF4"/>
+    <ellipse cx="60" cy="79" rx="19" ry="14" fill="#FFFAF4" opacity=".92"/>
+    <ellipse cx="60" cy="72" rx="7" ry="5" fill="#DFA84F"/>
+    <path d="M60 77 v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M60 82 q-6 5 -10 0 M60 82 q6 5 10 0" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="pet-cat" viewBox="0 0 120 120">
+    <path d="M32 46 L30 16 L54 33 Z" fill="currentColor"/>
+    <path d="M88 46 L90 16 L66 33 Z" fill="currentColor"/>
+    <ellipse cx="60" cy="66" rx="36" ry="32" fill="currentColor"/>
+    <ellipse cx="46" cy="62" rx="4.5" ry="6" fill="#FFFAF4"/>
+    <ellipse cx="74" cy="62" rx="4.5" ry="6" fill="#FFFAF4"/>
+    <path d="M60 74 l-5.5 4.5 h11 Z" fill="#DFA84F"/>
+    <path d="M60 79 q-5 6 -10 2 M60 79 q5 6 10 2" stroke="#FFFAF4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <g stroke="#FFFAF4" stroke-width="2" stroke-linecap="round" opacity=".75">
+      <path d="M24 69 h14 M24 78 h14 M96 69 h-14 M96 78 h-14"/>
+    </g>
+  </symbol>
+  <symbol id="pet-rabbit" viewBox="0 0 120 120">
+    <ellipse cx="46" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(-8 46 32)"/>
+    <ellipse cx="74" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(8 74 32)"/>
+    <ellipse cx="46" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(-8 46 34)"/>
+    <ellipse cx="74" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(8 74 34)"/>
+    <ellipse cx="60" cy="76" rx="32" ry="28" fill="currentColor"/>
+    <circle cx="48" cy="72" r="4.5" fill="#FFFAF4"/>
+    <circle cx="72" cy="72" r="4.5" fill="#FFFAF4"/>
+    <ellipse cx="60" cy="84" rx="5" ry="3.5" fill="#DFA84F"/>
+    <path d="M60 87 v4 M60 91 q-5 4 -9 1 M60 91 q5 4 9 1" stroke="#FFFAF4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
 <header>
   <div class="wrap nav">
     <a class="wordmark" href="#top">Sapiens</a>
@@ -620,6 +709,26 @@
     <figcaption data-i18n="teamCaption">The Sapiens crew &#9825;</figcaption>
   </figure>
 </div>
+
+<!-- PLACEHOLDER NUMBERS — replace all three with the real figures before promoting the site -->
+<section class="band band-cream stats" aria-label="Sapiens in numbers">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat rv">
+        <span class="stat-num" data-i18n="stat1n">40+</span>
+        <span class="stat-label" data-i18n="stat1l">moments created</span>
+      </div>
+      <div class="stat rv d1">
+        <span class="stat-num" data-i18n="stat2n">600+</span>
+        <span class="stat-label" data-i18n="stat2l">people we met</span>
+      </div>
+      <div class="stat rv d2">
+        <span class="stat-num" data-i18n="stat3n">3</span>
+        <span class="stat-label" data-i18n="stat3l">years of doing this</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="wave" style="--top:var(--cream);--bottom:var(--ochre)" aria-hidden="true"></div>
 
@@ -772,6 +881,26 @@
 <div class="wave" style="--top:var(--peri);--bottom:var(--cream)" aria-hidden="true"></div>
 
 <!-- ================= JOIN ================= -->
+<section class="band band-cream adopt-teaser" id="adopt">
+  <div class="wrap">
+    <div class="teaser-grid">
+      <div class="teaser-copy">
+        <span class="eyebrow" data-i18n="teaserEyebrow">Also with us</span>
+        <h2 data-split data-i18n="teaserTitle">Find <span class="hl">your friend</span></h2>
+        <p class="rv" data-i18n="teaserText">Dogs, cats and rabbits around Prague are waiting for someone.
+        Go through them one by one, keep the ones who stay with you &mdash; and we&rsquo;ll put you in touch
+        with the people looking after them.</p>
+        <a class="btn btn-primary rv" href="pets/" data-i18n="teaserCta">Meet the animals</a>
+      </div>
+      <div class="teaser-cards" aria-hidden="true">
+        <span class="tcard tone-peri"><svg viewBox="0 0 120 120"><use href="#pet-rabbit"></use></svg></span>
+        <span class="tcard tone-sand"><svg viewBox="0 0 120 120"><use href="#pet-cat"></use></svg></span>
+        <span class="tcard tone-ochre"><svg viewBox="0 0 120 120"><use href="#pet-dog"></use></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="band band-cream join" id="join">
   <svg class="doodle" style="top:22%;left:10%;width:24px;color:var(--ochre);--r:-16deg;animation-delay:1s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/></svg>
   <svg class="doodle" style="bottom:20%;right:9%;width:44px;color:var(--wine);--r:10deg;animation-delay:2.4s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
@@ -855,6 +984,13 @@
         shareTitle:'Why we <span style="color:var(--royal)">share it</span>',
         shareStanzas:'<p class="stanza">We simply want to remind people that there is still another side of humanity.</p><p class="stanza">A side where people come together to create something meaningful. Where people help without expecting anything in return.</p>',
         maybeLines:'<span>Maybe someone will feel inspired <span class="soft">to join.</span></span><span>Maybe someone will create <span class="soft">their own project.</span></span><span>Maybe someone will simply become <span class="soft">a little kinder.</span></span>',
+        stat1n:'40+',stat1l:'moments created',
+        stat2n:'600+',stat2l:'people we met',
+        stat3n:'3',stat3l:'years of doing this',
+        teaserEyebrow:'Also with us',
+        teaserTitle:'Find <span class="hl">your friend</span>',
+        teaserText:'Dogs, cats and rabbits around Prague are waiting for someone. Go through them one by one, keep the ones who stay with you &mdash; and we&rsquo;ll put you in touch with the people looking after them.',
+        teaserCta:'Meet the animals',
         helpEyebrow:'Get involved',
         helpTitle:'How you can help',
         help1Title:'Come to an event',
@@ -897,6 +1033,13 @@
         shareTitle:'Proč to <span style="color:var(--royal)">sdílíme</span>',
         shareStanzas:'<p class="stanza">Chceme lidem jednoduše připomenout, že pořád existuje i jiná stránka lidství.</p><p class="stanza">Stránka, kde se lidé spojují, aby vytvořili něco smysluplného. Kde lidé pomáhají, aniž by za to něco čekali.</p>',
         maybeLines:'<span>Možná se někdo inspiruje <span class="soft">a přidá se.</span></span><span>Možná někdo vytvoří <span class="soft">vlastní projekt.</span></span><span>Možná bude někdo prostě <span class="soft">o trochu laskavější.</span></span>',
+        stat1n:'40+',stat1l:'vytvořených okamžiků',
+        stat2n:'600+',stat2l:'lidí, které jsme potkali',
+        stat3n:'3',stat3l:'roky, co to děláme',
+        teaserEyebrow:'Taky u nás',
+        teaserTitle:'Najděte si <span class="hl">kamaráda</span>',
+        teaserText:'Psi, kočky a králíci v Praze a okolí čekají na někoho. Projděte si je jednoho po druhém, nechte si ty, kteří vám zůstanou v hlavě &mdash; a my vás spojíme s lidmi, kteří se o ně starají.',
+        teaserCta:'Poznejte zvířata',
         helpEyebrow:'Zapojte se',
         helpTitle:'Jak můžete pomoct',
         help1Title:'Přijďte na akci',
