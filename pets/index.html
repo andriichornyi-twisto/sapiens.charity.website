@@ -483,6 +483,11 @@
   .gcard .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .gcard .meta{padding:14px 16px 18px;}
   .gcard h3{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;line-height:1;}
+  .gcard h3 a{color:inherit;text-decoration:none;}
+  /* stretched link: the card is clickable, the heart sits above it */
+  .gcard h3 a::after{content:'';position:absolute;inset:0;z-index:1;}
+  .gcard h3 a:focus-visible::after{outline:3px solid var(--royal);outline-offset:-3px;border-radius:20px;}
+  .heart{z-index:2;}
   .gcard .facts{
     margin-top:6px;font-size:.7rem;font-weight:700;letter-spacing:.09em;
     text-transform:uppercase;opacity:.55;
@@ -655,6 +660,10 @@
     .foot-top{flex-direction:column;align-items:flex-start;}
   }
 </style>
+<!-- Analytics: create a free site at goatcounter.com, put your code in place of YOURCODE,
+     then delete these two comment lines to switch it on. No cookies, no consent banner needed.
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->
 </head>
 <body>
 
@@ -741,6 +750,7 @@
       <nav class="nav-links" aria-label="Main">
         <a href="/events/" data-i18n="navEvents">Events</a>
         <a href="/pets/" class="active" aria-current="page" data-i18n="navPets">Adopt</a>
+        <a href="/support/" data-i18n="navSupport">Support</a>
         <a href="/join/" data-i18n="navJoin">Join us</a>
         <a class="nav-ig" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
@@ -917,6 +927,7 @@
     <nav class="foot-links" aria-label="Footer">
       <a href="/events/" data-i18n="navEvents">Events</a>
       <a href="/pets/" data-i18n="navPets">Adopt</a>
+      <a href="/support/" data-i18n="navSupport">Support</a>
       <a href="/join/" data-i18n="navJoin">Join us</a>
       <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">Instagram</a>
     </nav>
@@ -942,7 +953,7 @@
         title:'Adopt a friend — Sapiens',
         desc:'Meet dogs, cats and rabbits looking for a home in Prague. Swipe through them, keep the ones who stay with you, and we put you in touch.',
         menuOpen:'Open menu',menuClose:'Close menu',toTop:'Back to top',
-        navWho:'Who we are',navWhy:'Why we do this',navEvents:'Events',navPets:'Adopt',navJoin:'Join us',skipLink:'Skip to content',
+        navWho:'Who we are',navWhy:'Why we do this',navEvents:'Events',navPets:'Adopt',navSupport:'Support',navJoin:'Join us',skipLink:'Skip to content',
         petsTitle:'Find <span class="hl">your friend</span>',
         petsIntro:'These animals are waiting for someone in Prague and around. Swipe through them &mdash; keep the ones who stay with you, and we&rsquo;ll put you in touch with their carers.',
         deckHint:'Drag a card left or right, or use the buttons.',
@@ -983,7 +994,7 @@
         title:'Najděte si kamaráda — Sapiens',
         desc:'Psi, kočky a králíci, kteří v Praze hledají domov. Projděte si je, nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme.',
         menuOpen:'Otevřít menu',menuClose:'Zavřít menu',toTop:'Zpět nahoru',
-        navWho:'Kdo jsme',navWhy:'Proč to děláme',navEvents:'Akce',navPets:'Adopce',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
+        navWho:'Kdo jsme',navWhy:'Proč to děláme',navEvents:'Akce',navPets:'Adopce',navSupport:'Podpořte nás',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
         petsTitle:'Najděte si <span class="hl">kamaráda</span>',
         petsIntro:'Tahle zvířata čekají na někoho v Praze a okolí. Projděte si je &mdash; nechte si ty, kteří vám zůstanou v hlavě, a my vás spojíme s lidmi, kteří se o ně starají.',
         deckHint:'Přetáhněte kartu doleva nebo doprava, nebo použijte tlačítka.',
@@ -1320,7 +1331,7 @@
             '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.9-9.6-9.2C.7 8.4 2.5 5 5.9 5c2 0 3.4 1.1 4.3 2.3l.8 1 .8-1C12.7 6.1 14.1 5 16.1 5c3.4 0 5.2 3.4 3.5 6.8C19.5 16.1 12 21 12 21z"/></svg>'+
           '</button>'+
           '<div class="meta">'+
-            '<h3>'+esc(p.name)+'</h3>'+
+            '<h3><a class="open" href="/pets/'+p.id+'/">'+esc(p.name)+'</a></h3>'+
             '<p class="facts">'+esc(p[activeLang==='cs'?'kindCs':'kindEn'])+' &middot; '+
               esc(p[activeLang==='cs'?'ageCs':'ageEn'])+' &middot; '+esc(p.place)+'</p>'+
             '<p class="bio">'+esc(activeLang==='cs'?p.bioCs:p.bioEn)+'</p>'+

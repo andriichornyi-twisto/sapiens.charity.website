@@ -6,7 +6,11 @@ on:
     paths:
       - index.html
       - events/index.html
+      - join/index.html
+      - pets/index.html
+      - support/index.html
       - build-cs.sh
+      - scripts/build-pets.mjs
 
 permissions:
   contents: write
@@ -23,11 +27,11 @@ jobs:
 
       - name: Commit if changed
         run: |
-          if ! git diff --quiet -- cs/; then
+          if ! git diff --quiet -- cs/ pets/ sitemap.xml; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add cs/
-            git commit -m "Rebuild Czech pages (auto)"
+            git add cs/ pets/ sitemap.xml
+            git commit -m "Rebuild generated pages (auto)"
             git push
           else
             echo "cs/ already up to date"

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFAF4">
+<title>Support us — Sapiens</title>
+<meta name="description" content="Support Sapiens — a bank transfer, a QR payment, or a hand instead of money. Every contribution goes into the next moment we create.">
+<meta property="og:title" content="Support us — Sapiens">
+<meta property="og:description" content="A bank transfer, a QR payment, or a hand instead of money — every contribution goes into the next moment we create.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sapienscz.com/support/">
+<meta property="og:image" content="https://sapienscz.com/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="cs_CZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sapienscz.com/support/">
+<link rel="alternate" hreflang="en" href="https://sapienscz.com/support/">
+<link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/support/">
+<link rel="alternate" hreflang="x-default" href="https://sapienscz.com/support/">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face{
+    font-family:'Archivo';font-style:normal;font-weight:500 900;font-display:swap;
+    src:url('/fonts/archivo-latin-ext.woff2') format('woff2');
+    unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face{
+    font-family:'Archivo';font-style:normal;font-weight:500 900;font-display:swap;
+    src:url('/fonts/archivo-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  :root{
+    --cream:#FFFAF4;--ochre:#DFA84F;--peri:#B9CBEA;--peri-light:#C9D6F0;
+    --royal:#2B57C6;--wine:#55202E;--wine-deep:#471A26;--white:#FFFFFF;
+    --font:'Archivo','Helvetica Neue',Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--cream);}
+  ::selection{background:var(--ochre);color:var(--white);}
+  body{font-family:var(--font);background:var(--cream);color:var(--wine);
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px);}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--royal);outline-offset:3px;border-radius:4px;}
+  .skip-link{position:fixed;top:0;left:-9999px;z-index:100;background:var(--wine);color:var(--cream);
+    padding:12px 20px;border-radius:0 0 12px 0;font-weight:800;font-size:13px;letter-spacing:.08em;text-decoration:none;}
+  .skip-link:focus{left:0;}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:50;
+    background:color-mix(in srgb, var(--cream) 88%, transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid rgba(85,32,46,.08);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .wordmark{font-weight:700;font-size:15px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--wine);text-decoration:none;}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{white-space:nowrap;font-size:12px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--wine);text-decoration:none;opacity:.75;transition:opacity .2s;}
+  .nav-links a:not(.nav-ig){position:relative;}
+  .nav-links a:not(.nav-ig)::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;
+    background:var(--ochre);transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .nav-links a:not(.nav-ig):hover::after,.nav-links a:not(.nav-ig):focus-visible::after,
+  .nav-links a.active::after{transform:scaleX(1);}
+  .nav-links a:hover,.nav-links a:focus-visible,.nav-links a.active{opacity:1;}
+  .nav-ig{display:inline-flex;align-items:center;gap:8px;background:var(--wine);
+    color:var(--cream) !important;opacity:1 !important;padding:9px 16px;border-radius:999px;}
+  .nav-ig:hover{background:var(--wine-deep);}
+  .burger{display:none;background:none;border:0;width:42px;height:42px;cursor:pointer;position:relative;z-index:5;padding:0;}
+  .burger span{display:block;width:22px;height:2px;background:var(--wine);margin:5px auto;
+    transition:transform .3s ease,opacity .3s ease;}
+  .nav-right{display:flex;align-items:center;gap:24px;}
+  .lang-toggle{display:inline-flex;padding:2px;border:1.5px solid rgba(85,32,46,.35);
+    border-radius:999px;position:relative;z-index:5;}
+  .lang-toggle button{font-family:var(--font);font-size:10px;font-weight:800;letter-spacing:.1em;
+    color:var(--wine);background:none;border:0;border-radius:999px;padding:6px 10px;cursor:pointer;
+    opacity:.55;transition:opacity .2s,background .2s,color .2s;}
+  .lang-toggle button[aria-pressed="true"]{background:var(--wine);color:var(--cream);opacity:1;}
+  @media (max-width:900px){
+    .burger{display:block;}
+    .nav-right{gap:14px;}
+    .wordmark{position:relative;z-index:5;}
+    .nav-links{position:fixed;top:0;left:0;right:0;z-index:1;background:var(--cream);
+      flex-direction:column;align-items:stretch;gap:0;padding:84px 24px 28px;
+      transform:translateY(-102%);transition:transform .4s cubic-bezier(.22,.8,.3,1);
+      box-shadow:0 24px 48px rgba(85,32,46,.12);}
+    header.menu-open .nav-links{transform:none;}
+    .nav-links a:not(.nav-ig){display:block;font-size:17px;letter-spacing:.1em;padding:16px 0;
+      border-bottom:1px solid rgba(85,32,46,.08);}
+    .nav-links a:not(.nav-ig)::after{display:none;}
+    .nav-ig{margin-top:18px;justify-content:center;}
+    header.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    header.menu-open .burger span:nth-child(2){opacity:0;}
+    header.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  }
+
+  section{position:relative;}
+  .page-head{padding:clamp(120px,15vh,172px) 0 clamp(24px,4vw,40px);text-align:center;}
+  .page-head .eyebrow{display:block;margin-bottom:16px;opacity:.85;}
+  .page-head h1{font-size:clamp(2.6rem,6.5vw,5rem);font-weight:800;letter-spacing:-.03em;
+    line-height:.95;text-transform:uppercase;}
+  .page-head h1 .hl{color:var(--ochre);}
+  .page-head p{margin:22px auto 0;max-width:52ch;font-size:clamp(1rem,1.4vw,1.15rem);
+    font-weight:600;line-height:1.55;opacity:.85;}
+
+  .ways{padding:clamp(12px,2vw,24px) 0 clamp(70px,9vw,110px);}
+  .ways-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,28px);
+    max-width:900px;margin:0 auto;}
+  @media (max-width:760px){.ways-grid{grid-template-columns:1fr;}}
+  .way{background:var(--white);border-radius:24px;padding:clamp(24px,3vw,34px);
+    box-shadow:0 1px 2px rgba(85,32,46,.05),0 12px 28px rgba(85,32,46,.09);
+    display:flex;flex-direction:column;gap:12px;}
+  .way h2{font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:800;letter-spacing:-.02em;line-height:1.05;}
+  .way p{font-weight:600;line-height:1.55;opacity:.82;}
+  .rows{margin-top:4px;display:flex;flex-direction:column;gap:10px;}
+  .row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+    border-bottom:1px dashed rgba(85,32,46,.18);padding-bottom:9px;}
+  .row span:first-child{font-size:11px;font-weight:800;letter-spacing:.14em;
+    text-transform:uppercase;opacity:.55;white-space:nowrap;}
+  .row span:last-child{font-weight:800;font-size:1.02rem;letter-spacing:-.01em;text-align:right;
+    word-break:break-all;}
+  .qr{align-self:flex-start;width:148px;height:148px;border-radius:18px;display:grid;place-items:center;
+    background:var(--peri-light);color:var(--royal);text-align:center;padding:14px;
+    font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.5;}
+  .pending{display:inline-block;align-self:flex-start;margin-top:2px;font-size:11px;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--royal);background:rgba(43,87,198,.09);
+    border-radius:999px;padding:5px 11px;}
+  .btn{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;margin-top:4px;
+    font-family:var(--font);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    text-decoration:none;border-radius:999px;padding:15px 28px;border:0;cursor:pointer;
+    background:var(--wine);color:var(--cream);transition:transform .15s ease,background .2s ease;}
+  .btn:hover{transform:translateY(-2px);background:var(--wine-deep);}
+  .btn.ghost{background:transparent;color:var(--wine);border:2px solid var(--wine);padding:13px 26px;}
+  .btn.ghost:hover{background:var(--wine);color:var(--cream);}
+  .after{margin:clamp(34px,5vw,54px) auto 0;max-width:62ch;text-align:center;
+    font-weight:600;line-height:1.6;opacity:.72;}
+
+  .wave{height:clamp(26px,3.2vw,46px);background:var(--bottom);position:relative;overflow:hidden;}
+  .wave::before{content:'';position:absolute;inset:0;background:var(--top);
+    -webkit-mask:var(--wave-mask) repeat-x 0 0/clamp(340px,58%,820px) 100%;
+    mask:var(--wave-mask) repeat-x 0 0/clamp(340px,58%,820px) 100%;
+    -webkit-mask-mode:alpha;mask-mode:alpha;}
+  :root{--wave-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='48' viewBox='0 0 220 48' preserveAspectRatio='none'><path d='M0,24 C27.5,9 82.5,9 110,24 C137.5,39 192.5,39 220,24 L220,0 L0,0 Z' fill='black'/></svg>");}
+
+  footer{background:var(--wine);color:var(--cream);padding:64px 0 40px;}
+  .foot-top{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .foot-mark{display:flex;align-items:center;gap:16px;}
+  .foot-mark svg{width:52px;height:auto;}
+  .foot-mark .wordmark{color:var(--cream);}
+  .foot-tag{font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;opacity:.7;}
+  .foot-links{margin-top:28px;display:flex;gap:22px;flex-wrap:wrap;}
+  .foot-links a{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--cream);text-decoration:none;opacity:.75;}
+  .foot-links a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px;}
+  .foot-bottom{margin-top:44px;padding-top:24px;border-top:1px solid rgba(250,246,238,.18);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:12px;font-weight:600;letter-spacing:.06em;opacity:.65;}
+  footer a{color:var(--cream);}
+  @media (max-width:640px){.foot-top{flex-direction:column;align-items:flex-start;}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.nav-links{transition:none !important;}}
+</style>
+<!-- Analytics: create a free site at goatcounter.com, put your code in place of YOURCODE,
+     then delete these two comment lines to switch it on. No cookies, no consent banner needed.
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="skipLink">Skip to content</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="/">Sapiens</a>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Main">
+        <a href="/events/" data-i18n="navEvents">Events</a>
+        <a href="/pets/" data-i18n="navPets">Adopt</a>
+        <a href="/support/" class="active" aria-current="page" data-i18n="navSupport">Support</a>
+        <a href="/join/" data-i18n="navJoin">Join us</a>
+        <a class="nav-ig" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
+          @sapiens.cz
+        </a>
+      </nav>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="cs" aria-pressed="false">CZ</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="page-head" id="main">
+  <div class="wrap">
+    <span class="eyebrow">Sapiens</span>
+    <h1 data-i18n="supTitle">Support <span class="hl">what we do</span></h1>
+    <p data-i18n="supIntro">We are small and we keep it that way on purpose. Money goes into the next
+    moment we create &mdash; flowers, transport, a warm room, food for an animal waiting for a home.</p>
+  </div>
+</section>
+
+<section class="ways">
+  <div class="wrap">
+    <!-- PLACEHOLDER PAYMENT DETAILS — replace the account number, IBAN and QR before promoting this page -->
+    <div class="ways-grid">
+
+      <div class="way">
+        <h2 data-i18n="way1Title">Bank transfer</h2>
+        <p data-i18n="way1Text">The simplest way, and nothing is taken out along the route.</p>
+        <div class="rows">
+          <div class="row"><span data-i18n="labAcc">Account</span><span data-i18n="valAcc">0000000000 / 0000</span></div>
+          <div class="row"><span data-i18n="labIban">IBAN</span><span data-i18n="valIban">CZ00 0000 0000 0000 0000 0000</span></div>
+          <div class="row"><span data-i18n="labHolder">Account holder</span><span data-i18n="valHolder">Sapiens</span></div>
+        </div>
+        <span class="pending" data-i18n="pending">Details coming soon</span>
+      </div>
+
+      <div class="way">
+        <h2 data-i18n="way2Title">QR payment</h2>
+        <p data-i18n="way2Text">Open your banking app, point it at the code, choose the amount yourself.</p>
+        <div class="qr" data-i18n="qrSoon">QR code<br>coming soon</div>
+      </div>
+
+      <div class="way">
+        <h2 data-i18n="way3Title">Give a hand instead</h2>
+        <p data-i18n="way3Text">Time helps as much as money does &mdash; come to an event, drive something
+        somewhere, take photographs, or simply be there.</p>
+        <a class="btn" href="/join/?type=help" data-i18n="way3Cta">Join the society</a>
+      </div>
+
+      <div class="way">
+        <h2 data-i18n="way4Title">Help as a business</h2>
+        <p data-i18n="way4Text">A space, a service, goods, or a shared project. Tell us what you have
+        and we will find a way to use it well.</p>
+        <a class="btn ghost" href="/join/?type=business" data-i18n="way4Cta">Talk to us</a>
+      </div>
+
+    </div>
+
+    <p class="after" data-i18n="supAfter">If you would rather know exactly where your money lands,
+    write to us &mdash; we will tell you what we are collecting for right now.</p>
+  </div>
+</section>
+
+<div class="wave flip" style="--top:var(--cream);--bottom:var(--wine)" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <svg viewBox="0 0 240 200" role="img" aria-label="Sapiens logo">
+          <circle cx="64" cy="54" r="13" fill="#FAF6EE"/>
+          <path d="M79,168 C60,157 44,133 40,109 C36,87 46,73 62,73 C77,73 85,86 85,106 C85,128 83,151 79,168 Z" fill="#FAF6EE" opacity=".85"/>
+          <circle cx="176" cy="54" r="13" fill="#9DB9E6"/>
+          <path d="M161,168 C180,157 196,133 200,109 C204,87 194,73 178,73 C163,73 155,86 155,106 C155,128 157,151 161,168 Z" fill="#9DB9E6"/>
+          <circle cx="120" cy="46" r="16" fill="#DFA84F"/>
+          <path d="M120,182 C103,165 89,137 89,112 C89,85 102,71 120,71 C138,71 151,85 151,112 C151,137 137,165 120,182 Z" fill="#DFA84F"/>
+        </svg>
+        <span class="wordmark">Sapiens</span>
+      </div>
+      <span class="foot-tag" data-i18n="footTag">People need people</span>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="/events/" data-i18n="navEvents">Events</a>
+      <a href="/pets/" data-i18n="navPets">Adopt</a>
+      <a href="/support/" data-i18n="navSupport">Support</a>
+      <a href="/join/" data-i18n="navJoin">Join us</a>
+      <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year"></span> <span data-i18n="footCredit">Sapiens &mdash; a social impact project</span></span>
+      <span><a href="/privacy/" data-i18n="footPrivacy">Privacy</a> &nbsp;&middot;&nbsp;
+      <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">instagram.com/sapiens.cz</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const I18N={
+      en:{
+        title:'Support us — Sapiens',
+        desc:'Support Sapiens — a bank transfer, a QR payment, or a hand instead of money. Every contribution goes into the next moment we create.',
+        menuOpen:'Open menu',menuClose:'Close menu',skipLink:'Skip to content',
+        navEvents:'Events',navPets:'Adopt',navSupport:'Support',navJoin:'Join us',
+        supTitle:'Support <span class="hl">what we do</span>',
+        supIntro:'We are small and we keep it that way on purpose. Money goes into the next moment we create &mdash; flowers, transport, a warm room, food for an animal waiting for a home.',
+        way1Title:'Bank transfer',
+        way1Text:'The simplest way, and nothing is taken out along the route.',
+        labAcc:'Account',valAcc:'0000000000 / 0000',
+        labIban:'IBAN',valIban:'CZ00 0000 0000 0000 0000 0000',
+        labHolder:'Account holder',valHolder:'Sapiens',
+        pending:'Details coming soon',
+        way2Title:'QR payment',
+        way2Text:'Open your banking app, point it at the code, choose the amount yourself.',
+        qrSoon:'QR code<br>coming soon',
+        way3Title:'Give a hand instead',
+        way3Text:'Time helps as much as money does &mdash; come to an event, drive something somewhere, take photographs, or simply be there.',
+        way3Cta:'Join the society',
+        way4Title:'Help as a business',
+        way4Text:'A space, a service, goods, or a shared project. Tell us what you have and we will find a way to use it well.',
+        way4Cta:'Talk to us',
+        supAfter:'If you would rather know exactly where your money lands, write to us &mdash; we will tell you what we are collecting for right now.',
+        footTag:'People need people',footPrivacy:'Privacy',
+        footCredit:'Sapiens &mdash; a social impact project'
+      },
+      cs:{
+        title:'Podpořte nás — Sapiens',
+        desc:'Podpořte Sapiens — převodem, QR platbou, nebo pomocí místo peněz. Každý příspěvek jde do dalšího okamžiku, který vytvoříme.',
+        menuOpen:'Otevřít menu',menuClose:'Zavřít menu',skipLink:'Přeskočit na obsah',
+        navEvents:'Akce',navPets:'Adopce',navSupport:'Podpořte nás',navJoin:'Přidejte se',
+        supTitle:'Podpořte <span class="hl">to, co děláme</span>',
+        supIntro:'Jsme malí a schválně to tak necháváme. Peníze jdou do dalšího okamžiku, který vytvoříme &mdash; květiny, doprava, teplá místnost, krmení pro zvíře, které čeká na domov.',
+        way1Title:'Bankovní převod',
+        way1Text:'Nejjednodušší cesta a cestou se nic neztratí.',
+        labAcc:'Účet',valAcc:'0000000000 / 0000',
+        labIban:'IBAN',valIban:'CZ00 0000 0000 0000 0000 0000',
+        labHolder:'Majitel účtu',valHolder:'Sapiens',
+        pending:'Údaje brzy doplníme',
+        way2Title:'QR platba',
+        way2Text:'Otevřete bankovní aplikaci, namiřte ji na kód a částku si zvolíte sami.',
+        qrSoon:'QR kód<br>brzy',
+        way3Title:'Pomozte rukama',
+        way3Text:'Čas pomáhá stejně jako peníze &mdash; přijďte na akci, něco někam odvezte, fotografujte, nebo prostě buďte u toho.',
+        way3Cta:'Přidejte se ke komunitě',
+        way4Title:'Pomozte jako firma',
+        way4Text:'Prostor, služba, zboží nebo společný projekt. Řekněte nám, co máte, a najdeme způsob, jak to dobře využít.',
+        way4Cta:'Napište nám',
+        supAfter:'Pokud chcete přesně vědět, kam vaše peníze půjdou, napište nám &mdash; řekneme vám, na co právě teď vybíráme.',
+        footTag:'Lidé potřebují lidi',footPrivacy:'Soukromí',
+        footCredit:'Sapiens &mdash; projekt se sociálním přesahem'
+      }
+    };
+    const burger=document.getElementById('burger');
+    const metaDesc=document.querySelector('meta[name="description"]');
+    function setLang(lang){
+      if(!I18N[lang]) lang='en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k=el.getAttribute('data-i18n');
+        if(t[k]!=null) el.innerHTML=t[k];
+      });
+      document.documentElement.lang=lang;
+      document.title=t.title;
+      if(metaDesc) metaDesc.setAttribute('content',t.desc);
+      if(burger){
+        burger.dataset.labelOpen=t.menuOpen;
+        burger.dataset.labelClose=t.menuClose;
+        burger.setAttribute('aria-label',
+          burger.getAttribute('aria-expanded')==='true'?t.menuClose:t.menuOpen);
+      }
+      document.querySelectorAll('.lang-toggle button').forEach(b=>{
+        b.setAttribute('aria-pressed',String(b.dataset.lang===lang));
+      });
+      try{localStorage.setItem('sapiens-lang',lang);}catch(e){}
+    }
+    document.querySelectorAll('.lang-toggle button').forEach(b=>{
+      b.addEventListener('click',()=>setLang(b.dataset.lang));
+    });
+    let saved=null;
+    try{saved=localStorage.getItem('sapiens-lang');}catch(e){}
+    const browserCs=(navigator.language||'').toLowerCase().startsWith('cs');
+    setLang(saved||(browserCs?'cs':'en'));
+  })();
+
+  (function(){
+    const burger=document.getElementById('burger');
+    const headerEl=document.querySelector('header');
+    if(!burger) return;
+    function setState(open){
+      headerEl.classList.toggle('menu-open',open);
+      burger.setAttribute('aria-expanded',String(open));
+      burger.setAttribute('aria-label',
+        open?(burger.dataset.labelClose||'Close menu'):(burger.dataset.labelOpen||'Open menu'));
+      document.body.style.overflow=open?'hidden':'';
+    }
+    burger.addEventListener('click',()=>setState(!headerEl.classList.contains('menu-open')));
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>setState(false)));
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape'&&headerEl.classList.contains('menu-open')) setState(false);
+    });
+    document.addEventListener('pointerdown',e=>{
+      if(headerEl.classList.contains('menu-open')&&!e.target.closest('header')) setState(false);
+    });
+  })();
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

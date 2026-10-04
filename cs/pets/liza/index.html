@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFAF4">
+<title>Líza — hledá domov | Sapiens</title>
+<meta name="description" content="Líza strávila celý život v jednom domově a pak o něj přišla. Asi týden je plachá a potom je úplně vaše, většinou přímo z klína.">
+<meta property="og:title" content="Líza — hledá domov">
+<meta property="og:description" content="Líza strávila celý život v jednom domově a pak o něj přišla. Asi týden je plachá a potom je úplně vaše, většinou přímo z klína.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sapienscz.com/cs/pets/liza/">
+<meta property="og:image" content="https://sapienscz.com/img/og-card.jpg">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sapienscz.com/cs/pets/liza/">
+<link rel="alternate" hreflang="en" href="https://sapienscz.com/pets/liza/">
+<link rel="alternate" hreflang="cs" href="https://sapienscz.com/cs/pets/liza/">
+<link rel="alternate" hreflang="x-default" href="https://sapienscz.com/pets/liza/">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:500 900;font-display:swap;
+    src:url('/fonts/archivo-latin-ext.woff2') format('woff2');
+    unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Archivo';font-style:normal;font-weight:500 900;font-display:swap;
+    src:url('/fonts/archivo-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+  :root{--cream:#FFFAF4;--ochre:#DFA84F;--peri:#B9CBEA;--royal:#2B57C6;--wine:#55202E;--wine-deep:#471A26;
+    --white:#FFF;--font:'Archivo','Helvetica Neue',Arial,sans-serif;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  html{-webkit-text-size-adjust:100%;background:var(--cream);scroll-behavior:smooth;}
+  body{font-family:var(--font);background:var(--cream);color:var(--wine);-webkit-font-smoothing:antialiased;}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--royal);outline-offset:3px;border-radius:4px;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 clamp(20px,4vw,48px);}
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--cream) 90%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid rgba(85,32,46,.08);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px;}
+  .wordmark{font-weight:700;font-size:15px;letter-spacing:.42em;text-transform:uppercase;color:var(--wine);text-decoration:none;}
+  .nav-right{display:flex;align-items:center;gap:18px;}
+  .nav-right a{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--wine);text-decoration:none;opacity:.75;white-space:nowrap;}
+  .nav-right a:hover{opacity:1;}
+  .lang{border:1.5px solid rgba(85,32,46,.35);border-radius:999px;padding:6px 11px;font-size:10px;
+    font-weight:800;letter-spacing:.1em;opacity:1 !important;}
+  main{padding:clamp(28px,5vw,56px) 0 clamp(60px,8vw,100px);}
+  .back{display:inline-flex;align-items:center;gap:8px;margin-bottom:clamp(18px,3vw,28px);
+    font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--wine);text-decoration:none;opacity:.6;}
+  .back:hover{opacity:1;}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:start;}
+  @media (max-width:760px){.hero{grid-template-columns:1fr;}}
+  .shot{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:1;
+    background:var(--band,var(--ochre));display:grid;place-items:center;
+    box-shadow:0 1px 2px rgba(85,32,46,.05),0 14px 34px rgba(85,32,46,.14);}
+  .tone-ochre{--band:var(--ochre);} .tone-peri{--band:var(--peri);} .tone-sand{--band:#F1E2CC;}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .shot svg{width:100%;height:100%;padding:16px;color:var(--wine);}
+  h1{font-size:clamp(2.4rem,6vw,3.8rem);font-weight:800;letter-spacing:-.03em;line-height:.95;}
+  .facts{margin-top:10px;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.55;}
+  .bio{margin-top:18px;font-size:1.05rem;font-weight:600;line-height:1.6;opacity:.85;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+  .tags span{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    background:rgba(85,32,46,.06);border:1px solid rgba(85,32,46,.07);border-radius:999px;padding:6px 12px;}
+  .note{margin-top:20px;font-size:.8rem;font-weight:600;opacity:.5;line-height:1.5;}
+  .share{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:26px;}
+  .share b{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin-right:4px;}
+  .sbtn{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:999px;cursor:pointer;
+    border:2px solid rgba(85,32,46,.18);background:transparent;color:var(--wine);text-decoration:none;
+    transition:border-color .2s,background .2s,color .2s;}
+  .sbtn:hover{border-color:var(--wine);background:var(--wine);color:var(--cream);}
+  .sbtn svg{width:19px;height:19px;}
+  .copied{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--royal);}
+  .ask{margin-top:clamp(44px,6vw,72px);border-top:1px solid rgba(85,32,46,.12);padding-top:clamp(30px,4vw,44px);}
+  .ask h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;letter-spacing:-.02em;}
+  .ask > p{margin-top:10px;font-weight:600;line-height:1.55;opacity:.8;max-width:52ch;}
+  form{margin-top:24px;max-width:620px;}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}
+  @media (max-width:640px){.frow{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+  .field label{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8;}
+  .field input,.field textarea{font-family:var(--font);font-size:1rem;font-weight:600;color:var(--wine);
+    background:var(--white);border:1.5px solid rgba(85,32,46,.25);border-radius:12px;padding:13px 14px;width:100%;}
+  .field textarea{resize:vertical;min-height:100px;}
+  .field input:focus,.field textarea:focus{outline:3px solid var(--royal);outline-offset:1px;border-color:var(--royal);}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font);font-size:13px;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:16px 30px;
+    border:0;cursor:pointer;background:var(--wine);color:var(--cream);transition:transform .15s,background .2s;}
+  .btn:hover{transform:translateY(-2px);background:var(--wine-deep);}
+  .btn[disabled]{opacity:.6;transform:none !important;cursor:default;}
+  .err{margin-top:14px;font-size:.95rem;font-weight:700;color:#B3261E;line-height:1.5;max-width:52ch;}
+  .privacy{margin-top:14px;font-size:.85rem;font-weight:600;opacity:.6;line-height:1.5;max-width:52ch;}
+  .ok{text-align:center;padding:30px 0;}
+  .ok h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;}
+  .ok p{margin-top:12px;font-weight:600;opacity:.8;}
+  .ok .btn{margin-top:24px;}
+  footer{background:var(--wine);color:var(--cream);padding:48px 0 32px;margin-top:auto;}
+  .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;font-weight:600;
+    letter-spacing:.06em;opacity:.75;}
+  footer a{color:var(--cream);}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <style>
+    /* each card sets its own --blink-delay so they never blink in unison */
+    .eye{
+      transform-box:fill-box;transform-origin:center;
+      animation:sap-blink 6.5s var(--blink-delay,0s) infinite;
+    }
+    @keyframes sap-blink{0%,93.5%,100%{transform:scaleY(1);}96%{transform:scaleY(.08);}}
+    .ear-up,.ear-down{
+      transform-box:fill-box;
+      animation:sap-twitch 11s var(--twitch-delay,0s) infinite;
+    }
+    .ear-up{transform-origin:50% 100%;}
+    .ear-down{transform-origin:50% 0%;}
+    @keyframes sap-twitch{
+      0%,90%,100%{transform:rotate(0deg);}
+      93%{transform:rotate(-5deg);}
+      96%{transform:rotate(2.5deg);}
+    }
+    /* --look is set on the card while you drag it, so the pet glances that way */
+    .eyes{transform:translateX(var(--look,0px));transition:transform .2s ease-out;}
+    @media (prefers-reduced-motion:reduce){
+      .eye,.ear-up,.ear-down{animation:none !important;}
+      .eyes{transform:none;transition:none;}
+    }
+  </style>
+  <symbol id="pet-dog" viewBox="0 0 120 120">
+    <g class="ear-down"><ellipse cx="28" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(-12 28 52)"/></g>
+    <g class="ear-down"><ellipse cx="92" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(12 92 52)"/></g>
+    <rect x="26" y="26" width="68" height="70" rx="32" fill="currentColor"/>
+    <g class="eyes">
+      <circle class="eye" cx="47" cy="56" r="5" fill="#FFFAF4"/>
+      <circle class="eye" cx="73" cy="56" r="5" fill="#FFFAF4"/>
+    </g>
+    <ellipse cx="60" cy="79" rx="19" ry="14" fill="#FFFAF4" opacity=".92"/>
+    <ellipse cx="60" cy="72" rx="7" ry="5" fill="#DFA84F"/>
+    <path d="M60 77 v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M60 82 q-6 5 -10 0 M60 82 q6 5 10 0" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="pet-cat" viewBox="0 0 120 120">
+    <g class="ear-up"><path d="M32 46 L30 16 L54 33 Z" fill="currentColor"/></g>
+    <g class="ear-up"><path d="M88 46 L90 16 L66 33 Z" fill="currentColor"/></g>
+    <ellipse cx="60" cy="66" rx="36" ry="32" fill="currentColor"/>
+    <g class="eyes">
+      <ellipse class="eye" cx="46" cy="62" rx="4.5" ry="6" fill="#FFFAF4"/>
+      <ellipse class="eye" cx="74" cy="62" rx="4.5" ry="6" fill="#FFFAF4"/>
+    </g>
+    <path d="M60 74 l-5.5 4.5 h11 Z" fill="#DFA84F"/>
+    <path d="M60 79 q-5 6 -10 2 M60 79 q5 6 10 2" stroke="#FFFAF4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <g stroke="#FFFAF4" stroke-width="2" stroke-linecap="round" opacity=".75">
+      <path d="M24 69 h14 M24 78 h14 M96 69 h-14 M96 78 h-14"/>
+    </g>
+  </symbol>
+  <symbol id="pet-rabbit" viewBox="0 0 120 120">
+    <g class="ear-up">
+      <ellipse cx="46" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(-8 46 32)"/>
+      <ellipse cx="46" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(-8 46 34)"/>
+    </g>
+    <g class="ear-up">
+      <ellipse cx="74" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(8 74 32)"/>
+      <ellipse cx="74" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(8 74 34)"/>
+    </g>
+    <ellipse cx="60" cy="76" rx="32" ry="28" fill="currentColor"/>
+    <g class="eyes">
+      <circle class="eye" cx="48" cy="72" r="4.5" fill="#FFFAF4"/>
+      <circle class="eye" cx="72" cy="72" r="4.5" fill="#FFFAF4"/>
+    </g>
+    <ellipse cx="60" cy="84" rx="5" ry="3.5" fill="#DFA84F"/>
+    <path d="M60 87 v4 M60 91 q-5 4 -9 1 M60 91 q5 4 9 1" stroke="#FFFAF4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </symbol>
+</svg>
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="/cs/">Sapiens</a>
+    <nav class="nav-right">
+      <a href="/cs/events/">Akce</a>
+      <a href="/cs/pets/">Adopce</a>
+      <a href="/cs/join/">Přidejte se</a>
+      <a class="lang" href="https://sapienscz.com/pets/liza/">EN</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <a class="back" href="/cs/pets/">&larr; Všechna zvířata</a>
+
+    <div class="hero">
+      <div class="shot tone-peri"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-cat"></use></svg></div>
+      <div>
+        <h1>Líza</h1>
+        <p class="facts">Kočka &middot; 9 let &middot; Praha 6</p>
+        <p class="bio">Líza strávila celý život v jednom domově a pak o něj přišla. Asi týden je plachá a potom je úplně vaše, většinou přímo z klína.</p>
+        <div class="tags"><span>Senior</span><span>Mazlivá</span><span>Prosím klidný domov</span></div>
+        <p class="note">Toto je ukázkový profil, než stránku dokončíme.</p>
+        <div class="share">
+          <b>Sdílet</b>
+          <a class="sbtn" id="waBtn" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Z"/><path d="M9.5 7.6c-.2-.4-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.3.3-.9.9-.9 2.1s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.6 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3l-1.6-.8c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5.2-.4v-.4Z"/></svg>
+          </a>
+          <a class="sbtn" id="tgBtn" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.3-.1-.5-.6-.2L6.2 12.1l-4.8-1.5c-1-.3-1-1 .2-1.5l18.9-7.3c.9-.3 1.6.2 1.4 1.5Z"/></svg>
+          </a>
+          <button class="sbtn" id="copyBtn" type="button" aria-label="Kopírovat odkaz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          </button>
+          <span class="copied" id="copied" hidden>Odkaz zkopírován</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="ask" id="ask">
+      <div id="askMain">
+        <h2>Zaujal vás Líza?</h2>
+        <p>Nechte nám kontakt a spojíme vás s lidmi, kteří se o Líza starají.</p>
+        <form id="petForm" novalidate="false">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="frow">
+            <div class="field">
+              <label for="fName">Vaše jméno</label>
+              <input id="fName" name="Name" type="text" required autocomplete="name" maxlength="100">
+            </div>
+            <div class="field">
+              <label for="fEmail">E-mail</label>
+              <input id="fEmail" name="Email" type="email" required autocomplete="email" maxlength="120">
+            </div>
+          </div>
+          <div class="field">
+            <label for="fPhone">Telefon nebo Instagram (nepovinné)</label>
+            <input id="fPhone" name="Phone" type="text" maxlength="100">
+          </div>
+          <div class="field">
+            <label for="fMsg">Chcete nám něco říct? (nepovinné)</label>
+            <textarea id="fMsg" name="Message" maxlength="1500"></textarea>
+          </div>
+          <button class="btn" type="submit" id="sendBtn">Odeslat</button>
+          <p class="err" id="formErr" hidden></p>
+          <p class="privacy">Vaše údaje použijeme jen k tomu, abychom se vám ozvali. Nic víc, nikdy.</p>
+        </form>
+      </div>
+      <div class="ok" id="askOk" hidden>
+        <h2>Děkujeme!</h2>
+        <p>Vaše zpráva je na cestě — brzy se vám ozveme.</p>
+        <a class="btn" href="/cs/pets/">Všechna zvířata</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; <span id="yr"></span> Sapiens — projekt se sociálním přesahem</span>
+    <span><a href="/cs/privacy/">Soukromí</a> &nbsp;&middot;&nbsp;
+    <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">instagram.com/sapiens.cz</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  (function(){
+    var url=location.href, name="Líza";
+    var text=name+' — hledá domov';
+    document.getElementById('waBtn').href='https://wa.me/?text='+encodeURIComponent(text+' '+url);
+    document.getElementById('tgBtn').href='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text);
+    var cb=document.getElementById('copyBtn'), done=document.getElementById('copied');
+    cb.addEventListener('click',function(){
+      (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(function(){
+        done.hidden=false; setTimeout(function(){done.hidden=true;},2200);
+      }).catch(function(){ prompt('Kopírovat odkaz', url); });
+    });
+  })();
+  (function(){
+    var form=document.getElementById('petForm');
+    if(!form) return;
+    var petName="Líza";
+    var btn=document.getElementById('sendBtn'), err=document.getElementById('formErr');
+    var TG={token:"8875632622:AAF-2mR_lT7EN9NQBIOjJi5kKaJeNGTjk2w",chat:"-1003973004018"};
+    var esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!form.reportValidity()) return;
+      if(form.querySelector('[name="_honey"]').value){
+        document.getElementById('askMain').hidden=true;
+        document.getElementById('askOk').hidden=false; return;
+      }
+      err.hidden=true;
+      var last=0; try{last=parseInt(localStorage.getItem('sapiens-pets-ts')||'0',10);}catch(x){}
+      if(Date.now()-last<60000){ err.textContent="Momentík — právě jste zprávu odeslali. Zkuste to prosím za minutu."; err.hidden=false; return; }
+      btn.disabled=true; btn.textContent="Odesílám…";
+      var v=function(n){var el=form.querySelector('[name="'+n+'"]');return el?el.value.trim():'';};
+      var lines=['\u{1F43E} <b>New adoption enquiry</b>',
+        '<b>Interested in:</b> '+esc(petName),
+        '<b>Name:</b> '+esc(v('Name')),
+        '<b>Email:</b> '+esc(v('Email'))];
+      if(v('Phone')) lines.push('<b>Phone/IG:</b> '+esc(v('Phone')));
+      if(v('Message')) lines.push('','<b>Message:</b>',esc(v('Message')));
+      lines.push('','\u2014 '+esc(location.href)+' [cs]');
+      fetch('https://api.telegram.org/bot'+TG.token+'/sendMessage',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({chat_id:TG.chat,text:lines.join('\n'),parse_mode:'HTML',disable_web_page_preview:true})
+      }).then(function(r){return r.json();}).then(function(d){
+        if(d&&d.ok){
+          try{localStorage.setItem('sapiens-pets-ts',String(Date.now()));}catch(x){}
+          document.getElementById('askMain').hidden=true;
+          document.getElementById('askOk').hidden=false;
+        } else { throw new Error('telegram not ok'); }
+      }).catch(function(){ err.textContent="Něco se pokazilo — zkuste to prosím znovu, nebo nám napište na Instagramu."; err.hidden=false; })
+        .finally(function(){ btn.disabled=false; btn.textContent="Odeslat"; });
+    });
+  })();
+</script>
+</body>
+</html>

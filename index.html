@@ -522,6 +522,29 @@
     .teaser-cards{justify-content:center;margin-top:8px;}
   }
 
+  /* the people */
+  .team-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,3vw,36px);
+  }
+  @media (max-width:860px){.team-grid{grid-template-columns:repeat(2,1fr);}}
+  .member{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;}
+  .avatar{
+    width:clamp(96px,11vw,148px);aspect-ratio:1;border-radius:999px;
+    display:grid;place-items:center;
+    font-size:clamp(2rem,3.4vw,2.8rem);font-weight:800;letter-spacing:-.02em;color:var(--wine);
+  }
+  .avatar.tone-a{background:var(--ochre);}
+  .avatar.tone-b{background:var(--peri);}
+  .avatar.tone-c{background:#F1E2CC;}
+  .avatar.tone-d{background:var(--peri-light);}
+  .member figcaption{display:flex;flex-direction:column;gap:5px;}
+  .member b{font-size:1.05rem;font-weight:800;letter-spacing:-.01em;}
+  .member figcaption span{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.55;}
+  .team-note{
+    margin:clamp(30px,4vw,48px) auto 0;max-width:46ch;text-align:center;
+    font-weight:600;line-height:1.6;opacity:.7;
+  }
+
   /* how to help */
   .help .sec-head{text-align:center;}
   .help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);}
@@ -627,6 +650,10 @@
     .stanza{font-size:.9rem;letter-spacing:.04em;}
   }
 </style>
+<!-- Analytics: create a free site at goatcounter.com, put your code in place of YOURCODE,
+     then delete these two comment lines to switch it on. No cookies, no consent banner needed.
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->
 </head>
 <body>
 
@@ -713,6 +740,7 @@
       <nav class="nav-links" aria-label="Main">
         <a href="events/" data-i18n="navEvents">Events</a>
         <a href="pets/" data-i18n="navPets">Adopt</a>
+        <a href="support/" data-i18n="navSupport">Support</a>
         <a href="join/" data-i18n="navJoin">Join us</a>
         <a class="nav-ig" href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>
@@ -888,6 +916,36 @@
 </section>
 
 <!-- ================= TAGLINE BAND ================= -->
+<!-- PLACEHOLDER TEAM — replace names, roles and add photos (img/team/<name>.jpg) -->
+<section class="band band-cream team" id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="teamEyebrow">The people</span>
+      <h2 data-split data-i18n="teamTitle">Who is behind it</h2>
+    </div>
+    <div class="team-grid">
+      <figure class="member rv">
+        <span class="avatar tone-a" aria-hidden="true">N</span>
+        <figcaption><b data-i18n="m1n">Name Surname</b><span data-i18n="m1r">Founder</span></figcaption>
+      </figure>
+      <figure class="member rv d1">
+        <span class="avatar tone-b" aria-hidden="true">N</span>
+        <figcaption><b data-i18n="m2n">Name Surname</b><span data-i18n="m2r">Events</span></figcaption>
+      </figure>
+      <figure class="member rv d2">
+        <span class="avatar tone-c" aria-hidden="true">N</span>
+        <figcaption><b data-i18n="m3n">Name Surname</b><span data-i18n="m3r">Animals</span></figcaption>
+      </figure>
+      <figure class="member rv d1">
+        <span class="avatar tone-d" aria-hidden="true">N</span>
+        <figcaption><b data-i18n="m4n">Name Surname</b><span data-i18n="m4r">Partnerships</span></figcaption>
+      </figure>
+    </div>
+    <p class="team-note" data-i18n="teamNote">Plus everyone who shows up on the day &mdash; and there are
+    more of them than of us.</p>
+  </div>
+</section>
+
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
@@ -983,6 +1041,7 @@
     <nav class="foot-links" aria-label="Footer">
       <a href="events/" data-i18n="navEvents">Events</a>
       <a href="pets/" data-i18n="navPets">Adopt</a>
+      <a href="support/" data-i18n="navSupport">Support</a>
       <a href="join/" data-i18n="navJoin">Join us</a>
       <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">Instagram</a>
     </nav>
@@ -1008,7 +1067,7 @@
         desc:'Sapiens is a social impact project that brings people together through charity and human connection. We create projects, support meaningful initiatives and help where it’s needed.',
         marquee:'People need people',
         menuOpen:'Open menu',menuClose:'Close menu',toTop:'Back to top',
-        navWho:'Who we are',navWhy:'Why we do this',navShare:'Why we share it',navEvents:'Events',navPets:'Adopt',navJoin:'Join us',skipLink:'Skip to content',
+        navWho:'Who we are',navWhy:'Why we do this',navShare:'Why we share it',navEvents:'Events',navPets:'Adopt',navSupport:'Support',navJoin:'Join us',skipLink:'Skip to content',
         heroEyebrow:'People need people',
         heroH1:'Making <span class="hl">humanity</span> feel real again',
         heroP:'Sapiens is a social impact project. We create real moments of charity and human connection &mdash; and help where it&rsquo;s needed.',
@@ -1034,6 +1093,12 @@
         teaserTitle:'Find <span class="hl">your friend</span>',
         teaserText:'Dogs, cats and rabbits around Prague are waiting for someone. Go through them one by one, keep the ones who stay with you &mdash; and we&rsquo;ll put you in touch with the people looking after them.',
         teaserCta:'Meet the animals',
+        teamEyebrow:'The people',teamTitle:'Who is behind it',
+        m1n:'Name Surname',m1r:'Founder',
+        m2n:'Name Surname',m2r:'Events',
+        m3n:'Name Surname',m3r:'Animals',
+        m4n:'Name Surname',m4r:'Partnerships',
+        teamNote:'Plus everyone who shows up on the day &mdash; and there are more of them than of us.',
         helpEyebrow:'Get involved',
         helpTitle:'How you can help',
         help1Title:'Come to an event',
@@ -1057,7 +1122,7 @@
         desc:'Sapiens je projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení. Vytváříme projekty, podporujeme smysluplné iniciativy a pomáháme tam, kde je to potřeba.',
         marquee:'Lidé potřebují lidi',
         menuOpen:'Otevřít menu',menuClose:'Zavřít menu',toTop:'Zpět nahoru',
-        navWho:'Kdo jsme',navWhy:'Proč to děláme',navShare:'Proč to sdílíme',navEvents:'Akce',navPets:'Adopce',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
+        navWho:'Kdo jsme',navWhy:'Proč to děláme',navShare:'Proč to sdílíme',navEvents:'Akce',navPets:'Adopce',navSupport:'Podpořte nás',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
         heroEyebrow:'Lidé potřebují lidi',
         heroH1:'Aby <span class="hl">lidskost</span> byla zase skutečná',
         heroP:'Sapiens je projekt se sociálním přesahem. Vytváříme skutečné okamžiky dobročinnosti a lidského propojení &mdash; a pomáháme tam, kde je to potřeba.',
@@ -1083,6 +1148,12 @@
         teaserTitle:'Najděte si <span class="hl">kamaráda</span>',
         teaserText:'Psi, kočky a králíci v Praze a okolí čekají na někoho. Projděte si je jednoho po druhém, nechte si ty, kteří vám zůstanou v hlavě &mdash; a my vás spojíme s lidmi, kteří se o ně starají.',
         teaserCta:'Poznejte zvířata',
+        teamEyebrow:'Lidé',teamTitle:'Kdo za tím stojí',
+        m1n:'Jméno Příjmení',m1r:'Zakladatelka',
+        m2n:'Jméno Příjmení',m2r:'Akce',
+        m3n:'Jméno Příjmení',m3r:'Zvířata',
+        m4n:'Jméno Příjmení',m4r:'Spolupráce',
+        teamNote:'A k tomu všichni, kdo přijdou v den akce &mdash; a těch je víc než nás.',
         helpEyebrow:'Zapojte se',
         helpTitle:'Jak můžete pomoct',
         help1Title:'Přijďte na akci',

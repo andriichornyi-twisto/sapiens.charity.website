@@ -59,6 +59,11 @@ elif src == 'events/index.html':
                         '<meta property="og:title" content="Akce — Sapiens">')
     html = html.replace('<meta property="og:description" content="Moments we create — come to a Sapiens event or start one of your own.">',
                         '<meta property="og:description" content="Okamžiky, které vytváříme — přijďte na akci Sapiens, nebo vytvořte vlastní.">')
+elif src == 'support/index.html':
+    html = html.replace('<meta property="og:title" content="Support us — Sapiens">',
+                        '<meta property="og:title" content="Podpořte nás — Sapiens">')
+    html = html.replace('<meta property="og:description" content="A bank transfer, a QR payment, or a hand instead of money — every contribution goes into the next moment we create.">',
+                        '<meta property="og:description" content="Převodem, QR platbou, nebo pomocí místo peněz — každý příspěvek jde do dalšího okamžiku, který vytvoříme.">')
 elif src == 'pets/index.html':
     html = html.replace('<meta property="og:title" content="Adopt a friend — Sapiens">',
                         '<meta property="og:title" content="Najděte si kamaráda — Sapiens">')
@@ -84,7 +89,11 @@ EOF
   rm -f "$tmp"
 }
 
+# one page per animal, generated from the PETS array in pets/index.html
+node scripts/build-pets.mjs
+
 render index.html          cs        /cs/
 render events/index.html   cs/events /cs/events/
 render join/index.html     cs/join   /cs/join/
 render pets/index.html     cs/pets   /cs/pets/
+render support/index.html  cs/support /cs/support/
