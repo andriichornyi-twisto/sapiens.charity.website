@@ -505,10 +505,18 @@
   .tcard.tone-ochre{background:var(--ochre);}
   .tcard.tone-peri{background:var(--peri);}
   .tcard.tone-sand{background:#F1E2CC;}
-  /* fanned out, the way the deck looks */
-  .tcard:nth-child(1){transform:rotate(-9deg);margin-right:-26px;z-index:1;}
-  .tcard:nth-child(2){transform:rotate(2deg);margin-right:-26px;z-index:2;}
-  .tcard:nth-child(3){transform:rotate(11deg);z-index:3;}
+  /* fanned out, the way the deck looks, breathing slightly out of step */
+  .tcard{transform:rotate(var(--r,0deg));animation:tcard-float 6s ease-in-out var(--d,0s) infinite;}
+  .tcard:nth-child(1){--r:-9deg;margin-right:-26px;z-index:1;}
+  .tcard:nth-child(2){--r:2deg;--d:.9s;margin-right:-26px;z-index:2;}
+  .tcard:nth-child(3){--r:11deg;--d:1.8s;z-index:3;}
+  @keyframes tcard-float{
+    0%,100%{transform:rotate(var(--r,0deg)) translateY(0);}
+    50%{transform:rotate(var(--r,0deg)) translateY(-9px);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .tcard{animation:none;}
+  }
   @media (max-width:860px){
     .teaser-grid{grid-template-columns:1fr;}
     .teaser-cards{justify-content:center;margin-top:8px;}
@@ -627,23 +635,52 @@
 
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <style>
+    /* each card sets its own --blink-delay so they never blink in unison */
+    .eye{
+      transform-box:fill-box;transform-origin:center;
+      animation:sap-blink 6.5s var(--blink-delay,0s) infinite;
+    }
+    @keyframes sap-blink{0%,93.5%,100%{transform:scaleY(1);}96%{transform:scaleY(.08);}}
+    .ear-up,.ear-down{
+      transform-box:fill-box;
+      animation:sap-twitch 11s var(--twitch-delay,0s) infinite;
+    }
+    .ear-up{transform-origin:50% 100%;}
+    .ear-down{transform-origin:50% 0%;}
+    @keyframes sap-twitch{
+      0%,90%,100%{transform:rotate(0deg);}
+      93%{transform:rotate(-5deg);}
+      96%{transform:rotate(2.5deg);}
+    }
+    /* --look is set on the card while you drag it, so the pet glances that way */
+    .eyes{transform:translateX(var(--look,0px));transition:transform .2s ease-out;}
+    @media (prefers-reduced-motion:reduce){
+      .eye,.ear-up,.ear-down{animation:none !important;}
+      .eyes{transform:none;transition:none;}
+    }
+  </style>
   <symbol id="pet-dog" viewBox="0 0 120 120">
-    <ellipse cx="28" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(-12 28 52)"/>
-    <ellipse cx="92" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(12 92 52)"/>
+    <g class="ear-down"><ellipse cx="28" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(-12 28 52)"/></g>
+    <g class="ear-down"><ellipse cx="92" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(12 92 52)"/></g>
     <rect x="26" y="26" width="68" height="70" rx="32" fill="currentColor"/>
-    <circle cx="47" cy="56" r="5" fill="#FFFAF4"/>
-    <circle cx="73" cy="56" r="5" fill="#FFFAF4"/>
+    <g class="eyes">
+      <circle class="eye" cx="47" cy="56" r="5" fill="#FFFAF4"/>
+      <circle class="eye" cx="73" cy="56" r="5" fill="#FFFAF4"/>
+    </g>
     <ellipse cx="60" cy="79" rx="19" ry="14" fill="#FFFAF4" opacity=".92"/>
     <ellipse cx="60" cy="72" rx="7" ry="5" fill="#DFA84F"/>
     <path d="M60 77 v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
     <path d="M60 82 q-6 5 -10 0 M60 82 q6 5 10 0" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
   </symbol>
   <symbol id="pet-cat" viewBox="0 0 120 120">
-    <path d="M32 46 L30 16 L54 33 Z" fill="currentColor"/>
-    <path d="M88 46 L90 16 L66 33 Z" fill="currentColor"/>
+    <g class="ear-up"><path d="M32 46 L30 16 L54 33 Z" fill="currentColor"/></g>
+    <g class="ear-up"><path d="M88 46 L90 16 L66 33 Z" fill="currentColor"/></g>
     <ellipse cx="60" cy="66" rx="36" ry="32" fill="currentColor"/>
-    <ellipse cx="46" cy="62" rx="4.5" ry="6" fill="#FFFAF4"/>
-    <ellipse cx="74" cy="62" rx="4.5" ry="6" fill="#FFFAF4"/>
+    <g class="eyes">
+      <ellipse class="eye" cx="46" cy="62" rx="4.5" ry="6" fill="#FFFAF4"/>
+      <ellipse class="eye" cx="74" cy="62" rx="4.5" ry="6" fill="#FFFAF4"/>
+    </g>
     <path d="M60 74 l-5.5 4.5 h11 Z" fill="#DFA84F"/>
     <path d="M60 79 q-5 6 -10 2 M60 79 q5 6 10 2" stroke="#FFFAF4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
     <g stroke="#FFFAF4" stroke-width="2" stroke-linecap="round" opacity=".75">
@@ -651,13 +688,19 @@
     </g>
   </symbol>
   <symbol id="pet-rabbit" viewBox="0 0 120 120">
-    <ellipse cx="46" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(-8 46 32)"/>
-    <ellipse cx="74" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(8 74 32)"/>
-    <ellipse cx="46" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(-8 46 34)"/>
-    <ellipse cx="74" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(8 74 34)"/>
+    <g class="ear-up">
+      <ellipse cx="46" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(-8 46 32)"/>
+      <ellipse cx="46" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(-8 46 34)"/>
+    </g>
+    <g class="ear-up">
+      <ellipse cx="74" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(8 74 32)"/>
+      <ellipse cx="74" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(8 74 34)"/>
+    </g>
     <ellipse cx="60" cy="76" rx="32" ry="28" fill="currentColor"/>
-    <circle cx="48" cy="72" r="4.5" fill="#FFFAF4"/>
-    <circle cx="72" cy="72" r="4.5" fill="#FFFAF4"/>
+    <g class="eyes">
+      <circle class="eye" cx="48" cy="72" r="4.5" fill="#FFFAF4"/>
+      <circle class="eye" cx="72" cy="72" r="4.5" fill="#FFFAF4"/>
+    </g>
     <ellipse cx="60" cy="84" rx="5" ry="3.5" fill="#DFA84F"/>
     <path d="M60 87 v4 M60 91 q-5 4 -9 1 M60 91 q5 4 9 1" stroke="#FFFAF4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
   </symbol>

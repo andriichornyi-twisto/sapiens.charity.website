@@ -463,7 +463,10 @@
     background:var(--white);border-radius:20px;overflow:hidden;
     box-shadow:0 1px 2px rgba(85,32,46,.05),0 8px 20px rgba(85,32,46,.09);
     transition:transform .18s ease,box-shadow .18s ease;
+    animation:sap-rise .5s cubic-bezier(.22,.8,.3,1) backwards;
+    animation-delay:calc(var(--i,0) * 45ms);
   }
+  @keyframes sap-rise{from{opacity:0;transform:translateY(14px) scale(.97);}to{opacity:1;transform:none;}}
   .gcard:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(85,32,46,.06),0 16px 32px rgba(85,32,46,.13);}
   .gcard.tone-ochre{--band:var(--ochre);}
   .gcard.tone-peri{--band:var(--peri);}
@@ -498,6 +501,14 @@
   .heart svg{width:20px;height:20px;}
   .heart:hover{transform:scale(1.08);color:var(--wine);}
   .heart.on{background:var(--wine);border-color:var(--wine);color:var(--cream);}
+  .heart::after{
+    content:'';position:absolute;inset:-6px;border-radius:999px;
+    border:2px solid var(--wine);opacity:0;pointer-events:none;
+  }
+  .heart.pop{animation:sap-pop .42s cubic-bezier(.3,1.4,.4,1);}
+  .heart.pop::after{animation:sap-ring .55s ease-out;}
+  @keyframes sap-pop{0%{transform:scale(1);}35%{transform:scale(1.3);}62%{transform:scale(.93);}100%{transform:scale(1);}}
+  @keyframes sap-ring{0%{opacity:.55;transform:scale(.7);}100%{opacity:0;transform:scale(1.6);}}
   .grid-empty{
     text-align:center;font-weight:600;opacity:.65;padding:40px 0;
   }
@@ -527,6 +538,11 @@
     .deck-hint{display:none;}
     .pcard .bio{-webkit-line-clamp:3;}
     .deck{height:min(600px,calc(100svh - 296px));}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .gcard{animation:none;}
+    .heart.pop,.heart.pop::after{animation:none;}
   }
 
   /* ---------- results + enquiry ---------- */
@@ -646,23 +662,52 @@
 
 <!-- placeholder pet portraits — swapped for real photos once we have them -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <style>
+    /* each card sets its own --blink-delay so they never blink in unison */
+    .eye{
+      transform-box:fill-box;transform-origin:center;
+      animation:sap-blink 6.5s var(--blink-delay,0s) infinite;
+    }
+    @keyframes sap-blink{0%,93.5%,100%{transform:scaleY(1);}96%{transform:scaleY(.08);}}
+    .ear-up,.ear-down{
+      transform-box:fill-box;
+      animation:sap-twitch 11s var(--twitch-delay,0s) infinite;
+    }
+    .ear-up{transform-origin:50% 100%;}
+    .ear-down{transform-origin:50% 0%;}
+    @keyframes sap-twitch{
+      0%,90%,100%{transform:rotate(0deg);}
+      93%{transform:rotate(-5deg);}
+      96%{transform:rotate(2.5deg);}
+    }
+    /* --look is set on the card while you drag it, so the pet glances that way */
+    .eyes{transform:translateX(var(--look,0px));transition:transform .2s ease-out;}
+    @media (prefers-reduced-motion:reduce){
+      .eye,.ear-up,.ear-down{animation:none !important;}
+      .eyes{transform:none;transition:none;}
+    }
+  </style>
   <symbol id="pet-dog" viewBox="0 0 120 120">
-    <ellipse cx="28" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(-12 28 52)"></ellipse>
-    <ellipse cx="92" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(12 92 52)"></ellipse>
+    <g class="ear-down"><ellipse cx="28" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(-12 28 52)"></ellipse></g>
+    <g class="ear-down"><ellipse cx="92" cy="52" rx="14" ry="26" fill="currentColor" opacity=".55" transform="rotate(12 92 52)"></ellipse></g>
     <rect x="26" y="26" width="68" height="70" rx="32" fill="currentColor"></rect>
-    <circle cx="47" cy="56" r="5" fill="#FFFAF4"></circle>
-    <circle cx="73" cy="56" r="5" fill="#FFFAF4"></circle>
+    <g class="eyes">
+      <circle class="eye" cx="47" cy="56" r="5" fill="#FFFAF4"></circle>
+      <circle class="eye" cx="73" cy="56" r="5" fill="#FFFAF4"></circle>
+    </g>
     <ellipse cx="60" cy="79" rx="19" ry="14" fill="#FFFAF4" opacity=".92"></ellipse>
     <ellipse cx="60" cy="72" rx="7" ry="5" fill="#DFA84F"></ellipse>
     <path d="M60 77 v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
     <path d="M60 82 q-6 5 -10 0 M60 82 q6 5 10 0" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
   </symbol>
   <symbol id="pet-cat" viewBox="0 0 120 120">
-    <path d="M32 46 L30 16 L54 33 Z" fill="currentColor"></path>
-    <path d="M88 46 L90 16 L66 33 Z" fill="currentColor"></path>
+    <g class="ear-up"><path d="M32 46 L30 16 L54 33 Z" fill="currentColor"></path></g>
+    <g class="ear-up"><path d="M88 46 L90 16 L66 33 Z" fill="currentColor"></path></g>
     <ellipse cx="60" cy="66" rx="36" ry="32" fill="currentColor"></ellipse>
-    <ellipse cx="46" cy="62" rx="4.5" ry="6" fill="#FFFAF4"></ellipse>
-    <ellipse cx="74" cy="62" rx="4.5" ry="6" fill="#FFFAF4"></ellipse>
+    <g class="eyes">
+      <ellipse class="eye" cx="46" cy="62" rx="4.5" ry="6" fill="#FFFAF4"></ellipse>
+      <ellipse class="eye" cx="74" cy="62" rx="4.5" ry="6" fill="#FFFAF4"></ellipse>
+    </g>
     <path d="M60 74 l-5.5 4.5 h11 Z" fill="#DFA84F"></path>
     <path d="M60 79 q-5 6 -10 2 M60 79 q5 6 10 2" stroke="#FFFAF4" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
     <g stroke="#FFFAF4" stroke-width="2" stroke-linecap="round" opacity=".75">
@@ -670,13 +715,19 @@
     </g>
   </symbol>
   <symbol id="pet-rabbit" viewBox="0 0 120 120">
-    <ellipse cx="46" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(-8 46 32)"></ellipse>
-    <ellipse cx="74" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(8 74 32)"></ellipse>
-    <ellipse cx="46" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(-8 46 34)"></ellipse>
-    <ellipse cx="74" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(8 74 34)"></ellipse>
+    <g class="ear-up">
+      <ellipse cx="46" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(-8 46 32)"></ellipse>
+      <ellipse cx="46" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(-8 46 34)"></ellipse>
+    </g>
+    <g class="ear-up">
+      <ellipse cx="74" cy="32" rx="9.5" ry="27" fill="currentColor" transform="rotate(8 74 32)"></ellipse>
+      <ellipse cx="74" cy="34" rx="4" ry="17" fill="#DFA84F" opacity=".55" transform="rotate(8 74 34)"></ellipse>
+    </g>
     <ellipse cx="60" cy="76" rx="32" ry="28" fill="currentColor"></ellipse>
-    <circle cx="48" cy="72" r="4.5" fill="#FFFAF4"></circle>
-    <circle cx="72" cy="72" r="4.5" fill="#FFFAF4"></circle>
+    <g class="eyes">
+      <circle class="eye" cx="48" cy="72" r="4.5" fill="#FFFAF4"></circle>
+      <circle class="eye" cx="72" cy="72" r="4.5" fill="#FFFAF4"></circle>
+    </g>
     <ellipse cx="60" cy="84" rx="5" ry="3.5" fill="#DFA84F"></ellipse>
     <path d="M60 87 v4 M60 91 q-5 4 -9 1 M60 91 q5 4 9 1" stroke="#FFFAF4" stroke-width="2.2" fill="none" stroke-linecap="round"></path>
   </symbol>
@@ -735,7 +786,7 @@
         <button class="linkbtn js-viewall" type="button" data-i18n="seeAll">Zobrazit všechny</button>
       </div>
 
-      <div class="deck" id="deck"><article class="pcard tone-sand" data-depth="2" data-id="pepik" role="group" aria-label="Pepík — Králík" aria-hidden="true" style="z-index: 8; transform: translateY(20px) scale(0.92);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-rabbit"></use></svg></div><div class="meta"><h3>Pepík</h3><p class="facts">Králík · 1 rok · Praha 4</p><p class="bio">Pepík udělá malý skok, když má radost, což je skoro pořád. Je naučený na toaletu a moc by si přál někoho, s kým se podělí o seno.</p><div class="ptags"><span>Naučený na toaletu</span><span>Mírný</span><span>Uvítal by kamaráda</span></div></div></article><article class="pcard tone-peri" data-depth="1" data-id="momo" role="group" aria-label="Momo — Kocour" aria-hidden="true" style="z-index: 9; transform: translateY(10px) scale(0.96);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img src="/img/pets/momo.jpg" alt="Momo" loading="lazy" draggable="false"></div><div class="meta"><h3>Momo</h3><p class="facts">Kocour · 2 roky · Praha 5</p><p class="bio">Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.</p><div class="ptags"><span>Vhodný do bytu</span><span>Upovídaný</span><span>Nejlépe sám</span></div></div></article><article class="pcard tone-ochre" data-depth="0" data-id="bara" role="group" aria-label="Bára — Fenka" style="z-index: 10; transform: translateY(0px) scale(1);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img src="/img/pets/bara.jpg" alt="Bára" loading="lazy" draggable="false"></div><div class="meta"><h3>Bára</h3><p class="facts">Fenka · 3 roky · Praha 8</p><p class="bio">Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.</p><div class="ptags"><span>Dobrá s dětmi</span><span>Zná základy</span><span>Miluje dlouhé procházky</span></div></div></article></div>
+      <div class="deck" id="deck"><article class="pcard tone-sand" style="--blink-delay: 1.4s; --twitch-delay: 3.8s; z-index: 8; transform: translateY(20px) scale(0.92);" data-depth="2" data-id="pepik" role="group" aria-label="Pepík — Králík" aria-hidden="true"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-rabbit"></use></svg></div><div class="meta"><h3>Pepík</h3><p class="facts">Králík · 1 rok · Praha 4</p><p class="bio">Pepík udělá malý skok, když má radost, což je skoro pořád. Je naučený na toaletu a moc by si přál někoho, s kým se podělí o seno.</p><div class="ptags"><span>Naučený na toaletu</span><span>Mírný</span><span>Uvítal by kamaráda</span></div></div></article><article class="pcard tone-peri" style="--blink-delay: 2.6s; --twitch-delay: 5.7s; z-index: 9; transform: translateY(10px) scale(0.96);" data-depth="1" data-id="momo" role="group" aria-label="Momo — Kocour" aria-hidden="true"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img src="/img/pets/momo.jpg" alt="Momo" loading="lazy" draggable="false"></div><div class="meta"><h3>Momo</h3><p class="facts">Kocour · 2 roky · Praha 5</p><p class="bio">Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.</p><div class="ptags"><span>Vhodný do bytu</span><span>Upovídaný</span><span>Nejlépe sám</span></div></div></article><article class="pcard tone-ochre" style="--blink-delay: 5.1s; --twitch-delay: 4.1s; z-index: 10; transform: translateY(0px) scale(1);" data-depth="0" data-id="bara" role="group" aria-label="Bára — Fenka"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img src="/img/pets/bara.jpg" alt="Bára" loading="lazy" draggable="false"></div><div class="meta"><h3>Bára</h3><p class="facts">Fenka · 3 roky · Praha 8</p><p class="bio">Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.</p><div class="ptags"><span>Dobrá s dětmi</span><span>Zná základy</span><span>Miluje dlouhé procházky</span></div></div></article></div>
 
       <div class="deck-controls">
         <button class="ctrl undo" id="btnUndo" type="button" data-label="ctrlUndo" aria-label="Vrátit poslední" disabled="">
@@ -1081,12 +1132,16 @@
     const t=()=>I18N[activeLang];
     const fill=(s,vars)=>s.replace(/\{(\w+)\}/g,(m,k)=>vars[k]!=null?vars[k]:m);
     const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    // same pet always gets the same offset, so it looks deliberate rather than random
+    const hash=id=>{let h=0;for(const c of id)h=(h*31+c.charCodeAt(0))%997;return h;};
+    const beats=p=>'--blink-delay:'+((hash(p.id)%65)/10)+'s;--twitch-delay:'+((hash(p.id+'e')%110)/10)+'s;';
 
     function announce(msg){ if(deckLive) deckLive.textContent=msg; }
 
     function buildCard(pet,depth){
       const el=document.createElement('article');
       el.className='pcard tone-'+pet.tone;
+      el.setAttribute('style',beats(pet));
       el.dataset.depth=String(depth);
       el.dataset.id=pet.id;
       el.style.zIndex=String(10-depth);
@@ -1146,6 +1201,7 @@
         dx=e.clientX-startX;dy=e.clientY-startY;
         if(Math.abs(dy)>Math.abs(dx)*1.6&&Math.abs(dx)<12) return;
         card.style.transform='translate('+dx+'px,'+dy*.3+'px) rotate('+(dx/18)+'deg)';
+        card.style.setProperty('--look',Math.max(-5,Math.min(5,dx/26))+'px');
         const p=Math.min(Math.abs(dx)/110,1);
         if(yes) yes.style.opacity=dx>0?p:0;
         if(no) no.style.opacity=dx<0?p:0;
@@ -1157,6 +1213,7 @@
         if(Math.abs(dx)>110){ decided=true; decide(dx>0?'like':'nope'); return; }
         card.style.transition='transform .3s cubic-bezier(.22,.8,.3,1)';
         card.style.transform='translateY(0) scale(1)';
+        card.style.setProperty('--look','0px');
         if(yes) yes.style.opacity=0;
         if(no) no.style.opacity=0;
       }
@@ -1248,12 +1305,12 @@
       if(!petGrid) return;
       const list=pool();
       if(gridEmpty) gridEmpty.hidden=list.length>0;
-      petGrid.innerHTML=list.map(p=>{
+      petGrid.innerHTML=list.map((p,i)=>{
         const on=isLiked(p.id);
         const art=p.photo
           ? '<img src="'+p.photo+'" alt="'+esc(p.name)+'" loading="lazy">'
           : '<svg viewBox="0 0 120 120" aria-hidden="true"><use href="#'+p.art+'"></use></svg>';
-        return '<article class="gcard tone-'+p.tone+'">'+
+        return '<article class="gcard tone-'+p.tone+'" style="--i:'+i+';'+beats(p)+'">'+
           '<div class="art">'+art+'</div>'+
           '<button class="heart'+(on?' on':'')+'" type="button" data-like="'+p.id+'" '+
             'aria-pressed="'+on+'" aria-label="'+esc(fill(t()[on?'unlikeOne':'likeOne'],{name:p.name}))+'">'+
@@ -1292,8 +1349,14 @@
         if(!pet) return;
         if(isLiked(pet.id)) liked=liked.filter(x=>x.id!==pet.id);
         else liked.push(pet);
-        renderGrid();
-        announce(fill(t()[isLiked(pet.id)?'likeOne':'unlikeOne'],{name:pet.name}));
+        // update just this button, so the pop animation plays and the grid does not flash
+        const on=isLiked(pet.id);
+        b.classList.toggle('on',on);
+        b.setAttribute('aria-pressed',String(on));
+        b.setAttribute('aria-label',esc(fill(t()[on?'unlikeOne':'likeOne'],{name:pet.name})));
+        if(on){ b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }
+        updatePickBar();
+        announce(fill(t()[on?'likeOne':'unlikeOne'],{name:pet.name}));
       });
     }
     document.querySelectorAll('.js-viewall').forEach(b=>b.addEventListener('click',()=>showGrid(true)));
