@@ -258,7 +258,10 @@
   }
   /* fills the band at any card size — the viewBox keeps it square */
   .pcard .art svg{width:100%;height:100%;padding:12px;color:var(--wine);}
-  .pcard .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .pcard .art img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    pointer-events:none;-webkit-user-drag:none;user-select:none;
+  }
   .pcard .meta{
     padding:20px 22px 22px;background:var(--white);
   }
@@ -313,13 +316,6 @@
 
   /* ---------- phones: fit head + deck + buttons on one screen ---------- */
   @media (max-width:900px){
-    .filters{
-      flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
-      gap:6px;margin-bottom:10px;padding-bottom:2px;
-      scrollbar-width:none;-webkit-overflow-scrolling:touch;
-    }
-    .filters::-webkit-scrollbar{display:none;}
-    .chipbtn{flex:0 0 auto;font-size:11px;padding:8px 13px;}
     .page-head{padding:calc(64px + clamp(10px,3vh,26px)) 0 clamp(8px,1.4vh,14px);}
     .page-head .eyebrow{margin-bottom:10px;}
     .page-head h1{font-size:clamp(1.75rem,8.5vw,2.4rem);}
@@ -411,20 +407,23 @@
       max-width:1180px;margin:0 auto;min-height:100svh;
       padding:clamp(88px,11vh,124px) clamp(20px,4vw,48px) clamp(36px,6vh,64px);
     }
-    .adopt:not(.is-done) .page-head .wrap,
-    .adopt:not(.is-done) .deck-section > .wrap{padding:0;max-width:none;}
+    .adopt:not(.is-done):not(.is-browsing) .page-head .wrap,
+    .adopt:not(.is-done):not(.is-browsing) .deck-section > .wrap{padding:0;max-width:none;}
     .page-head{padding:0;text-align:left;}
     .page-head h1{font-size:clamp(2.6rem,4.6vw,4.1rem);}
     .page-head p{margin:20px 0 0;max-width:40ch;font-size:1.05rem;}
     .deck-section{padding:0;}
-    .deck{width:min(420px,40vw);height:min(600px,70vh);}
+    .deck{width:min(420px,40vw);height:min(600px,calc(100svh - 400px));min-height:280px;}
     .deck-hint{margin-left:auto;margin-right:auto;}
     /* the results panel wants the full width back */
-    .adopt.is-done{display:block;min-height:0;padding-bottom:clamp(70px,9vw,110px);}
-    .adopt.is-done .page-head{
+    .adopt.is-done,
+    .adopt.is-browsing{display:block;min-height:0;padding-bottom:clamp(70px,9vw,110px);}
+    .adopt.is-done .page-head,
+    .adopt.is-browsing .page-head{
       text-align:center;padding:clamp(88px,11vh,124px) 0 clamp(10px,1.5vw,16px);
     }
-    .adopt.is-done .page-head p{margin-left:auto;margin-right:auto;}
+    .adopt.is-done .page-head p,
+    .adopt.is-browsing .page-head p{margin-left:auto;margin-right:auto;}
   }
 
   /* ---------- filters ---------- */
@@ -441,6 +440,16 @@
   }
   .chipbtn:hover{border-color:rgba(85,32,46,.45);}
   .chipbtn.is-on{background:var(--wine);border-color:var(--wine);color:var(--cream);}
+  /* phones: one scrollable row instead of two wrapped ones */
+  @media (max-width:900px){
+    .filters{
+      flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;
+      gap:6px;margin-bottom:10px;padding-bottom:2px;
+      scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    }
+    .filters::-webkit-scrollbar{display:none;}
+    .chipbtn{flex:0 0 auto;font-size:11px;padding:8px 13px;}
+  }
 
 
   /* ---------- browse-all grid ---------- */
@@ -466,7 +475,7 @@
       var(--band);
     display:grid;place-items:center;
   }
-  .gcard .art svg{width:100%;height:100%;padding:14px;color:var(--wine);}
+  .gcard .art svg{position:absolute;inset:0;width:100%;height:100%;padding:14px;color:var(--wine);}
   .gcard .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .gcard .meta{padding:14px 16px 18px;}
   .gcard h3{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;line-height:1;}
@@ -509,6 +518,15 @@
   @media (max-width:560px){
     .pickbar{justify-content:center;text-align:center;}
     .pickbar-actions{width:100%;justify-content:center;}
+  }
+
+  /* laptops that are wide but not tall */
+  @media (min-width:1000px) and (max-height:880px){
+    .adopt{padding-top:clamp(72px,9vh,96px);padding-bottom:clamp(20px,3vh,32px);}
+    .deck-controls{margin-top:clamp(28px,3vw,40px);}
+    .deck-hint{display:none;}
+    .pcard .bio{-webkit-line-clamp:3;}
+    .deck{height:min(600px,calc(100svh - 296px));}
   }
 
   /* ---------- results + enquiry ---------- */
@@ -717,7 +735,7 @@
         <button class="linkbtn js-viewall" type="button" data-i18n="seeAll">Zobrazit všechny</button>
       </div>
 
-      <div class="deck" id="deck"><article class="pcard tone-sand" data-depth="2" data-id="pepik" role="group" aria-label="Pepík — Králík" aria-hidden="true" style="z-index: 8; transform: translateY(20px) scale(0.92);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-rabbit"></use></svg></div><div class="meta"><h3>Pepík</h3><p class="facts">Králík · 1 rok · Praha 4</p><p class="bio">Pepík udělá malý skok, když má radost, což je skoro pořád. Je naučený na toaletu a moc by si přál někoho, s kým se podělí o seno.</p><div class="ptags"><span>Naučený na toaletu</span><span>Mírný</span><span>Uvítal by kamaráda</span></div></div></article><article class="pcard tone-peri" data-depth="1" data-id="momo" role="group" aria-label="Momo — Kocour" aria-hidden="true" style="z-index: 9; transform: translateY(10px) scale(0.96);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-cat"></use></svg></div><div class="meta"><h3>Momo</h3><p class="facts">Kocour · 2 roky · Praha 5</p><p class="bio">Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.</p><div class="ptags"><span>Vhodný do bytu</span><span>Upovídaný</span><span>Nejlépe sám</span></div></div></article><article class="pcard tone-ochre" data-depth="0" data-id="bara" role="group" aria-label="Bára — Fenka" style="z-index: 10; transform: translateY(0px) scale(1);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-dog"></use></svg></div><div class="meta"><h3>Bára</h3><p class="facts">Fenka · 3 roky · Praha 8</p><p class="bio">Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.</p><div class="ptags"><span>Dobrá s dětmi</span><span>Zná základy</span><span>Miluje dlouhé procházky</span></div></div></article></div>
+      <div class="deck" id="deck"><article class="pcard tone-sand" data-depth="2" data-id="pepik" role="group" aria-label="Pepík — Králík" aria-hidden="true" style="z-index: 8; transform: translateY(20px) scale(0.92);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-rabbit"></use></svg></div><div class="meta"><h3>Pepík</h3><p class="facts">Králík · 1 rok · Praha 4</p><p class="bio">Pepík udělá malý skok, když má radost, což je skoro pořád. Je naučený na toaletu a moc by si přál někoho, s kým se podělí o seno.</p><div class="ptags"><span>Naučený na toaletu</span><span>Mírný</span><span>Uvítal by kamaráda</span></div></div></article><article class="pcard tone-peri" data-depth="1" data-id="momo" role="group" aria-label="Momo — Kocour" aria-hidden="true" style="z-index: 9; transform: translateY(10px) scale(0.96);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img src="/img/pets/momo.jpg" alt="Momo" loading="lazy" draggable="false"></div><div class="meta"><h3>Momo</h3><p class="facts">Kocour · 2 roky · Praha 5</p><p class="bio">Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.</p><div class="ptags"><span>Vhodný do bytu</span><span>Upovídaný</span><span>Nejlépe sám</span></div></div></article><article class="pcard tone-ochre" data-depth="0" data-id="bara" role="group" aria-label="Bára — Fenka" style="z-index: 10; transform: translateY(0px) scale(1);"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img src="/img/pets/bara.jpg" alt="Bára" loading="lazy" draggable="false"></div><div class="meta"><h3>Bára</h3><p class="facts">Fenka · 3 roky · Praha 8</p><p class="bio">Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.</p><div class="ptags"><span>Dobrá s dětmi</span><span>Zná základy</span><span>Miluje dlouhé procházky</span></div></div></article></div>
 
       <div class="deck-controls">
         <button class="ctrl undo" id="btnUndo" type="button" data-label="ctrlUndo" aria-label="Vrátit poslední" disabled="">
@@ -954,13 +972,13 @@
     // once the shelters send them over. Add `photo:'/img/pets/name.jpg'` and
     // the card uses the photo instead of the drawing.
     const PETS=[
-      {id:'bara',art:'pet-dog',tone:'ochre',name:'Bára',place:'Praha 8',photo:null,
+      {id:'bara',art:'pet-dog',tone:'ochre',name:'Bára',place:'Praha 8',photo:'/img/pets/bara.jpg',
        kindEn:'Dog',kindCs:'Fenka',ageEn:'3 years',ageCs:'3 roky',
        bioEn:'Bára was found waiting outside a closed shop and never stopped believing someone would come back for her. She walks beautifully on a lead and sleeps through the night.',
        bioCs:'Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.',
        tagsEn:['Good with kids','Knows the basics','Loves long walks'],
        tagsCs:['Dobrá s dětmi','Zná základy','Miluje dlouhé procházky']},
-      {id:'momo',art:'pet-cat',tone:'peri',name:'Momo',place:'Praha 5',photo:null,
+      {id:'momo',art:'pet-cat',tone:'peri',name:'Momo',place:'Praha 5',photo:'/img/pets/momo.jpg',
        kindEn:'Cat',kindCs:'Kocour',ageEn:'2 years',ageCs:'2 roky',
        bioEn:'Momo supervises the household from the highest shelf in the room. He purrs before you even touch him and has strong opinions about closed doors.',
        bioCs:'Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.',
@@ -978,25 +996,25 @@
        bioCs:'Ritě je osm a dramata už ji dávno nebaví. Přeje si jednu pomalou procházku, jednu teplou deku a někoho, kdo zůstane.',
        tagsEn:['Senior','Calm at home','Fine with cats'],
        tagsCs:['Senior','Doma klidná','Vyjde s kočkami']},
-      {id:'kastan',art:'pet-cat',tone:'ochre',name:'Kaštan',place:'Praha 10',photo:null,
+      {id:'kastan',art:'pet-cat',tone:'ochre',name:'Kaštan',place:'Praha 10',photo:'/img/pets/kastan.jpg',
        kindEn:'Kitten',kindCs:'Koťátko',ageEn:'5 months',ageCs:'5 měsíců',
        bioEn:'Kaštan discovered that curtains can be climbed and has not recovered from the news. He falls asleep mid-game, usually on a shoe.',
        bioCs:'Kaštan zjistil, že po záclonách se dá lézt, a dodnes se z té zprávy nevzpamatoval. Usíná uprostřed hry, většinou na botě.',
        tagsEn:['Kitten energy','Loves other cats','Needs a playmate'],
        tagsCs:['Koťácí energie','Miluje jiné kočky','Potřebuje parťáka']},
-      {id:'fila',art:'pet-dog',tone:'sand',name:'Fíla',place:'Kladno',photo:null,
+      {id:'fila',art:'pet-dog',tone:'sand',name:'Fíla',place:'Kladno',photo:'/img/pets/fila.jpg',
        kindEn:'Dog',kindCs:'Pes',ageEn:'5 years',ageCs:'5 let',
        bioEn:'Fíla is a big soft shadow who follows you from room to room. He needs a garden, a job to do and someone patient about strangers.',
        bioCs:'Fíla je velký měkký stín, který vás následuje z pokoje do pokoje. Potřebuje zahradu, nějaký úkol a někoho trpělivého na cizí lidi.',
        tagsEn:['Needs a garden','Shy with strangers','Very loyal'],
        tagsCs:['Potřebuje zahradu','Plachý na cizí','Velmi věrný']},
-      {id:'tapka',art:'pet-dog',tone:'peri',name:'Ťapka',place:'Praha 3',photo:null,
+      {id:'tapka',art:'pet-dog',tone:'peri',name:'Ťapka',place:'Praha 3',photo:'/img/pets/tapka.jpg',
        kindEn:'Puppy',kindCs:'Štěně',ageEn:'4 months',ageCs:'4 měsíce',
        bioEn:'Ťapka is four months of pure opinion about everything. She will chew one shoe, apologise, and then chew the other one.',
        bioCs:'Ťapka jsou čtyři měsíce čistého názoru na všechno. Rozkouše jednu botu, omluví se a pak rozkouše druhou.',
        tagsEn:['Puppy energy','Learning fast','Needs patience'],
        tagsCs:['Štěněcí energie','Rychle se učí','Potřebuje trpělivost']},
-      {id:'miso',art:'pet-cat',tone:'sand',name:'Mišo',place:'Praha 7',photo:null,
+      {id:'miso',art:'pet-cat',tone:'sand',name:'Mišo',place:'Praha 7',photo:'/img/pets/miso.jpg',
        kindEn:'Cat',kindCs:'Kocour',ageEn:'4 years',ageCs:'4 roky',
        bioEn:'Mišo lost his home when his person went into care. He waits by the door every evening, and he is still sure someone will come.',
        bioCs:'Mišo přišel o domov, když jeho člověk odešel do péče. Každý večer čeká u dveří a pořád věří, že někdo přijde.',
@@ -1014,7 +1032,7 @@
        bioCs:'Bennymu je jedenáct a nikdo ho nikdy nevzal zaplavat. Je na téhle stránce proto, že šedivé čumáky všichni přeskakují.',
        tagsEn:['Senior','Very gentle','Short walks'],
        tagsCs:['Senior','Velmi mírný','Krátké procházky']},
-      {id:'ela',art:'pet-cat',tone:'ochre',name:'Ela',place:'Praha 9',photo:null,
+      {id:'ela',art:'pet-cat',tone:'ochre',name:'Ela',place:'Praha 9',photo:'/img/pets/ela.jpg',
        kindEn:'Kitten',kindCs:'Koťátko',ageEn:'3 months',ageCs:'3 měsíce',
        bioEn:'Ela was found in an engine bay, the smallest of four. She purrs at anything warm and sleeps in the crook of your arm.',
        bioCs:'Elu našli v motorovém prostoru, nejmenší ze čtyř. Přede na všechno teplé a spí v ohbí ruky.',
@@ -1077,7 +1095,7 @@
       el.setAttribute('aria-label',pet.name+' — '+pet[activeLang==='cs'?'kindCs':'kindEn']);
       if(depth>0) el.setAttribute('aria-hidden','true');
       const art=pet.photo
-        ? '<img src="'+pet.photo+'" alt="'+esc(pet.name)+'" loading="lazy">'
+        ? '<img src="'+pet.photo+'" alt="'+esc(pet.name)+'" loading="lazy" draggable="false">'
         : '<svg viewBox="0 0 120 120" aria-hidden="true"><use href="#'+pet.art+'"></use></svg>';
       const tags=(activeLang==='cs'?pet.tagsCs:pet.tagsEn)
         .map(x=>'<span>'+esc(x)+'</span>').join('');
@@ -1202,6 +1220,7 @@
       if(!deckMain||!deckDone) return;
       deckMain.hidden=true;
       if(gridView) gridView.hidden=true;
+      if(stage) stage.classList.remove('is-browsing');
       deckDone.hidden=false;
       if(stage) stage.classList.add('is-done');
       updateDoneLang();
@@ -1260,6 +1279,8 @@
       if(!gridView||!deckMain) return;
       gridView.hidden=!on;
       deckMain.hidden=on;
+      const st=document.querySelector('.adopt');
+      if(st) st.classList.toggle('is-browsing',on);
       if(on) renderGrid();
     }
 
@@ -1337,7 +1358,7 @@
       idx=0;liked=[];hist=[];
       deckDone.hidden=true;deckSent.hidden=true;deckMain.hidden=false;
       if(gridView) gridView.hidden=true;
-      if(stage) stage.classList.remove('is-done');
+      if(stage) stage.classList.remove('is-done','is-browsing');
       deck.querySelectorAll('.pcard').forEach(c=>c.remove());
       renderStack();
       deckMain.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
