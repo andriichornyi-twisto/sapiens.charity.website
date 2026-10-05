@@ -258,10 +258,13 @@
   }
   /* fills the band at any card size — the viewBox keeps it square */
   .pcard .art svg{width:100%;height:100%;padding:12px;color:var(--wine);}
+  /* the photo is never cropped: it sits contained over a blurred copy of itself */
   .pcard .art img{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    position:absolute;inset:0;width:100%;height:100%;
     pointer-events:none;-webkit-user-drag:none;user-select:none;
   }
+  .pcard .art img.blur{object-fit:cover;filter:blur(22px) saturate(1.25);transform:scale(1.25);opacity:.8;}
+  .pcard .art img.main{object-fit:contain;}
   .pcard .meta{
     padding:20px 22px 22px;background:var(--white);
   }
@@ -479,7 +482,9 @@
     display:grid;place-items:center;
   }
   .gcard .art svg{position:absolute;inset:0;width:100%;height:100%;padding:14px;color:var(--wine);}
-  .gcard .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .gcard .art img{position:absolute;inset:0;width:100%;height:100%;}
+  .gcard .art img.blur{object-fit:cover;filter:blur(16px) saturate(1.25);transform:scale(1.25);opacity:.8;}
+  .gcard .art img.main{object-fit:contain;}
   .gcard .meta{padding:14px 16px 18px;}
   .gcard h3{font-size:1.2rem;font-weight:800;letter-spacing:-.02em;line-height:1;}
   .gcard h3 a{color:inherit;text-decoration:none;}
@@ -796,7 +801,7 @@
         <button class="linkbtn js-viewall" type="button" data-i18n="seeAll">Zobrazit všechny</button>
       </div>
 
-      <div class="deck" id="deck"><article class="pcard tone-sand" style="--blink-delay: 1.4s; --twitch-delay: 3.8s; z-index: 8; transform: translateY(20px) scale(0.92);" data-depth="2" data-id="pepik" role="group" aria-label="Pepík — Králík" aria-hidden="true"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-rabbit"></use></svg></div><div class="meta"><h3>Pepík</h3><p class="facts">Králík · 1 rok · Praha 4</p><p class="bio">Pepík udělá malý skok, když má radost, což je skoro pořád. Je naučený na toaletu a moc by si přál někoho, s kým se podělí o seno.</p><div class="ptags"><span>Naučený na toaletu</span><span>Mírný</span><span>Uvítal by kamaráda</span></div></div></article><article class="pcard tone-peri" style="--blink-delay: 2.6s; --twitch-delay: 5.7s; z-index: 9; transform: translateY(10px) scale(0.96);" data-depth="1" data-id="momo" role="group" aria-label="Momo — Kocour" aria-hidden="true"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img src="/img/pets/momo.jpg" alt="Momo" loading="lazy" draggable="false"></div><div class="meta"><h3>Momo</h3><p class="facts">Kocour · 2 roky · Praha 5</p><p class="bio">Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.</p><div class="ptags"><span>Vhodný do bytu</span><span>Upovídaný</span><span>Nejlépe sám</span></div></div></article><article class="pcard tone-ochre" style="--blink-delay: 5.1s; --twitch-delay: 4.1s; z-index: 10; transform: translateY(0px) scale(1);" data-depth="0" data-id="bara" role="group" aria-label="Bára — Fenka"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img src="/img/pets/bara.jpg" alt="Bára" loading="lazy" draggable="false"></div><div class="meta"><h3>Bára</h3><p class="facts">Fenka · 3 roky · Praha 8</p><p class="bio">Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.</p><div class="ptags"><span>Dobrá s dětmi</span><span>Zná základy</span><span>Miluje dlouhé procházky</span></div></div></article></div>
+      <div class="deck" id="deck"><article class="pcard tone-sand" style="--blink-delay: 1.4s; --twitch-delay: 3.8s; z-index: 8; transform: translateY(20px) scale(0.92);" data-depth="2" data-id="pepik" role="group" aria-label="Pepík — Králík" aria-hidden="true"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#pet-rabbit"></use></svg></div><div class="meta"><h3>Pepík</h3><p class="facts">Králík · 1 rok · Praha 4</p><p class="bio">Pepík udělá malý skok, když má radost, což je skoro pořád. Je naučený na toaletu a moc by si přál někoho, s kým se podělí o seno.</p><div class="ptags"><span>Naučený na toaletu</span><span>Mírný</span><span>Uvítal by kamaráda</span></div></div></article><article class="pcard tone-peri" style="--blink-delay: 2.6s; --twitch-delay: 5.7s; z-index: 9; transform: translateY(10px) scale(0.96);" data-depth="1" data-id="momo" role="group" aria-label="Momo — Kocour" aria-hidden="true"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img class="blur" src="/img/pets/momo.jpg" alt="" aria-hidden="true" draggable="false"><img class="main" src="/img/pets/momo.jpg" alt="Momo" loading="lazy" draggable="false"></div><div class="meta"><h3>Momo</h3><p class="facts">Kocour · 2 roky · Praha 5</p><p class="bio">Momo na domácnost dohlíží z nejvyšší police v pokoji. Přede dřív, než se ho vůbec dotknete, a na zavřené dveře má vyhraněný názor.</p><div class="ptags"><span>Vhodný do bytu</span><span>Upovídaný</span><span>Nejlépe sám</span></div></div></article><article class="pcard tone-ochre" style="--blink-delay: 5.1s; --twitch-delay: 4.1s; z-index: 10; transform: translateY(0px) scale(1);" data-depth="0" data-id="bara" role="group" aria-label="Bára — Fenka"><span class="stamp yes">Ano!</span><span class="stamp no">Teď ne</span><div class="art"><img class="blur" src="/img/pets/bara.jpg" alt="" aria-hidden="true" draggable="false"><img class="main" src="/img/pets/bara.jpg" alt="Bára" loading="lazy" draggable="false"></div><div class="meta"><h3>Bára</h3><p class="facts">Fenka · 3 roky · Praha 8</p><p class="bio">Báru našli, jak čeká před zavřeným obchodem, a nikdy nepřestala věřit, že se pro ni někdo vrátí. Krásně chodí na vodítku a prospí celou noc.</p><div class="ptags"><span>Dobrá s dětmi</span><span>Zná základy</span><span>Miluje dlouhé procházky</span></div></div></article></div>
 
       <div class="deck-controls">
         <button class="ctrl undo" id="btnUndo" type="button" data-label="ctrlUndo" aria-label="Vrátit poslední" disabled="">
@@ -1161,7 +1166,8 @@
       el.setAttribute('aria-label',pet.name+' — '+pet[activeLang==='cs'?'kindCs':'kindEn']);
       if(depth>0) el.setAttribute('aria-hidden','true');
       const art=pet.photo
-        ? '<img src="'+pet.photo+'" alt="'+esc(pet.name)+'" loading="lazy" draggable="false">'
+        ? '<img class="blur" src="'+pet.photo+'" alt="" aria-hidden="true" draggable="false">'+
+          '<img class="main" src="'+pet.photo+'" alt="'+esc(pet.name)+'" loading="lazy" draggable="false">'
         : '<svg viewBox="0 0 120 120" aria-hidden="true"><use href="#'+pet.art+'"></use></svg>';
       const tags=(activeLang==='cs'?pet.tagsCs:pet.tagsEn)
         .map(x=>'<span>'+esc(x)+'</span>').join('');
@@ -1319,7 +1325,8 @@
       petGrid.innerHTML=list.map((p,i)=>{
         const on=isLiked(p.id);
         const art=p.photo
-          ? '<img src="'+p.photo+'" alt="'+esc(p.name)+'" loading="lazy">'
+          ? '<img class="blur" src="'+p.photo+'" alt="" aria-hidden="true">'+
+            '<img class="main" src="'+p.photo+'" alt="'+esc(p.name)+'" loading="lazy">'
           : '<svg viewBox="0 0 120 120" aria-hidden="true"><use href="#'+p.art+'"></use></svg>';
         return '<article class="gcard tone-'+p.tone+'" style="--i:'+i+';'+beats(p)+'">'+
           '<div class="art">'+art+'</div>'+

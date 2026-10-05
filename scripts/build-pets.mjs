@@ -73,7 +73,7 @@ function page(pet, lang) {
   const title = `${pet.name} — ${t.looking} | Sapiens`;
   const desc = bio.length > 180 ? bio.slice(0, 177) + '…' : bio;
   const art = pet.photo
-    ? `<img src="${pet.photo}" alt="${esc(pet.name)}" width="900" height="900">`
+    ? `<img class="blur" src="${pet.photo}" alt="" aria-hidden="true"><img class="main" src="${pet.photo}" alt="${esc(pet.name)}">`
     : `<svg viewBox="0 0 120 120" aria-hidden="true"><use href="#${pet.art}"></use></svg>`;
 
   return `<!DOCTYPE html>
@@ -125,6 +125,14 @@ function page(pet, lang) {
   .nav-right a:hover{opacity:1;}
   .lang{border:1.5px solid rgba(85,32,46,.35);border-radius:999px;padding:6px 11px;font-size:10px;
     font-weight:800;letter-spacing:.1em;opacity:1 !important;}
+  /* on a narrow screen the four nav items do not fit on one line */
+  @media (max-width:600px){
+    .nav{height:auto;min-height:58px;flex-wrap:wrap;gap:4px 14px;padding:9px 0;}
+    .nav-right{gap:13px;flex-wrap:wrap;}
+    .nav-right a{font-size:11px;letter-spacing:.1em;}
+    .wordmark{font-size:13px;letter-spacing:.3em;}
+    .lang{padding:5px 9px;}
+  }
   main{padding:clamp(28px,5vw,56px) 0 clamp(60px,8vw,100px);}
   .back{display:inline-flex;align-items:center;gap:8px;margin-bottom:clamp(18px,3vw,28px);
     font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
@@ -136,7 +144,9 @@ function page(pet, lang) {
     background:var(--band,var(--ochre));display:grid;place-items:center;
     box-shadow:0 1px 2px rgba(85,32,46,.05),0 14px 34px rgba(85,32,46,.14);}
   .tone-ochre{--band:var(--ochre);} .tone-peri{--band:var(--peri);} .tone-sand{--band:#F1E2CC;}
-  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;}
+  .shot img.blur{object-fit:cover;filter:blur(24px) saturate(1.25);transform:scale(1.25);opacity:.8;}
+  .shot img.main{object-fit:contain;}
   .shot svg{width:100%;height:100%;padding:16px;color:var(--wine);}
   h1{font-size:clamp(2.4rem,6vw,3.8rem);font-weight:800;letter-spacing:-.03em;line-height:.95;}
   .facts{margin-top:10px;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.55;}
