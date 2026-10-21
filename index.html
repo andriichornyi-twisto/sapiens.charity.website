@@ -54,6 +54,7 @@
     --peri:#B9CBEA;
     --peri-light:#C9D6F0;
     --royal:#2B57C6;
+    --royal-deep:#2449A5;
     --wine:#55202E;
     --wine-deep:#471A26;
     --white:#FFFFFF;
@@ -88,9 +89,8 @@
     font-weight:600;line-height:1.5;
   }
   .stanza{
-    font-size:clamp(.95rem,1.2vw,1.05rem);
-    font-weight:700;text-transform:uppercase;
-    letter-spacing:.05em;line-height:1.6;
+    font-size:clamp(1rem,1.25vw,1.1rem);
+    font-weight:600;line-height:1.65;max-width:56ch;
   }
   .stanza + .stanza{margin-top:1.4em;}
 
@@ -107,6 +107,7 @@
   .photo-strip img,.full-img{display:block;width:100%;max-width:100%;height:auto;}
   .photo-strip{max-width:880px;margin:0 auto;padding:0 clamp(20px,4vw,48px);}
   .full-img{margin-top:clamp(48px,7vw,90px);}
+  .band:has(> .full-img){padding-bottom:0;}
   .band-flush{padding-bottom:0;}
   /* marquee tagline band */
   .marquee{
@@ -118,7 +119,7 @@
   }
   .marquee-track span{
     font-size:13px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;
-    color:var(--white);white-space:nowrap;padding-right:2.6em;
+    color:var(--wine);white-space:nowrap;padding-right:2.6em;
   }
   @keyframes scrollx{to{transform:translateX(-50%);}}
 
@@ -160,7 +161,7 @@
   .photo-strip img{border-radius:18px;box-shadow:0 26px 60px rgba(85,32,46,.16);}
   .photo-strip figcaption{
     margin-top:16px;text-align:center;
-    font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;opacity:.55;
+    font-size:.9rem;font-weight:600;letter-spacing:0;opacity:.75;
   }
   .snap-heart{position:absolute;top:-16px;right:-10px;width:52px;transform:rotate(14deg);pointer-events:none;}
   .quote blockquote::before{
@@ -279,7 +280,7 @@
   .lang-toggle button{
     font-family:var(--font);font-size:10px;font-weight:800;letter-spacing:.1em;
     color:var(--wine);background:none;border:0;border-radius:999px;
-    padding:6px 10px;cursor:pointer;opacity:.55;
+    padding:6px 10px;cursor:pointer;opacity:.75;
     transition:opacity .2s,background .2s,color .2s;
   }
   .lang-toggle button[aria-pressed="true"]{background:var(--wine);color:var(--cream);opacity:1;}
@@ -311,10 +312,9 @@
 
   /* ---------- hero ---------- */
   .hero{
-    min-height:100svh;
     display:flex;flex-direction:column;justify-content:center;align-items:center;
     text-align:center;
-    padding:120px 20px 0;
+    padding:clamp(120px,15vh,170px) 20px clamp(44px,6vh,70px);
     position:relative;
     background:var(--cream);
   }
@@ -362,7 +362,7 @@
   .band-flush{justify-content:flex-end;}
   .band-flush .wrap{margin-top:auto;margin-bottom:auto;}
   .band-ochre{background:var(--ochre);color:var(--white);}
-  .band-peri{background:var(--peri);color:var(--royal);}
+  .band-peri{background:var(--peri);color:var(--royal-deep);}
   .band-peri-light{background:var(--peri-light);color:var(--royal);}
   .band-wine{background:var(--wine);color:var(--white);}
   .band-cream{background:var(--cream);color:var(--wine);}
@@ -377,24 +377,11 @@
 
   /* who we are */
   .who .wordtag{color:var(--white);opacity:.9;text-align:center;display:block;margin-bottom:clamp(48px,7vw,90px);}
-  .who-grid{
-    display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(32px,6vw,80px);
-    align-items:end;
-  }
-  .who-grid .lead{
-    font-size:clamp(1.5rem,2.8vw,2.4rem);
-    font-weight:800;letter-spacing:-.02em;line-height:1.18;
-    color:var(--wine);
-  }
-  .who-grid .lead .accent{color:var(--white);}
-  .who-aside{position:relative;}
-  .who-aside .stanza{color:var(--wine);opacity:.92;}
-  .hearts{
-    position:absolute;right:-6px;bottom:-70px;width:110px;opacity:.95;
-  }
-  @media (max-width:860px){
-    .who-grid{grid-template-columns:1fr;align-items:start;}
-    .hearts{position:static;margin-top:28px;}
+  .who-lead{
+    max-width:24ch;
+    font-size:clamp(1.6rem,3.2vw,2.7rem);
+    font-weight:800;letter-spacing:-.02em;line-height:1.15;
+    color:var(--wine);text-wrap:balance;
   }
 
   /* quote bands */
@@ -453,31 +440,15 @@
   }
   .maybe{
     font-size:clamp(1.15rem,1.8vw,1.5rem);
-    font-weight:800;line-height:1.45;letter-spacing:-.01em;
+    font-weight:800;line-height:1.35;letter-spacing:-.015em;
     color:var(--royal);
   }
-  .maybe span{display:block;}
-  .maybe .soft{color:var(--wine);opacity:.8;}
+  .maybe > span{display:block;}
+  .maybe > span + span{margin-top:.5em;}
+  .maybe .soft{color:inherit;}
   .share-hearts{width:90px;margin-top:32px;}
   @media (max-width:860px){
     .share-grid{grid-template-columns:1fr;}
-  }
-
-  /* numbers */
-  .stats-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,48px);
-    text-align:center;
-  }
-  .stat{display:flex;flex-direction:column;gap:8px;}
-  .stat-num{
-    font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;
-    letter-spacing:-.04em;line-height:.9;color:var(--ochre);
-  }
-  .stat-label{
-    font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;opacity:.7;
-  }
-  @media (max-width:640px){
-    .stats-grid{grid-template-columns:1fr;gap:28px;}
   }
 
   /* adoption teaser */
@@ -552,19 +523,21 @@
   .help .sec-head{text-align:center;}
   .help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);}
   .help-card{
-    background:var(--white);border-radius:22px;padding:30px 26px;
     display:flex;flex-direction:column;gap:12px;text-decoration:none;
-    transition:transform .15s ease,box-shadow .2s ease;
+    padding:26px 0 0;border-top:3px solid var(--royal);
   }
-  .help-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(43,87,198,.18);}
-  .help-card h3{font-size:clamp(1.2rem,1.7vw,1.45rem);font-weight:800;letter-spacing:-.015em;color:var(--royal);}
-  .help-card p{font-size:.95rem;font-weight:600;line-height:1.5;color:var(--wine);opacity:.85;}
+  .help-card h3{font-size:clamp(1.25rem,1.8vw,1.55rem);font-weight:800;letter-spacing:-.015em;color:var(--royal);}
+  .help-card p{font-size:1rem;font-weight:600;line-height:1.55;color:var(--wine);opacity:.9;}
   .help-card .go{
-    margin-top:auto;padding-top:10px;
-    font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--royal);
+    margin-top:auto;padding-top:16px;align-self:start;
+    font-size:1rem;font-weight:800;color:var(--royal-deep);
+    border-bottom:2px solid currentColor;
   }
-  @media (max-width:860px){.help-grid{grid-template-columns:1fr;}}
+  .help-card:hover .go,.help-card:focus-visible .go{color:var(--wine);}
+  /* the ask grows left to right; the rule above each one grows with it */
+  .help-card:nth-child(2){border-top-width:6px;}
+  .help-card:nth-child(3){border-top-width:10px;}
+  @media (max-width:860px){.help-grid{grid-template-columns:1fr;gap:34px;}}
 
   /* join */
   .join{text-align:center;}
@@ -610,16 +583,35 @@
   .to-top.show{opacity:1;transform:none;pointer-events:auto;}
   .to-top:hover{background:var(--wine-deep);}
 
+  .share-head{
+    margin-top:clamp(64px,8vw,110px);padding-top:clamp(34px,4vw,52px);
+    border-top:2px solid rgba(85,32,46,.18);
+    font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.02em;
+  }
+  .closer{
+    margin-top:clamp(48px,6vw,80px);max-width:30ch;
+    font-size:clamp(1.25rem,2.2vw,1.7rem);font-weight:800;
+    letter-spacing:-.015em;line-height:1.25;color:var(--wine);opacity:.75;
+  }
+
+  /* the project's own opening line, standing on its own */
+  .creed{padding-top:clamp(70px,9vw,120px);padding-bottom:clamp(70px,9vw,120px);}
+  .creed-line{
+    max-width:22ch;margin:0 auto;text-align:center;
+    font-size:clamp(1.5rem,3.6vw,2.6rem);font-weight:800;
+    letter-spacing:-.02em;line-height:1.15;color:var(--wine);
+    text-wrap:balance;
+  }
+
   /* the four areas we work in */
   .areas{list-style:none;margin-top:clamp(40px,6vw,76px);display:grid;
     grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);}
   @media (max-width:900px){.areas{grid-template-columns:1fr 1fr;}}
   @media (max-width:520px){.areas{grid-template-columns:1fr;gap:22px;}}
-  .areas li{display:flex;flex-direction:column;gap:6px;
-    border-top:2px solid var(--wine);padding-top:14px;}
-  .areas-n{font-size:.78rem;font-weight:800;letter-spacing:.12em;opacity:.5;}
-  .areas b{font-size:1.1rem;font-weight:800;letter-spacing:-.01em;line-height:1.1;}
-  .areas span:last-child{font-weight:600;font-size:.95rem;line-height:1.5;opacity:.78;}
+  .areas li{display:flex;flex-direction:column;gap:8px;color:var(--wine);
+    border-top:2px solid var(--wine);padding-top:16px;}
+  .areas b{font-size:1.2rem;font-weight:800;letter-spacing:-.01em;line-height:1.1;}
+  .areas span:last-child{font-weight:600;font-size:1rem;line-height:1.5;opacity:.9;}
 
   /* how we work — for care homes */
   .how .sec-head h2{color:var(--white);}
@@ -658,22 +650,22 @@
     .full-img{margin-top:44px;}
     .cta-row{flex-direction:column;align-items:stretch;}
     .btn{justify-content:center;}
-    .who-grid,.why-grid,.share-grid{gap:36px;}
+    .why-grid,.share-grid{gap:36px;}
     .foot-top{flex-direction:column;align-items:flex-start;}
     .quote .eyebrow{margin-top:26px;}
-    .hero{min-height:auto;justify-content:flex-start;padding-top:104px;}
+    .hero{justify-content:flex-start;padding-top:104px;}
     .hero h1{font-size:2.35rem;}
     .hero p{font-size:1rem;line-height:1.6;}
     .scroll-hint{margin-top:34px;padding:20px 0 26px;}
     .sec-head{margin-bottom:32px;}
     .sec-head h2{font-size:2.3rem;}
     .quote blockquote{font-size:1.45rem;line-height:1.25;}
-    .who-grid .lead{font-size:1.3rem;line-height:1.3;}
+    .who-lead{font-size:1.45rem;line-height:1.25;}
     .why-grid h3{font-size:1.9rem;}
     .share-head{font-size:2rem;margin-bottom:30px;}
     .join h2{font-size:2.1rem;}
     .maybe{font-size:1.05rem;}
-    .stanza{font-size:.9rem;letter-spacing:.04em;}
+    .stanza{font-size:1rem;}
   }
 </style>
 <!-- Analytics: create a free site at goatcounter.com, put your code in place of YOURCODE,
@@ -790,12 +782,9 @@
   <svg class="doodle" style="top:27%;left:9%;width:40px;color:var(--peri);--r:-14deg;animation-delay:1.2s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
   <img class="mark" src="img/logo.jpg" alt="Sapiens logo — three people standing together" width="559" height="559">
 
-  <span class="eyebrow" data-i18n="heroEyebrow">People need people</span>
-  <h1 data-i18n="heroH1">Making <span class="hl">humanity</span> feel real again</h1>
+  <h1 data-i18n="heroH1">Making humanity feel real again</h1>
   <p data-i18n="heroP">Sapiens is a social impact project. We create real moments of charity
   and human connection &mdash; and help where it&rsquo;s needed.</p>
-
-  <div class="scroll-hint" aria-hidden="true" data-i18n="heroScroll">Scroll</div>
 </section>
 
 <!-- photo divider -->
@@ -803,27 +792,14 @@
   <figure class="snap">
     <img src="img/team.jpg" alt="Two women holding each other in a long embrace" width="1066" height="1600" loading="lazy" decoding="async">
     <svg class="snap-heart" viewBox="0 0 86 86" fill="none" stroke="var(--ochre)" stroke-width="5" stroke-linecap="round" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
-    <figcaption data-i18n="teamCaption">The Sapiens crew &#9825;</figcaption>
+    <figcaption data-i18n="teamCaption">A visit to a care home outside Prague</figcaption>
   </figure>
 </div>
 
-<!-- PLACEHOLDER NUMBERS — replace all three with the real figures before promoting the site -->
-<section class="band band-cream stats" aria-label="Sapiens in numbers">
+<section class="band band-cream creed" aria-label="What Sapiens is for">
   <div class="wrap">
-    <div class="stats-grid">
-      <div class="stat rv">
-        <span class="stat-num" data-i18n="stat1n">40+</span>
-        <span class="stat-label" data-i18n="stat1l">moments created</span>
-      </div>
-      <div class="stat rv d1">
-        <span class="stat-num" data-i18n="stat2n">600+</span>
-        <span class="stat-label" data-i18n="stat2l">people we met</span>
-      </div>
-      <div class="stat rv d2">
-        <span class="stat-num" data-i18n="stat3n">3</span>
-        <span class="stat-label" data-i18n="stat3l">years of doing this</span>
-      </div>
-    </div>
+    <p class="creed-line rv" data-i18n="creed">There is no shortage of good people in the world.
+    What is missing are the moments that bring them together.</p>
   </div>
 </section>
 
@@ -833,31 +809,18 @@
 <section class="band band-ochre who" id="who">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Sapiens</span>
       <h2 data-split data-i18n="whoTitle">Who we are</h2>
     </div>
-    <div class="who-grid">
-      <p class="lead rv" data-i18n="whoLead">
-        Sapiens is a social impact project that brings people together through
-        charity and human connection. We create projects, support meaningful
-        initiatives and help <span class="accent">where it&rsquo;s needed.</span>
-      </p>
-      <div class="who-aside rv d1">
-        <p class="stanza" data-i18n="whoStanza1">There&rsquo;s no shortage of good people in the world.<br>
-        There&rsquo;s a shortage of moments that bring them together.</p>
-        <p class="stanza" data-i18n="whoStanza2">Sapiens exists to create space for that.</p>
-        <svg class="hearts" viewBox="0 0 110 110" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" aria-hidden="true">
-          <path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z" transform="rotate(-8 43 35)"/>
-          <path d="M62 88 C54 79 61 68 69 74 C77 66 87 76 79 86 C75 91 70 95 70 95 C70 95 66 92 62 88 Z" transform="rotate(10 70 82)"/>
-        </svg>
-      </div>
-    </div>
+    <p class="who-lead rv" data-i18n="whoLead">
+      Sapiens is a social impact project from Prague. We create real moments of
+      attention, care and human connection &mdash; and we help where it&rsquo;s needed.
+    </p>
 
     <ul class="areas">
-      <li class="rv"><span class="areas-n">01</span><b data-i18n="area1">Seniors</b><span data-i18n="area1d">Visits to care homes &mdash; company, manicures, music, small celebrations.</span></li>
-      <li class="rv d1"><span class="areas-n">02</span><b data-i18n="area2">Animals</b><span data-i18n="area2d">Shelter animals waiting for a home, and help for the shelters themselves.</span></li>
-      <li class="rv d2"><span class="areas-n">03</span><b data-i18n="area3">Brand collaborations</b><span data-i18n="area3d">Joint projects with companies that want their help to be visible and real.</span></li>
-      <li class="rv d1"><span class="areas-n">04</span><b data-i18n="area4">And more</b><span data-i18n="area4d">Wherever a moment of attention is missing, we look for a way to create it.</span></li>
+      <li class="rv"><b data-i18n="area1">Seniors</b><span data-i18n="area1d">Visits to care homes &mdash; company, manicures, music, small celebrations.</span></li>
+      <li class="rv d1"><b data-i18n="area2">Animals</b><span data-i18n="area2d">Shelter animals waiting for a home, and help for the shelters themselves.</span></li>
+      <li class="rv d2"><b data-i18n="area3">Brand collaborations</b><span data-i18n="area3d">Joint projects with companies that want their help to be visible and real.</span></li>
+      <li class="rv d1"><b data-i18n="area4">And more</b><span data-i18n="area4d">Wherever a moment of attention is missing, we look for a way to create it.</span></li>
     </ul>
   </div>
 
@@ -882,7 +845,7 @@
 <div class="wave" style="--top:var(--wine);--bottom:var(--cream)" aria-hidden="true"></div>
 
 <!-- ================= WHY WE DO THIS ================= -->
-<section class="band band-cream" id="why">
+<section class="band band-cream band-flush" id="why">
   <svg class="doodle" style="top:9%;right:8%;width:26px;color:var(--royal);--r:12deg;animation-delay:.8s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/></svg>
   <div class="wrap">
     <div class="why-head">
@@ -896,7 +859,7 @@
     </div>
 
     <div class="why-grid">
-      <h3 class="rv" data-split data-i18n="whyH3">Making <span class="hl">humanity</span> feel real again</h3>
+      <h3 class="rv" data-split data-i18n="whyH3">Goodness is already there. It needs an occasion.</h3>
       <div class="rv d1" data-i18n="whyStanzas">
         <p class="stanza">We believe love, kindness and humanity already exist inside people.
         Sometimes they simply need space to be expressed.</p>
@@ -907,27 +870,8 @@
         <p class="stanza">And that becoming part of it is much easier than it seems.</p>
       </div>
     </div>
-  </div>
-</section>
 
-
-<!-- ================= QUOTE 2 ================= -->
-<section class="band band-cream quote">
-  <svg class="doodle" style="bottom:18%;left:12%;width:58px;color:var(--ochre);--r:-6deg;animation-delay:1.5s" viewBox="0 0 58 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 12 C8 4 14 20 20 12 C26 4 32 20 38 12 C44 4 50 20 56 12" fill="none" stroke-width="4" stroke-linecap="round"/></svg>
-  <div class="wrap">
-    <blockquote class="rv" data-split data-i18n="quote2">
-      &ldquo;We don&rsquo;t change people. We remind them who they are.&rdquo;
-    </blockquote>
-    <p class="eyebrow rv">Sapiens</p>
-  </div>
-</section>
-
-
-<!-- ================= WHY WE SHARE IT ================= -->
-<section class="band band-cream band-flush" id="share">
-  <svg class="doodle" style="top:10%;right:9%;width:42px;color:var(--royal);--r:14deg;animation-delay:.5s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
-  <div class="wrap">
-    <h2 class="share-head rv" data-split data-i18n="shareTitle">Why we <span style="color:var(--royal)">share it</span></h2>
+    <h3 class="share-head rv" data-split data-i18n="shareTitle">Why we share it</h3>
     <div class="share-grid">
       <div class="rv" data-i18n="shareStanzas">
         <p class="stanza">We simply want to remind people that there is still another
@@ -943,23 +887,26 @@
         </p>
       </div>
     </div>
+
+    <blockquote class="closer rv" data-i18n="quote2">
+      &ldquo;We don&rsquo;t change people. We remind them who they are.&rdquo;
+    </blockquote>
   </div>
 
   <img class="full-img" src="img/hug.jpg" alt="The Sapiens volunteers in a group hug" width="1600" height="1066" loading="lazy" decoding="async">
 </section>
 
-<!-- ================= TAGLINE BAND ================= -->
-<!-- PLACEHOLDER TEAM — replace names, roles and add photos (img/team/<name>.jpg) -->
+<!-- ================= THE TEAM ================= -->
 <section class="band band-cream team" id="team">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow" data-i18n="teamEyebrow">The people</span>
       <h2 data-split data-i18n="teamTitle">Who is behind it</h2>
     </div>
     <figure class="team-shot rv">
       <img src="img/2026/team.jpg" alt="The Sapiens volunteers together at a care home"
            width="1600" height="1067" loading="lazy" decoding="async">
     </figure>
+  </div>
 </section>
 
 <div class="marquee" aria-hidden="true">
@@ -972,24 +919,23 @@
 <section class="band band-peri help" id="help">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow" data-i18n="helpEyebrow">Get involved</span>
       <h2 data-split data-i18n="helpTitle">How you can help</h2>
     </div>
     <div class="help-grid">
       <a class="help-card rv" href="events/">
         <h3 data-i18n="help1Title">Come to an event</h3>
         <p data-i18n="help1Text">Meet us in person &mdash; every moment we create is open to anyone.</p>
-        <span class="go" data-i18n="help1Link">See events &rarr;</span>
+        <span class="go" data-i18n="help1Link">See events</span>
       </a>
       <a class="help-card rv d1" href="join/?type=help">
         <h3 data-i18n="help2Title">Join the team</h3>
         <p data-i18n="help2Text">Help us plan and create the next moments. A message is enough.</p>
-        <span class="go" data-i18n="help2Link">Open the join form &rarr;</span>
+        <span class="go" data-i18n="help2Link">Open the join form</span>
       </a>
       <a class="help-card rv d2" href="join/?type=business">
         <h3 data-i18n="help3Title">Support the project</h3>
         <p data-i18n="help3Text">From an idea to a bouquet of flowers &mdash; every contribution helps. Get in touch and we&rsquo;ll find the way together.</p>
-        <span class="go" data-i18n="help3Link">Get in touch &rarr;</span>
+        <span class="go" data-i18n="help3Link">Get in touch</span>
       </a>
     </div>
   </div>
@@ -1002,8 +948,7 @@
   <div class="wrap">
     <div class="teaser-grid">
       <div class="teaser-copy">
-        <span class="eyebrow" data-i18n="teaserEyebrow">Also with us</span>
-        <h2 data-split data-i18n="teaserTitle">Find <span class="hl">your friend</span></h2>
+        <h2 data-split data-i18n="teaserTitle">Find your friend</h2>
         <p class="rv" data-i18n="teaserText">Dogs, cats and rabbits around Prague are waiting for someone.
         Go through them one by one, keep the ones who stay with you &mdash; and we&rsquo;ll put you in touch
         with the people looking after them.</p>
@@ -1023,7 +968,6 @@
 <section class="band band-wine how" id="how">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow" data-i18n="howEyebrow">How we work</span>
       <h2 data-split data-i18n="howTitle">The person always comes first</h2>
       <p class="how-lead rv" data-i18n="howLead">For care homes and anyone thinking of inviting us in.</p>
     </div>
@@ -1061,7 +1005,7 @@
   <svg class="doodle" style="top:22%;left:10%;width:24px;color:var(--ochre);--r:-16deg;animation-delay:1s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"/></svg>
   <svg class="doodle" style="bottom:20%;right:9%;width:44px;color:var(--wine);--r:10deg;animation-delay:2.4s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"/></svg>
   <div class="wrap">
-    <h2 class="rv" data-split data-i18n="joinTitle">Become part <span class="hl">of it</span></h2>
+    <h2 class="rv" data-split data-i18n="joinTitle">Become part of it</h2>
     <p class="rv d1" data-i18n="joinP">Follow what we do, come to a moment we create &mdash; or start one
     of your own. Becoming part of it is much easier than it seems.</p>
     <div class="cta-row rv d2">
@@ -1124,56 +1068,47 @@
         marquee:'People need people',
         menuOpen:'Open menu',menuClose:'Close menu',toTop:'Back to top',
         navWho:'Who we are',navWhy:'Why we do this',navShare:'Why we share it',navEvents:'Events',navPets:'Adopt',navSupport:'Support',navJoin:'Join us',skipLink:'Skip to content',
-        heroEyebrow:'People need people',
-        heroH1:'Making <span class="hl">humanity</span> feel real again',
+        creed:'There is no shortage of good people in the world. What is missing are the moments that bring them together.',
+        heroH1:'Making humanity feel real again',
         heroP:'Sapiens is a social impact project from Prague. We create real moments of attention, care and human connection &mdash; for people and animals who are on their own.',
-        heroScroll:'Scroll',teamCaption:'The Sapiens crew &#9825;',
+        teamCaption:'A visit to a care home outside Prague',
         whoTitle:'Who we are',
-        whoLead:'Sapiens is a social impact project from Prague. We create real moments of attention, care and human connection &mdash; and we help <span class="accent">where it&rsquo;s needed.</span>',
-        whoStanza1:'There&rsquo;s no shortage of good people in the world.<br>There&rsquo;s a shortage of moments that bring them together.',
-        whoStanza2:'Sapiens exists to create space for that.',
+        whoLead:'Sapiens is a social impact project from Prague. We create real moments of attention, care and human connection &mdash; and we help where it&rsquo;s needed.',
         quote1:'&ldquo;We don&rsquo;t teach people how to be kind. We just create the moment where kindness can happen.&rdquo;',
         quote1Tag:'People need people',
         whyTitle:'Why we<br>do this',
         whyBelief:'We believe love exists in every person',
-        whyH3:'Making <span class="hl">humanity</span> feel real again',
+        whyH3:'Goodness is already there. It needs an occasion.',
         whyStanzas:'<p class="stanza">We believe love, kindness and humanity already exist inside people. Sometimes they simply need space to be expressed.</p><p class="stanza">That&rsquo;s why we create real moments and genuine human interaction that bring people together.</p><p class="stanza">Not to change the world overnight &mdash; but to remind people that goodness still exists.</p><p class="stanza">And that becoming part of it is much easier than it seems.</p>',
         quote2:'&ldquo;We don&rsquo;t change people. We remind them who they are.&rdquo;',
-        shareTitle:'Why we <span style="color:var(--royal)">share it</span>',
+        shareTitle:'Why we share it',
         shareStanzas:'<p class="stanza">We simply want to remind people that there is still another side of humanity.</p><p class="stanza">A side where people come together to create something meaningful. Where people help without expecting anything in return.</p>',
         maybeLines:'<span>Maybe someone will feel inspired <span class="soft">to join.</span></span><span>Maybe someone will create <span class="soft">their own project.</span></span><span>Maybe someone will simply become <span class="soft">a little kinder.</span></span>',
-        stat1n:'40+',stat1l:'moments created',
-        stat2n:'600+',stat2l:'people we met',
-        stat3n:'3',stat3l:'years of doing this',
-        teaserEyebrow:'Also with us',
-        teaserTitle:'Find <span class="hl">your friend</span>',
+        teaserTitle:'Find your friend',
         teaserText:'Dogs, cats and rabbits around Prague are waiting for someone. Go through them one by one, keep the ones who stay with you &mdash; and we&rsquo;ll put you in touch with the people looking after them.',
-        teaserCta:'Meet the animals',
-        teamEyebrow:'The people',teamTitle:'Who is behind it',
+        teaserCta:'Meet the animals',teamTitle:'Who is behind it',
         teamNote:'Plus everyone who shows up on the day &mdash; and there are more of them than of us.',
         area1:'Seniors',area1d:'Visits to care homes &mdash; company, manicures, music, small celebrations.',
         area2:'Animals',area2d:'Shelter animals waiting for a home, and help for the shelters themselves.',
         area3:'Brand collaborations',area3d:'Joint projects with companies that want their help to be visible and real.',
-        area4:'And more',area4d:'Wherever a moment of attention is missing, we look for a way to create it.',
-        howEyebrow:'How we work',howTitle:'The person always comes first',
+        area4:'And more',area4d:'Wherever a moment of attention is missing, we look for a way to create it.',howTitle:'The person always comes first',
         howLead:'For care homes and anyone thinking of inviting us in.',
         how1t:'No pressure',how1d:'Nobody has to do anything. We fit the programme to how residents are feeling and what they can manage.',
         how2t:'We bring everything',how2d:'Preparation, materials and running the session. For the home it costs nothing.',
         how3t:'Photos only with consent',how3d:'Phone camera only, only the people who agree, and always by the home&rsquo;s own rules.',
         how4t:'Together with your staff',how4d:'We agree the date, the scope and how the visit runs with you beforehand.',
         howCta:'Invite us to your home',
-        helpEyebrow:'Get involved',
         helpTitle:'How you can help',
         help1Title:'Come to an event',
         help1Text:'Meet us in person &mdash; every moment we create is open to anyone.',
-        help1Link:'See events &rarr;',
+        help1Link:'See events',
         help2Title:'Join the team',
         help2Text:'Help us plan and create the next moments. A message is enough.',
-        help2Link:'Open the join form &rarr;',
+        help2Link:'Open the join form',
         help3Title:'Support the project',
         help3Text:'From an idea to a bouquet of flowers &mdash; every contribution helps. Get in touch and we&rsquo;ll find the way together.',
-        help3Link:'Get in touch &rarr;',
-        joinTitle:'Become part <span class="hl">of it</span>',
+        help3Link:'Get in touch',
+        joinTitle:'Become part of it',
         joinP:'Follow what we do, come to a moment we create &mdash; or start one of your own. Becoming part of it is much easier than it seems.',
         btnFollow:'Follow @sapiens.cz',
         btnWrite:'Join the society',
@@ -1186,56 +1121,47 @@
         marquee:'Lidé potřebují lidi',
         menuOpen:'Otevřít menu',menuClose:'Zavřít menu',toTop:'Zpět nahoru',
         navWho:'Kdo jsme',navWhy:'Proč to děláme',navShare:'Proč to sdílíme',navEvents:'Akce',navPets:'Adopce',navSupport:'Podpořte nás',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
-        heroEyebrow:'Lidé potřebují lidi',
-        heroH1:'Aby <span class="hl">lidskost</span> byla zase skutečná',
+        creed:'Na světě není nedostatek dobrých lidí. Chybí jen okamžiky, které je spojují.',
+        heroH1:'Aby lidskost byla zase skutečná',
         heroP:'Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení &mdash; pro lidi a zvířata, kteří zůstali sami.',
-        heroScroll:'Scrollujte',teamCaption:'Parta Sapiens &#9825;',
+        teamCaption:'Návštěva v domově u Prahy',
         whoTitle:'Kdo jsme',
-        whoLead:'Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení &mdash; a pomáháme <span class="accent">tam, kde je to potřeba.</span>',
-        whoStanza1:'Na světě není nedostatek dobrých lidí.<br>Chybí jen okamžiky, které je spojují.',
-        whoStanza2:'Sapiens existuje, aby pro ně vytvářel prostor.',
+        whoLead:'Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení &mdash; a pomáháme tam, kde je to potřeba.',
         quote1:'&bdquo;Neučíme lidi, jak být laskaví. Jen vytváříme okamžik, ve kterém se laskavost může stát.&ldquo;',
         quote1Tag:'Lidé potřebují lidi',
         whyTitle:'Proč to<br>děláme',
         whyBelief:'Věříme, že v každém člověku je láska',
-        whyH3:'Aby <span class="hl">lidskost</span> byla zase skutečná',
+        whyH3:'Dobro už v lidech je. Chybí mu příležitost.',
         whyStanzas:'<p class="stanza">Věříme, že láska, laskavost a lidskost už v lidech jsou. Někdy jen potřebují prostor, aby se mohly projevit.</p><p class="stanza">Proto vytváříme skutečné okamžiky a opravdová lidská setkání, která lidi spojují.</p><p class="stanza">Ne proto, abychom přes noc změnili svět &mdash; ale abychom lidem připomněli, že dobro pořád existuje.</p><p class="stanza">A že stát se jeho součástí je mnohem snazší, než se zdá.</p>',
         quote2:'&bdquo;Neměníme lidi. Připomínáme jim, kdo jsou.&ldquo;',
-        shareTitle:'Proč to <span style="color:var(--royal)">sdílíme</span>',
+        shareTitle:'Proč to sdílíme',
         shareStanzas:'<p class="stanza">Chceme lidem jednoduše připomenout, že pořád existuje i jiná stránka lidství.</p><p class="stanza">Stránka, kde se lidé spojují, aby vytvořili něco smysluplného. Kde lidé pomáhají, aniž by za to něco čekali.</p>',
         maybeLines:'<span>Možná se někdo inspiruje <span class="soft">a přidá se.</span></span><span>Možná někdo vytvoří <span class="soft">vlastní projekt.</span></span><span>Možná bude někdo prostě <span class="soft">o trochu laskavější.</span></span>',
-        stat1n:'40+',stat1l:'vytvořených okamžiků',
-        stat2n:'600+',stat2l:'lidí, které jsme potkali',
-        stat3n:'3',stat3l:'roky, co to děláme',
-        teaserEyebrow:'Taky u nás',
-        teaserTitle:'Najděte si <span class="hl">kamaráda</span>',
+        teaserTitle:'Najděte si kamaráda',
         teaserText:'Psi, kočky a králíci v Praze a okolí čekají na někoho. Projděte si je jednoho po druhém, nechte si ty, kteří vám zůstanou v hlavě &mdash; a my vás spojíme s lidmi, kteří se o ně starají.',
-        teaserCta:'Poznejte zvířata',
-        teamEyebrow:'Lidé',teamTitle:'Kdo za tím stojí',
+        teaserCta:'Poznejte zvířata',teamTitle:'Kdo za tím stojí',
         teamNote:'A k tomu všichni, kdo přijdou v den akce &mdash; a těch je víc než nás.',
         area1:'Senioři',area1d:'Návštěvy v domovech &mdash; společnost, manikúra, hudba, malé oslavy.',
         area2:'Zvířata',area2d:'Zvířata z útulků, která čekají na domov, a pomoc samotným útulkům.',
         area3:'Spolupráce se značkami',area3d:'Společné projekty s firmami, které chtějí, aby jejich pomoc byla vidět a byla skutečná.',
-        area4:'A další',area4d:'Kdekoliv chybí okamžik pozornosti, hledáme způsob, jak ho vytvořit.',
-        howEyebrow:'Jak pracujeme',howTitle:'Člověk je vždy na prvním místě',
+        area4:'A další',area4d:'Kdekoliv chybí okamžik pozornosti, hledáme způsob, jak ho vytvořit.',howTitle:'Člověk je vždy na prvním místě',
         howLead:'Pro zařízení a pro všechny, kdo zvažují, že nás pozvou.',
         how1t:'Bez tlaku',how1d:'Nikdo nemusí nic dělat. Program přizpůsobíme zdravotnímu stavu a možnostem klientů.',
         how2t:'Vše zajistíme sami',how2d:'Přípravu, materiál i průběh setkání. Pro zařízení je vše zdarma.',
         how3t:'Fotografie jen se souhlasem',how3d:'Fotíme pouze na telefon, jen ty, kdo souhlasí, a vždy podle pravidel zařízení.',
         how4t:'Ve spolupráci s personálem',how4d:'Termín, rozsah i průběh setkání domlouváme předem s vámi.',
         howCta:'Pozvěte nás k vám',
-        helpEyebrow:'Zapojte se',
         helpTitle:'Jak můžete pomoct',
         help1Title:'Přijďte na akci',
         help1Text:'Potkejte se s námi osobně &mdash; každý okamžik, který vytváříme, je otevřený všem.',
-        help1Link:'Podívejte se na akce &rarr;',
+        help1Link:'Podívejte se na akce',
         help2Title:'Přidejte se k týmu',
         help2Text:'Pomozte nám plánovat a vytvářet další okamžiky. Stačí napsat.',
-        help2Link:'Vyplnit formulář &rarr;',
+        help2Link:'Vyplnit formulář',
         help3Title:'Podpořte projekt',
         help3Text:'Od nápadu po kytici květin &mdash; každá pomoc se počítá. Ozvěte se a společně najdeme způsob.',
-        help3Link:'Ozvěte se &rarr;',
-        joinTitle:'Staňte se <span class="hl">součástí</span>',
+        help3Link:'Ozvěte se',
+        joinTitle:'Staňte se součástí',
         joinP:'Sledujte, co děláme, přijďte na okamžik, který vytváříme &mdash; nebo vytvořte svůj vlastní. Stát se součástí je mnohem snazší, než se zdá.',
         btnFollow:'Sledovat @sapiens.cz',
         btnWrite:'Přidejte se ke komunitě',

@@ -37,7 +37,7 @@
   }
   :root{
     --cream:#FFFAF4;--ochre:#DFA84F;--peri:#B9CBEA;--peri-light:#C9D6F0;
-    --royal:#2B57C6;--wine:#55202E;--wine-deep:#471A26;--white:#FFFFFF;
+    --royal:#2B57C6;--royal-deep:#2449A5;--wine:#55202E;--wine-deep:#471A26;--white:#FFFFFF;
     --font:'Archivo','Helvetica Neue',Arial,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -79,7 +79,7 @@
     border-radius:999px;position:relative;z-index:5;}
   .lang-toggle button{font-family:var(--font);font-size:10px;font-weight:800;letter-spacing:.1em;
     color:var(--wine);background:none;border:0;border-radius:999px;padding:6px 10px;cursor:pointer;
-    opacity:.55;transition:opacity .2s,background .2s,color .2s;}
+    opacity:.75;transition:opacity .2s,background .2s,color .2s;}
   .lang-toggle button[aria-pressed="true"]{background:var(--wine);color:var(--cream);opacity:1;}
   @media (max-width:900px){
     .burger{display:block;}
@@ -109,27 +109,17 @@
     font-weight:600;line-height:1.55;opacity:.85;}
 
   .ways{padding:clamp(12px,2vw,24px) 0 clamp(70px,9vw,110px);}
-  .ways-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,28px);
+  .ways-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(34px,5vw,60px);
     max-width:900px;margin:0 auto;}
   @media (max-width:760px){.ways-grid{grid-template-columns:1fr;}}
-  .way{background:var(--white);border-radius:24px;padding:clamp(24px,3vw,34px);
-    box-shadow:0 1px 2px rgba(85,32,46,.05),0 12px 28px rgba(85,32,46,.09);
+  .way{padding:26px 0 0;border-top:3px solid var(--wine);
     display:flex;flex-direction:column;gap:12px;}
-  .way h2{font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:800;letter-spacing:-.02em;line-height:1.05;}
-  .way p{font-weight:600;line-height:1.55;opacity:.82;}
-  .rows{margin-top:4px;display:flex;flex-direction:column;gap:10px;}
-  .row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
-    border-bottom:1px dashed rgba(85,32,46,.18);padding-bottom:9px;}
-  .row span:first-child{font-size:11px;font-weight:800;letter-spacing:.14em;
-    text-transform:uppercase;opacity:.55;white-space:nowrap;}
-  .row span:last-child{font-weight:800;font-size:1.02rem;letter-spacing:-.01em;text-align:right;
-    word-break:break-all;}
+  .way h2{font-size:clamp(1.35rem,2.4vw,1.75rem);font-weight:800;letter-spacing:-.02em;line-height:1.05;}
+  .way p{font-weight:600;line-height:1.55;opacity:.85;}
   .qr{align-self:flex-start;width:148px;height:148px;border-radius:18px;display:grid;place-items:center;
-    background:var(--peri-light);color:var(--royal);text-align:center;padding:14px;
+    background:var(--peri-light);color:var(--royal-deep);text-align:center;padding:14px;
     font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.5;}
-  .pending{display:inline-block;align-self:flex-start;margin-top:2px;font-size:11px;font-weight:800;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--royal);background:rgba(43,87,198,.09);
-    border-radius:999px;padding:5px 11px;}
+  .pending-note{font-size:.95rem;font-weight:600;line-height:1.55;opacity:.8;margin-top:4px;}
   .btn{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;margin-top:4px;
     font-family:var(--font);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
     text-decoration:none;border-radius:999px;padding:15px 28px;border:0;cursor:pointer;
@@ -200,8 +190,7 @@
 
 <section class="page-head" id="main">
   <div class="wrap">
-    <span class="eyebrow">Sapiens</span>
-    <h1 data-i18n="supTitle">Support <span class="hl">what we do</span></h1>
+    <h1 data-i18n="supTitle">Support what we do</h1>
     <p data-i18n="supIntro">We are small and we keep it that way on purpose. Money goes into the next
     moment we create &mdash; flowers, transport, a warm room, food for an animal waiting for a home.</p>
   </div>
@@ -209,18 +198,15 @@
 
 <section class="ways">
   <div class="wrap">
-    <!-- PLACEHOLDER PAYMENT DETAILS — replace the account number, IBAN and QR before promoting this page -->
+    <!-- PLACEHOLDER: real bank details and QR still to come -->
     <div class="ways-grid">
 
       <div class="way">
         <h2 data-i18n="way1Title">Bank transfer</h2>
         <p data-i18n="way1Text">The simplest way, and nothing is taken out along the route.</p>
-        <div class="rows">
-          <div class="row"><span data-i18n="labAcc">Account</span><span data-i18n="valAcc">0000000000 / 0000</span></div>
-          <div class="row"><span data-i18n="labIban">IBAN</span><span data-i18n="valIban">CZ00 0000 0000 0000 0000 0000</span></div>
-          <div class="row"><span data-i18n="labHolder">Account holder</span><span data-i18n="valHolder">Sapiens</span></div>
-        </div>
-        <span class="pending" data-i18n="pending">Details coming soon</span>
+        <p class="pending-note" data-i18n="pending">The account is being set up. Write to us and we
+        will send you the details as soon as they exist.</p>
+        <a class="btn" href="mailto:sapiens.together@gmail.com" data-i18n="way1Cta">Ask for the details</a>
       </div>
 
       <div class="way">
@@ -292,14 +278,12 @@
         desc:'Support Sapiens — a bank transfer, a QR payment, or a hand instead of money. Every contribution goes into the next moment we create.',
         menuOpen:'Open menu',menuClose:'Close menu',skipLink:'Skip to content',
         navEvents:'Events',navPets:'Adopt',navSupport:'Support',navJoin:'Join us',
-        supTitle:'Support <span class="hl">what we do</span>',
+        supTitle:'Support what we do',
         supIntro:'We are small and we keep it that way on purpose. Money goes into the next moment we create &mdash; flowers, transport, a warm room, food for an animal waiting for a home.',
         way1Title:'Bank transfer',
         way1Text:'The simplest way, and nothing is taken out along the route.',
-        labAcc:'Account',valAcc:'0000000000 / 0000',
-        labIban:'IBAN',valIban:'CZ00 0000 0000 0000 0000 0000',
-        labHolder:'Account holder',valHolder:'Sapiens',
-        pending:'Details coming soon',
+        pending:'The account is being set up. Write to us and we will send you the details as soon as they exist.',
+        way1Cta:'Ask for the details',
         way2Title:'QR payment',
         way2Text:'Open your banking app, point it at the code, choose the amount yourself.',
         qrSoon:'QR code<br>coming soon',
@@ -318,14 +302,12 @@
         desc:'Podpořte Sapiens — převodem, QR platbou, nebo pomocí místo peněz. Každý příspěvek jde do dalšího okamžiku, který vytvoříme.',
         menuOpen:'Otevřít menu',menuClose:'Zavřít menu',skipLink:'Přeskočit na obsah',
         navEvents:'Akce',navPets:'Adopce',navSupport:'Podpořte nás',navJoin:'Přidejte se',
-        supTitle:'Podpořte <span class="hl">to, co děláme</span>',
+        supTitle:'Podpořte to, co děláme',
         supIntro:'Jsme malí a schválně to tak necháváme. Peníze jdou do dalšího okamžiku, který vytvoříme &mdash; květiny, doprava, teplá místnost, krmení pro zvíře, které čeká na domov.',
         way1Title:'Bankovní převod',
         way1Text:'Nejjednodušší cesta a cestou se nic neztratí.',
-        labAcc:'Účet',valAcc:'0000000000 / 0000',
-        labIban:'IBAN',valIban:'CZ00 0000 0000 0000 0000 0000',
-        labHolder:'Majitel účtu',valHolder:'Sapiens',
-        pending:'Údaje brzy doplníme',
+        pending:'Účet právě zakládáme. Napište nám a údaje vám pošleme, jakmile budou.',
+        way1Cta:'Vyžádat údaje',
         way2Title:'QR platba',
         way2Text:'Otevřete bankovní aplikaci, namiřte ji na kód a částku si zvolíte sami.',
         qrSoon:'QR kód<br>brzy',
