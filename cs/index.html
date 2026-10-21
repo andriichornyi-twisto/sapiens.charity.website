@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#FFFAF4">
 <title>Sapiens — Lidé potřebují lidi</title>
-<meta name="description" content="Sapiens je projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení. Vytváříme projekty, podporujeme smysluplné iniciativy a pomáháme tam, kde je to potřeba.">
+<meta name="description" content="Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení — a pomáháme tam, kde je to potřeba.">
 <meta property="og:title" content="Sapiens — Lidé potřebují lidi">
 <meta property="og:description" content="Projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení.">
 <meta property="og:type" content="website">
@@ -539,6 +539,9 @@
   .member figcaption{display:flex;flex-direction:column;gap:5px;}
   .member b{font-size:1.05rem;font-weight:800;letter-spacing:-.01em;}
   .member figcaption span{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.55;}
+  .team-shot{margin:0;}
+  .team-shot img{display:block;width:100%;height:auto;border-radius:18px;
+    box-shadow:0 18px 44px rgba(85,32,46,.14);}
   .team-note{
     margin:clamp(30px,4vw,48px) auto 0;max-width:46ch;text-align:center;
     font-weight:600;line-height:1.6;opacity:.7;
@@ -605,6 +608,29 @@
   }
   .to-top.show{opacity:1;transform:none;pointer-events:auto;}
   .to-top:hover{background:var(--wine-deep);}
+
+  /* the four areas we work in */
+  .areas{list-style:none;margin-top:clamp(40px,6vw,76px);display:grid;
+    grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);}
+  @media (max-width:900px){.areas{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.areas{grid-template-columns:1fr;gap:22px;}}
+  .areas li{display:flex;flex-direction:column;gap:6px;
+    border-top:2px solid var(--wine);padding-top:14px;}
+  .areas-n{font-size:.78rem;font-weight:800;letter-spacing:.12em;opacity:.5;}
+  .areas b{font-size:1.1rem;font-weight:800;letter-spacing:-.01em;line-height:1.1;}
+  .areas span:last-child{font-weight:600;font-size:.95rem;line-height:1.5;opacity:.78;}
+
+  /* how we work — for care homes */
+  .how .sec-head h2{color:var(--white);}
+  .how-lead{margin-top:14px;font-size:1.05rem;font-weight:600;opacity:.8;}
+  .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,52px);}
+  @media (max-width:760px){.how-grid{grid-template-columns:1fr;}}
+  .how-item{border-top:1px solid rgba(250,246,238,.3);padding-top:18px;}
+  .how-item h3{font-size:1.15rem;font-weight:800;letter-spacing:-.01em;color:var(--ochre);}
+  .how-item p{margin-top:9px;font-weight:600;line-height:1.55;opacity:.85;}
+  .how-cta{margin-top:clamp(34px,5vw,54px);}
+  .how .btn-primary{background:var(--ochre);color:var(--wine);}
+  .how .btn-primary:hover{background:#D29B3E;}
 
   /* footer */
   footer{
@@ -765,7 +791,7 @@
 
   <span class="eyebrow" data-i18n="heroEyebrow">Lidé potřebují lidi</span>
   <h1 data-i18n="heroH1">Aby <span class="hl">lidskost</span> byla zase skutečná</h1>
-  <p data-i18n="heroP">Sapiens je projekt se sociálním přesahem. Vytváříme skutečné okamžiky dobročinnosti a lidského propojení — a pomáháme tam, kde je to potřeba.</p>
+  <p data-i18n="heroP">Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení — pro lidi a zvířata, kteří zůstali sami.</p>
 
   <div class="scroll-hint" aria-hidden="true" data-i18n="heroScroll">Scrollujte</div>
 </section>
@@ -773,7 +799,7 @@
 <!-- photo divider -->
 <div class="photo-strip">
   <figure class="snap">
-    <img src="/img/team.jpg" alt="The Sapiens team posing together — “We don’t change people. We remind them who they are.”" width="1080" height="1350" loading="lazy" decoding="async">
+    <img src="/img/team.jpg" alt="Two women holding each other in a long embrace" width="1066" height="1600" loading="lazy" decoding="async">
     <svg class="snap-heart" viewBox="0 0 86 86" fill="none" stroke="var(--ochre)" stroke-width="5" stroke-linecap="round" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"></path></svg>
     <figcaption data-i18n="teamCaption">Parta Sapiens ♡</figcaption>
   </figure>
@@ -809,7 +835,7 @@
       <h2 data-split="" data-i18n="whoTitle">Kdo jsme</h2>
     </div>
     <div class="who-grid">
-      <p class="lead rv" data-i18n="whoLead">Sapiens je projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení. Vytváříme projekty, podporujeme smysluplné iniciativy a pomáháme <span class="accent">tam, kde je to potřeba.</span></p>
+      <p class="lead rv" data-i18n="whoLead">Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení — a pomáháme <span class="accent">tam, kde je to potřeba.</span></p>
       <div class="who-aside rv d1">
         <p class="stanza" data-i18n="whoStanza1">Na světě není nedostatek dobrých lidí.<br>Chybí jen okamžiky, které je spojují.</p>
         <p class="stanza" data-i18n="whoStanza2">Sapiens existuje, aby pro ně vytvářel prostor.</p>
@@ -819,9 +845,16 @@
         </svg>
       </div>
     </div>
+
+    <ul class="areas">
+      <li class="rv"><span class="areas-n">01</span><b data-i18n="area1">Senioři</b><span data-i18n="area1d">Návštěvy v domovech — společnost, manikúra, hudba, malé oslavy.</span></li>
+      <li class="rv d1"><span class="areas-n">02</span><b data-i18n="area2">Zvířata</b><span data-i18n="area2d">Zvířata z útulků, která čekají na domov, a pomoc samotným útulkům.</span></li>
+      <li class="rv d2"><span class="areas-n">03</span><b data-i18n="area3">Spolupráce se značkami</b><span data-i18n="area3d">Společné projekty s firmami, které chtějí, aby jejich pomoc byla vidět a byla skutečná.</span></li>
+      <li class="rv d1"><span class="areas-n">04</span><b data-i18n="area4">A další</b><span data-i18n="area4d">Kdekoliv chybí okamžik pozornosti, hledáme způsob, jak ho vytvořit.</span></li>
+    </ul>
   </div>
 
-  <img class="full-img" src="/img/grandma.jpg" alt="An elderly woman with a bouquet of carnations laughing together with a young volunteer" width="1350" height="730" loading="lazy" decoding="async">
+  <img class="full-img" src="/img/grandma.jpg" alt="A volunteer painting an older woman’s nails at a care home" width="1500" height="1000" loading="lazy" decoding="async">
 </section>
 
 <div class="wave flip" style="--top:var(--ochre);--bottom:var(--wine)" aria-hidden="true"></div>
@@ -883,7 +916,7 @@
     </div>
   </div>
 
-  <img class="full-img" src="/img/hug.jpg" alt="A group of volunteers in a warm group hug" width="1080" height="560" loading="lazy" decoding="async">
+  <img class="full-img" src="/img/hug.jpg" alt="The Sapiens volunteers in a group hug" width="1600" height="1066" loading="lazy" decoding="async">
 </section>
 
 <!-- ================= TAGLINE BAND ================= -->
@@ -894,27 +927,10 @@
       <span class="eyebrow" data-i18n="teamEyebrow">Lidé</span>
       <h2 data-split="" data-i18n="teamTitle">Kdo za tím stojí</h2>
     </div>
-    <div class="team-grid">
-      <figure class="member rv">
-        <span class="avatar tone-a" aria-hidden="true">N</span>
-        <figcaption><b data-i18n="m1n">Jméno Příjmení</b><span data-i18n="m1r">Zakladatelka</span></figcaption>
-      </figure>
-      <figure class="member rv d1">
-        <span class="avatar tone-b" aria-hidden="true">N</span>
-        <figcaption><b data-i18n="m2n">Jméno Příjmení</b><span data-i18n="m2r">Akce</span></figcaption>
-      </figure>
-      <figure class="member rv d2">
-        <span class="avatar tone-c" aria-hidden="true">N</span>
-        <figcaption><b data-i18n="m3n">Jméno Příjmení</b><span data-i18n="m3r">Zvířata</span></figcaption>
-      </figure>
-      <figure class="member rv d1">
-        <span class="avatar tone-d" aria-hidden="true">N</span>
-        <figcaption><b data-i18n="m4n">Jméno Příjmení</b><span data-i18n="m4r">Spolupráce</span></figcaption>
-      </figure>
-    </div>
-    <p class="team-note" data-i18n="teamNote">A k tomu všichni, kdo přijdou v den akce — a těch je víc než nás.</p>
-  </div>
-</section>
+    <figure class="team-shot rv">
+      <img src="/img/2026/team.jpg" alt="The Sapiens volunteers together at a care home" width="1600" height="1067" loading="lazy" decoding="async">
+    </figure>
+</div></section>
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track" id="marqueeTrack"><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span><span>Lidé potřebují lidi &nbsp;♡</span></div>
@@ -970,6 +986,41 @@
   </div>
 </section>
 
+<div class="wave flip" style="--top:var(--cream);--bottom:var(--wine)" aria-hidden="true"></div>
+
+<section class="band band-wine how" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="howEyebrow">Jak pracujeme</span>
+      <h2 data-split="" data-i18n="howTitle">Člověk je vždy na prvním místě</h2>
+      <p class="how-lead rv" data-i18n="howLead">Pro zařízení a pro všechny, kdo zvažují, že nás pozvou.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-item rv">
+        <h3 data-i18n="how1t">Bez tlaku</h3>
+        <p data-i18n="how1d">Nikdo nemusí nic dělat. Program přizpůsobíme zdravotnímu stavu a možnostem klientů.</p>
+      </div>
+      <div class="how-item rv d1">
+        <h3 data-i18n="how2t">Vše zajistíme sami</h3>
+        <p data-i18n="how2d">Přípravu, materiál i průběh setkání. Pro zařízení je vše zdarma.</p>
+      </div>
+      <div class="how-item rv d2">
+        <h3 data-i18n="how3t">Fotografie jen se souhlasem</h3>
+        <p data-i18n="how3d">Fotíme pouze na telefon, jen ty, kdo souhlasí, a vždy podle pravidel zařízení.</p>
+      </div>
+      <div class="how-item rv d1">
+        <h3 data-i18n="how4t">Ve spolupráci s personálem</h3>
+        <p data-i18n="how4d">Termín, rozsah i průběh setkání domlouváme předem s vámi.</p>
+      </div>
+    </div>
+    <p class="how-cta rv">
+      <a class="btn btn-primary" href="mailto:sapiens.together@gmail.com" data-i18n="howCta">Pozvěte nás k vám</a>
+    </p>
+  </div>
+</section>
+
+<div class="wave" style="--top:var(--wine);--bottom:var(--cream)" aria-hidden="true"></div>
+
 <section class="band band-cream join" id="join">
   <svg class="doodle" style="top:22%;left:10%;width:24px;color:var(--ochre);--r:-16deg;animation-delay:1s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 L15 9 L24 12 L15 15 L12 24 L9 15 L0 12 L9 9 Z"></path></svg>
   <svg class="doodle" style="bottom:20%;right:9%;width:44px;color:var(--wine);--r:10deg;animation-delay:2.4s" viewBox="0 0 86 86" fill="none" stroke="currentColor" aria-hidden="true"><path d="M30 44 C18 30 30 14 42 24 C54 12 68 26 56 42 C50 50 43 56 43 56 C43 56 36 51 30 44 Z"></path></svg>
@@ -1015,6 +1066,7 @@
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> <span data-i18n="footCredit">Sapiens — projekt se sociálním přesahem</span></span>
       <span><a href="/privacy/" data-i18n="footPrivacy">Soukromí</a> &nbsp;·&nbsp;
+      <a href="mailto:sapiens.together@gmail.com">sapiens.together@gmail.com</a> &nbsp;·&nbsp;
       <a href="https://www.instagram.com/sapiens.cz/" target="_blank" rel="noopener">instagram.com/sapiens.cz</a></span>
     </div>
   </div>
@@ -1031,16 +1083,16 @@
     const I18N={
       en:{
         title:'Sapiens — People need people',
-        desc:'Sapiens is a social impact project that brings people together through charity and human connection. We create projects, support meaningful initiatives and help where it’s needed.',
+        desc:'Sapiens is a social impact project from Prague. We create real moments of attention, care and human connection — and help where it’s needed.',
         marquee:'People need people',
         menuOpen:'Open menu',menuClose:'Close menu',toTop:'Back to top',
         navWho:'Who we are',navWhy:'Why we do this',navShare:'Why we share it',navEvents:'Events',navPets:'Adopt',navSupport:'Support',navJoin:'Join us',skipLink:'Skip to content',
         heroEyebrow:'People need people',
         heroH1:'Making <span class="hl">humanity</span> feel real again',
-        heroP:'Sapiens is a social impact project. We create real moments of charity and human connection &mdash; and help where it&rsquo;s needed.',
+        heroP:'Sapiens is a social impact project from Prague. We create real moments of attention, care and human connection &mdash; for people and animals who are on their own.',
         heroScroll:'Scroll',teamCaption:'The Sapiens crew &#9825;',
         whoTitle:'Who we are',
-        whoLead:'Sapiens is a social impact project that brings people together through charity and human connection. We create projects, support meaningful initiatives and help <span class="accent">where it&rsquo;s needed.</span>',
+        whoLead:'Sapiens is a social impact project from Prague. We create real moments of attention, care and human connection &mdash; and we help <span class="accent">where it&rsquo;s needed.</span>',
         whoStanza1:'There&rsquo;s no shortage of good people in the world.<br>There&rsquo;s a shortage of moments that bring them together.',
         whoStanza2:'Sapiens exists to create space for that.',
         quote1:'&ldquo;We don&rsquo;t teach people how to be kind. We just create the moment where kindness can happen.&rdquo;',
@@ -1061,11 +1113,18 @@
         teaserText:'Dogs, cats and rabbits around Prague are waiting for someone. Go through them one by one, keep the ones who stay with you &mdash; and we&rsquo;ll put you in touch with the people looking after them.',
         teaserCta:'Meet the animals',
         teamEyebrow:'The people',teamTitle:'Who is behind it',
-        m1n:'Name Surname',m1r:'Founder',
-        m2n:'Name Surname',m2r:'Events',
-        m3n:'Name Surname',m3r:'Animals',
-        m4n:'Name Surname',m4r:'Partnerships',
         teamNote:'Plus everyone who shows up on the day &mdash; and there are more of them than of us.',
+        area1:'Seniors',area1d:'Visits to care homes &mdash; company, manicures, music, small celebrations.',
+        area2:'Animals',area2d:'Shelter animals waiting for a home, and help for the shelters themselves.',
+        area3:'Brand collaborations',area3d:'Joint projects with companies that want their help to be visible and real.',
+        area4:'And more',area4d:'Wherever a moment of attention is missing, we look for a way to create it.',
+        howEyebrow:'How we work',howTitle:'The person always comes first',
+        howLead:'For care homes and anyone thinking of inviting us in.',
+        how1t:'No pressure',how1d:'Nobody has to do anything. We fit the programme to how residents are feeling and what they can manage.',
+        how2t:'We bring everything',how2d:'Preparation, materials and running the session. For the home it costs nothing.',
+        how3t:'Photos only with consent',how3d:'Phone camera only, only the people who agree, and always by the home&rsquo;s own rules.',
+        how4t:'Together with your staff',how4d:'We agree the date, the scope and how the visit runs with you beforehand.',
+        howCta:'Invite us to your home',
         helpEyebrow:'Get involved',
         helpTitle:'How you can help',
         help1Title:'Come to an event',
@@ -1086,16 +1145,16 @@
       },
       cs:{
         title:'Sapiens — Lidé potřebují lidi',
-        desc:'Sapiens je projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení. Vytváříme projekty, podporujeme smysluplné iniciativy a pomáháme tam, kde je to potřeba.',
+        desc:'Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení — a pomáháme tam, kde je to potřeba.',
         marquee:'Lidé potřebují lidi',
         menuOpen:'Otevřít menu',menuClose:'Zavřít menu',toTop:'Zpět nahoru',
         navWho:'Kdo jsme',navWhy:'Proč to děláme',navShare:'Proč to sdílíme',navEvents:'Akce',navPets:'Adopce',navSupport:'Podpořte nás',navJoin:'Přidejte se',skipLink:'Přeskočit na obsah',
         heroEyebrow:'Lidé potřebují lidi',
         heroH1:'Aby <span class="hl">lidskost</span> byla zase skutečná',
-        heroP:'Sapiens je projekt se sociálním přesahem. Vytváříme skutečné okamžiky dobročinnosti a lidského propojení &mdash; a pomáháme tam, kde je to potřeba.',
+        heroP:'Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení &mdash; pro lidi a zvířata, kteří zůstali sami.',
         heroScroll:'Scrollujte',teamCaption:'Parta Sapiens &#9825;',
         whoTitle:'Kdo jsme',
-        whoLead:'Sapiens je projekt se sociálním přesahem, který spojuje lidi skrze dobročinnost a lidské propojení. Vytváříme projekty, podporujeme smysluplné iniciativy a pomáháme <span class="accent">tam, kde je to potřeba.</span>',
+        whoLead:'Sapiens je projekt se sociálním přesahem z Prahy. Vytváříme skutečné okamžiky pozornosti, péče a lidského propojení &mdash; a pomáháme <span class="accent">tam, kde je to potřeba.</span>',
         whoStanza1:'Na světě není nedostatek dobrých lidí.<br>Chybí jen okamžiky, které je spojují.',
         whoStanza2:'Sapiens existuje, aby pro ně vytvářel prostor.',
         quote1:'&bdquo;Neučíme lidi, jak být laskaví. Jen vytváříme okamžik, ve kterém se laskavost může stát.&ldquo;',
@@ -1116,11 +1175,18 @@
         teaserText:'Psi, kočky a králíci v Praze a okolí čekají na někoho. Projděte si je jednoho po druhém, nechte si ty, kteří vám zůstanou v hlavě &mdash; a my vás spojíme s lidmi, kteří se o ně starají.',
         teaserCta:'Poznejte zvířata',
         teamEyebrow:'Lidé',teamTitle:'Kdo za tím stojí',
-        m1n:'Jméno Příjmení',m1r:'Zakladatelka',
-        m2n:'Jméno Příjmení',m2r:'Akce',
-        m3n:'Jméno Příjmení',m3r:'Zvířata',
-        m4n:'Jméno Příjmení',m4r:'Spolupráce',
         teamNote:'A k tomu všichni, kdo přijdou v den akce &mdash; a těch je víc než nás.',
+        area1:'Senioři',area1d:'Návštěvy v domovech &mdash; společnost, manikúra, hudba, malé oslavy.',
+        area2:'Zvířata',area2d:'Zvířata z útulků, která čekají na domov, a pomoc samotným útulkům.',
+        area3:'Spolupráce se značkami',area3d:'Společné projekty s firmami, které chtějí, aby jejich pomoc byla vidět a byla skutečná.',
+        area4:'A další',area4d:'Kdekoliv chybí okamžik pozornosti, hledáme způsob, jak ho vytvořit.',
+        howEyebrow:'Jak pracujeme',howTitle:'Člověk je vždy na prvním místě',
+        howLead:'Pro zařízení a pro všechny, kdo zvažují, že nás pozvou.',
+        how1t:'Bez tlaku',how1d:'Nikdo nemusí nic dělat. Program přizpůsobíme zdravotnímu stavu a možnostem klientů.',
+        how2t:'Vše zajistíme sami',how2d:'Přípravu, materiál i průběh setkání. Pro zařízení je vše zdarma.',
+        how3t:'Fotografie jen se souhlasem',how3d:'Fotíme pouze na telefon, jen ty, kdo souhlasí, a vždy podle pravidel zařízení.',
+        how4t:'Ve spolupráci s personálem',how4d:'Termín, rozsah i průběh setkání domlouváme předem s vámi.',
+        howCta:'Pozvěte nás k vám',
         helpEyebrow:'Zapojte se',
         helpTitle:'Jak můžete pomoct',
         help1Title:'Přijďte na akci',
